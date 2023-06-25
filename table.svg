@@ -1,0 +1,1092 @@
+
+ <Svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlnsXlink="http://www.w3.org/1999/xlink"
+    contentStyleType="text/css"
+    height="553px"
+    preserveAspectRatio="none"
+    style={{
+      width: 1163,
+      height: 553,
+      background: "#FFFFFF",
+    }}
+    viewBox="0 0 1163 553"
+    width="1163px"
+    zoomAndPan="magnify"
+    {...props}
+  >
+    <Defs />
+    <G>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={14}
+        fontWeight="bold"
+        lengthAdjust="spacing"
+        textLength={169}
+        x={495.5}
+        y={32.9951}
+      >
+        {"Approach to Oliguria"}
+      </Text>
+      <Ellipse
+        cx={673.75}
+        cy={57.2969}
+        fill="#222222"
+        rx={10}
+        ry={10}
+        style={{
+          stroke: "#222222",
+          strokeWidth: 1,
+        }}
+      />
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={215}
+        x={566.25}
+        y={87.2969}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={195}
+        x={576.25}
+        y={108.4355}
+      >
+        {"Urine output <0.3-0.5 cc/kg IBW"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="600.25,141.2656,747.25,141.2656,759.25,153.2656,747.25,165.2656,600.25,165.2656,588.25,153.2656,600.25,141.2656"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={147}
+        x={600.25}
+        y={157.0737}
+      >
+        {"Urinary Obstruction Check"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={15}
+        x={573.25}
+        y={150.6714}
+      >
+        {"No"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={21}
+        x={759.25}
+        y={150.6714}
+      >
+        {"Yes"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={170}
+        x={298.5}
+        y={175.2656}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={150}
+        x={308.5}
+        y={196.4043}
+      >
+        {"Hemodynamic Evaluation"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="45,229.2344,137,229.2344,149,241.2344,137,253.2344,45,253.2344,33,241.2344,45,229.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={21}
+        x={95}
+        y={263.4448}
+      >
+        {"yes"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={92}
+        x={45}
+        y={245.0425}
+      >
+        {"MAP inadequate"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={160}
+        x={11}
+        y={284.9448}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={140}
+        x={21}
+        y={306.0835}
+      >
+        {"Vasopressor challenge"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="217,229.2344,292,229.2344,304,241.2344,292,253.2344,217,253.2344,205,241.2344,217,229.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={21}
+        x={258.5}
+        y={263.4448}
+      >
+        {"yes"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={75}
+        x={217}
+        y={245.0425}
+      >
+        {"Hypovolemia"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={127}
+        x={191}
+        y={284.9448}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={107}
+        x={201}
+        y={306.0835}
+      >
+        {"Volume challenge"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="350,229.2344,513,229.2344,525,241.2344,513,253.2344,350,253.2344,338,241.2344,350,229.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={21}
+        x={435.5}
+        y={263.4448}
+      >
+        {"yes"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={163}
+        x={350}
+        y={245.0425}
+      >
+        {"Cardiac failure or congestion"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={133}
+        x={365}
+        y={284.9448}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={113}
+        x={375}
+        y={306.0835}
+      >
+        {"Inotrope challenge"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="587.5,229.2344,663.5,229.2344,675.5,241.2344,663.5,253.2344,587.5,253.2344,575.5,241.2344,587.5,229.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={21}
+        x={629.5}
+        y={263.4448}
+      >
+        {"yes"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={76}
+        x={587.5}
+        y={245.0425}
+      >
+        {"Intrinsic renal"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={161}
+        x={545}
+        y={284.9448}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={141}
+        x={555}
+        y={306.0835}
+      >
+        {"Furosemide stress test"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="317,358.9136,450,358.9136,462,370.9136,450,382.9136,317,382.9136,305,370.9136,317,358.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={133}
+        x={317}
+        y={374.7217}
+      >
+        {"Improved urine output?"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={21}
+        x={284}
+        y={368.3193}
+      >
+        {"Yes"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={11}
+        lengthAdjust="spacing"
+        textLength={15}
+        x={462}
+        y={368.3193}
+      >
+        {"No"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={47.9375}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={226}
+        x={147.75}
+        y={392.9136}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={167}
+        x={157.75}
+        y={414.0522}
+      >
+        {"Continue to follow carefully;"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={206}
+        x={157.75}
+        y={428.021}
+      >
+        {"At risk for AKI: avoid nephrotoxins"}
+      </Text>
+      <Rect
+        fill="#F1F1F1"
+        height={47.9375}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={225}
+        x={393.75}
+        y={392.9136}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={161}
+        x={403.75}
+        y={414.0522}
+      >
+        {"Evaluate for causes of AKI;"}
+      </Text>
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={205}
+        x={403.75}
+        y={428.021}
+      >
+        {"Avoid any additional fluid boluses."}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="383.5,446.8511,395.5,458.8511,383.5,470.8511,371.5,458.8511,383.5,446.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Rect
+        fill="#F1F1F1"
+        height={33.9688}
+        rx={12.5}
+        ry={12.5}
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+        width={376}
+        x={776}
+        y={175.2656}
+      />
+      <Text
+        fill="#000000"
+        fontFamily="sans-serif"
+        fontSize={12}
+        lengthAdjust="spacing"
+        textLength={356}
+        x={786}
+        y={196.4043}
+      >
+        {"Treat e.g., Flush or replace Foley, CT scan, urology consult"}
+      </Text>
+      <Polygon
+        fill="#F1F1F1"
+        points="673.75,476.8511,685.75,488.8511,673.75,500.8511,661.75,488.8511,673.75,476.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 0.5,
+        }}
+      />
+      <Ellipse
+        cx={673.75}
+        cy={531.8511}
+        fill="none"
+        rx={11}
+        ry={11}
+        style={{
+          stroke: "#222222",
+          strokeWidth: 1,
+        }}
+      />
+      <Ellipse
+        cx={673.75}
+        cy={531.8511}
+        fill="#222222"
+        rx={6}
+        ry={6}
+        style={{
+          stroke: "#111111",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={673.75}
+        x2={673.75}
+        y1={67.2969}
+        y2={87.2969}
+      />
+      <Polygon
+        fill="#181818"
+        points="669.75,77.2969,673.75,87.2969,677.75,77.2969,673.75,81.2969"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={91}
+        x2={91}
+        y1={253.2344}
+        y2={284.9448}
+      />
+      <Polygon
+        fill="#181818"
+        points="87,274.9448,91,284.9448,95,274.9448,91,278.9448"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={91}
+        x2={91}
+        y1={318.9136}
+        y2={338.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="87,328.9136,91,338.9136,95,328.9136,91,332.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={254.5}
+        x2={254.5}
+        y1={253.2344}
+        y2={284.9448}
+      />
+      <Polygon
+        fill="#181818"
+        points="250.5,274.9448,254.5,284.9448,258.5,274.9448,254.5,278.9448"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={254.5}
+        x2={254.5}
+        y1={318.9136}
+        y2={338.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="250.5,328.9136,254.5,338.9136,258.5,328.9136,254.5,332.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={431.5}
+        x2={431.5}
+        y1={253.2344}
+        y2={284.9448}
+      />
+      <Polygon
+        fill="#181818"
+        points="427.5,274.9448,431.5,284.9448,435.5,274.9448,431.5,278.9448"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={431.5}
+        x2={431.5}
+        y1={318.9136}
+        y2={338.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="427.5,328.9136,431.5,338.9136,435.5,328.9136,431.5,332.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={625.5}
+        x2={625.5}
+        y1={253.2344}
+        y2={284.9448}
+      />
+      <Polygon
+        fill="#181818"
+        points="621.5,274.9448,625.5,284.9448,629.5,274.9448,625.5,278.9448"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={625.5}
+        x2={625.5}
+        y1={318.9136}
+        y2={338.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="621.5,328.9136,625.5,338.9136,629.5,328.9136,625.5,332.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={149}
+        x2={205}
+        y1={241.2344}
+        y2={241.2344}
+      />
+      <Polygon
+        fill="#181818"
+        points="195,237.2344,205,241.2344,195,245.2344,199,241.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={304}
+        x2={338}
+        y1={241.2344}
+        y2={241.2344}
+      />
+      <Polygon
+        fill="#181818"
+        points="328,237.2344,338,241.2344,328,245.2344,332,241.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={525}
+        x2={575.5}
+        y1={241.2344}
+        y2={241.2344}
+      />
+      <Polygon
+        fill="#181818"
+        points="565.5,237.2344,575.5,241.2344,565.5,245.2344,569.5,241.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={383.5}
+        x2={383.5}
+        y1={209.2344}
+        y2={214.2344}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={383.5}
+        x2={91}
+        y1={214.2344}
+        y2={214.2344}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={91}
+        x2={91}
+        y1={214.2344}
+        y2={229.2344}
+      />
+      <Polygon
+        fill="#181818"
+        points="87,219.2344,91,229.2344,95,219.2344,91,223.2344"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={675.5}
+        x2={741}
+        y1={241.2344}
+        y2={241.2344}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={741}
+        x2={741}
+        y1={241.2344}
+        y2={338.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="737,328.9136,741,338.9136,745,328.9136,741,332.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={91}
+        x2={741}
+        y1={338.9136}
+        y2={338.9136}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={305}
+        x2={260.75}
+        y1={370.9136}
+        y2={370.9136}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={260.75}
+        x2={260.75}
+        y1={370.9136}
+        y2={392.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="256.75,382.9136,260.75,392.9136,264.75,382.9136,260.75,386.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={462}
+        x2={506.25}
+        y1={370.9136}
+        y2={370.9136}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={506.25}
+        x2={506.25}
+        y1={370.9136}
+        y2={392.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="502.25,382.9136,506.25,392.9136,510.25,382.9136,506.25,386.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={260.75}
+        x2={260.75}
+        y1={440.8511}
+        y2={458.8511}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={260.75}
+        x2={371.5}
+        y1={458.8511}
+        y2={458.8511}
+      />
+      <Polygon
+        fill="#181818"
+        points="361.5,454.8511,371.5,458.8511,361.5,462.8511,365.5,458.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={506.25}
+        x2={506.25}
+        y1={440.8511}
+        y2={458.8511}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={506.25}
+        x2={395.5}
+        y1={458.8511}
+        y2={458.8511}
+      />
+      <Polygon
+        fill="#181818"
+        points="405.5,454.8511,395.5,458.8511,405.5,462.8511,401.5,458.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={383.5}
+        x2={383.5}
+        y1={338.9136}
+        y2={358.9136}
+      />
+      <Polygon
+        fill="#181818"
+        points="379.5,348.9136,383.5,358.9136,387.5,348.9136,383.5,352.9136"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={588.25}
+        x2={383.5}
+        y1={153.2656}
+        y2={153.2656}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={383.5}
+        x2={383.5}
+        y1={153.2656}
+        y2={175.2656}
+      />
+      <Polygon
+        fill="#181818"
+        points="379.5,165.2656,383.5,175.2656,387.5,165.2656,383.5,169.2656"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={759.25}
+        x2={964}
+        y1={153.2656}
+        y2={153.2656}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={964}
+        x2={964}
+        y1={153.2656}
+        y2={175.2656}
+      />
+      <Polygon
+        fill="#181818"
+        points="960,165.2656,964,175.2656,968,165.2656,964,169.2656"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={383.5}
+        x2={383.5}
+        y1={470.8511}
+        y2={488.8511}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={383.5}
+        x2={661.75}
+        y1={488.8511}
+        y2={488.8511}
+      />
+      <Polygon
+        fill="#181818"
+        points="651.75,484.8511,661.75,488.8511,651.75,492.8511,655.75,488.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={964}
+        x2={964}
+        y1={209.2344}
+        y2={488.8511}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={964}
+        x2={685.75}
+        y1={488.8511}
+        y2={488.8511}
+      />
+      <Polygon
+        fill="#181818"
+        points="695.75,484.8511,685.75,488.8511,695.75,492.8511,691.75,488.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={673.75}
+        x2={673.75}
+        y1={121.2656}
+        y2={141.2656}
+      />
+      <Polygon
+        fill="#181818"
+        points="669.75,131.2656,673.75,141.2656,677.75,131.2656,673.75,135.2656"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+      <Line
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+        x1={673.75}
+        x2={673.75}
+        y1={500.8511}
+        y2={520.8511}
+      />
+      <Polygon
+        fill="#181818"
+        points="669.75,510.8511,673.75,520.8511,677.75,510.8511,673.75,514.8511"
+        style={{
+          stroke: "#181818",
+          strokeWidth: 1,
+        }}
+      />
+    </G>
+  </Svg>
