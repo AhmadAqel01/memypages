@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inpatient Dialysis Order Set</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+                background-color: #f5f5f5;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            form {
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h3 {
+                margin-top: 30px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                margin-top: 15px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            input[type="submit"] {
+                margin-top: 30px;
+                padding: 12px 20px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 25px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            select,
+            input[type="number"],
+            input[type="text"],
+            input[type="time"],
+            input[type="date"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 25px;
+                box-sizing: border-box;
+            }
+
+            .form-section {
+                border: 1px solid #e0e0e0;
+                border-radius: 15px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+        </style>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                margin: 0;
+                padding: 20px;
+            }
+
+            form {
+                max-width: 1200px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-toggle {
+                padding: 10px 20px;
+                background-color: #fff;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .dropdown-toggle::after {
+                content: '\25BC';
+                display: inline-block;
+                margin-left: 5px;
+            }
+
+            .dropdown-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                display: none;
+                background-color: #fff;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-top: none;
+                border-radius: 0 0 4px 4px;
+                z-index: 9999;
+            }
+
+            .dropdown.show .dropdown-menu {
+                display: block;
+            }
+
+            h3 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+                text-decoration: underline;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                margin-top: 5px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            input[type="submit"] {
+                margin-top: 20px;
+                padding: 10px 20px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            select,
+            input[type="number"],
+            input[type="text"],
+            input[type="time"],
+            input[type="date"] {
+                width: 100%;
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #fff;
+                transition: border-color 0.3s ease;
+            }
+
+            select[multiple] {
+                height: auto;
+            }
+
+            select:hover,
+            input[type="number"]:hover,
+            input[type="text"]:hover,
+            input[type="time"]:hover,
+            input[type="date"]:hover {
+                border-color: #999;
+            }
+
+            .column {
+                width: 100%;
+                display: inline-block;
+                vertical-align: top;
+            }
+
+            #extraUfSection {
+                margin-top: 20px;
+            }
+
+            .readings {
+                margin-bottom: 10px;
+            }
+
+            .readings label {
+                display: inline-block;
+                width: 100%;
+                vertical-align: middle;
+            }
+
+            .readings .data {
+                display: inline-block;
+                width: 100%;
+            }
+
+            .calculation {
+                margin-top: 10px;
+            }
+
+            .calculation label {
+                display: inline-block;
+                width: 100%;
+                vertical-align: top;
+            }
+
+            .calculation .data {
+                display: inline-block;
+                width: 100%;
+            }
+        </style>
+        <style>
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                min-width: 160px;
+                z-index: 1;
+            }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Roboto', sans-serif;
+                background-color: #f5f5f5;
+                margin: 0;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            form {
+                max-width: 800px;
+                margin: 20px auto;
+                background-color: #fff;
+                padding: 30px;
+                border-radius: 15px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h3 {
+                margin-top: 30px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+                margin-top: 15px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            input[type="submit"] {
+                margin-top: 30px;
+                padding: 12px 20px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 25px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+            select,
+            input[type="number"],
+            input[type="text"],
+            input[type="time"],
+            input[type="date"] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                border-radius: 25px;
+                box-sizing: border-box;
+            }
+
+            .form-section {
+                border: 1px solid #e0e0e0;
+                border-radius: 15px;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body style="display: flex;">
+        <form style="justify-self: center;">
+            <div style="display: flex; justify-content: space-evenly;">
+                <div>
+                    <label>Treatment Date:</label>
+                    <input type="date"
+                           name="Treatment_Date"><br>
+                </div>
+                <div>
+                    <label>Treatment Modality:</label>
+                    <select name="Treatment_Option">
+                        <option value="Isolated Ultrafiltration">Isolated
+                            Ultrafiltration</option>
+                        <option selected
+                                value="Hemodialysis">Hemodialysis</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label>Dialysis Machine:</label>
+                    <select name="Dialysis_Machine"
+                            id="dialysisMachineSelect">
+                        <option value="Gambro">Gambro</option>
+                        <option value="Tablo">Tablo</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label for="indicationSelect">Indication:</label>
+                    <select id="indicationSelect"
+                            name="Indication">
+                        <option value="">Select Indication</option>
+                        <option value="Volume Overload">Volume Overload</option>
+                        <option value="Hyperkalemia">Hyperkalemia</option>
+                        <option value="Metabolic Acidosis">Metabolic Acidosis
+                        </option>
+                        <option value="Intoxication">Intoxication</option>
+                        <option value="Uremia">Uremia</option>
+                        <option value="Free Text">Free Text</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Hemodialysis Section -->
+            <div id="hemodialysis"
+                 style="display: none;">
+                <!-- Metabolic Control Section -->
+                <div>
+                    <h3>Metabolic Control</h3>
+                    <div
+                         style="display: flex; outline:#949494 3px solid; padding: 20px; border-radius: 20px;">
+                        <div style="flex: 1;">
+                            <label>Potassium Bath:</label>
+                            <select name="Potassium_Bath">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="Free text">Free text</option>
+                            </select><br>
+                            <label>Dialysate Na Concentration:</label>
+                            <input type="number"
+                                   name="Sodium_Bath"
+                                   min="130"
+                                   max="150"><br>
+                            <label>Dialysate Bicarbonate Concentration:</label>
+                            <input type="number"
+                                   name="Bicarbonate_Buffer"
+                                   id="bicarbonateBufferInput"
+                                   min="30"
+                                   max="40"
+                                   value="36"><br>
+                            <label>Dialysate Calcium Concentration:</label>
+                            <select name="Calcium">
+                                <option value="2.5">2.5</option>
+                                <option value="3">3</option>
+                                <option value="3.5">3.5</option>
+                            </select><br>
+                            <label
+                                   title="Can be used if serum PO4 level is less than 3 to prevent severe hypophosphatemia">Phosphorus:</label>
+                            <select name="Phosphorus">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select><br>
+                        </div>
+                        <div style="flex: 1; margin-left: 30px; width: 100%;"
+                             class="readings">
+                            <div class="data">
+                                <label>Potassium:</label>
+                                <span>[Display potassium value]</span><br><br>
+                                <label>Sodium:</label>
+                                <span>[Display sodium value]</span><br><br>
+                                <label>Bicarbonate:</label>
+                                <span>[Display bicarbonate value]</span><br><br>
+                                <label>Anion Gap:</label>
+                                <span>[Display anion gap value]</span><br><br>
+                                <label>Calcium:</label>
+                                <span>[Display calcium value]</span><br><br>
+                                <label>PO4:</label>
+                                <span>[Display PO4 value]</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Clearance Section -->
+                <div>
+                    <h3>Clearance</h3>
+                    <div
+                         style="display: flex; outline:#949494 3px solid; padding: 20px; border-radius: 20px;">
+                        <div style="flex: 1;">
+                            <div>
+                                <label>Dialyzer:</label>
+                                <select name="Dialyzer">
+                                    <option value="Revaclear 300">Revaclear 300
+                                    </option>
+                                    <option value="Revaclear 400">Revaclear 400
+                                    </option>
+                                    <option value="Cellentia">Cellentia</option>
+                                    <option value="Other">Other</option>
+                                </select><br>
+                            </div>
+                            <label>Blood Flow Rate:</label>
+                            <input type="number"
+                                   name="Blood_Flow_Rate"
+                                   value="350"
+                                   min="200"
+                                   max="500"
+                                   step="50"><br>
+                            <label>Dialysate Flow Rate:</label>
+                            <input type="number"
+                                   name="Dialysate_Flow_Rate"
+                                   value="500"
+                                   id="dialysateFlowRateInput"
+                                   min="300"
+                                   max="800"
+                                   step="100"><br>
+                            <div>
+                                <label>Treatment Duration (HH:MM):</label>
+                                <div style="display:flex;">
+                                    <select name="Duration_Hours"
+                                            style="text-align: center;"
+                                            required>
+                                        <option value="01">01</option>
+                                        <option value="02">02</option>
+                                        <option selected
+                                                value="03">03</option>
+                                        <option value="04">04</option>
+                                        <option value="05">05</option>
+                                        <option value="06">06</option>
+                                    </select> : <select name="Duration_Minutes"
+                                            style="text-align: center;"
+                                            required>
+                                        <option value="15">15</option>
+                                        <option selected
+                                                value="30">30</option>
+                                        <option value="45">45</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="flex: 1; margin-left: 30px; width: 100%;"
+                             class="readings">
+                            <div class="data">
+                                <label>BUN:</label>
+                                <span>[Display BUN value]</span><br><br>
+                                <label>Creatinine:</label>
+                                <span>[Display Creatinine value]</span><br><br>
+                                <label>Most Recent Kt/V:</label>
+                                <span>[Display the most recent measured Kt/V
+                                    value]</span><br><br>
+                                <label> The Estimated Kt/V from this
+                                    prescription:</label>
+                                <em><span>[Calculate the expected Kt/V value
+                                        from BFR, <br> DFR, KoA, Time, TBW {age,
+                                        gender and weight}]</span></em><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Volume Section -->
+                <div>
+                    <h3>Volume</h3>
+                    <div
+                         style="display: flex; outline:#949494 3px solid; padding: 20px; border-radius: 20px;">
+                        <div style="flex: 1;">
+                            <label>Target Ultrafiltration:</label>
+                            <input type="number"
+                                   name="Target_Ultrafiltration"
+                                   min="0"
+                                   max="6"
+                                   step="0.5"><br>
+                            <label>Minimum Acceptable Ultrafiltration:</label>
+                            <input type="number"
+                                   name="Minimum_Acceptable_Ultrafiltration"
+                                   min="0"
+                                   max="6"
+                                   step="0.5"><br>
+                            <label>Keep Systolic Blood Pressure above:</label>
+                            <input type="number"
+                                   name="Blood_Pressure_Threshold"
+                                   value="90"><br>
+                            <label>Notify if Systolic Blood Pressure Drops
+                                by:</label>
+                            <input type="number"
+                                   name="Blood_Pressure_Drop_Threshold"
+                                   value="40"><br>
+                            <label>Notify if Heart Rate is More than:</label>
+                            <input type="number"
+                                   name="Heart_Rate_Threshold"
+                                   value="120"><br>
+                            <label>Add Extra Isolated UF:</label>
+                            <select name="Add_Extra_Isolated_UF">
+                                <option value="No">No</option>
+                                <option value="Yes">Yes</option>
+                            </select><br>
+                            <div id="extraUfSection"
+                                 style="display: none;">
+                                <label>Duration Isolated UF (L):</label>
+                                <input type="time"
+                                       name="Duration_Isolated_UF"><br>
+                                <label>Volume Removal - Isolated UF (L):</label>
+                                <input type="number"
+                                       name="Ultrafiltration_Goal_During_UF"
+                                       min="0"
+                                       max="6"
+                                       step="0.5"><br>
+                            </div>
+                        </div>
+                        <div style="flex: 1; margin-left: 30px; width: 100%;"
+                             class="readings">
+                            <div class="data">
+                                <label>Blood Pressure:</label>
+                                <span>[Display blood pressure
+                                    values]</span><br><br>
+                                <label>Heart Rate:</label>
+                                <span>[Display heart rate values]</span><br><br>
+                                <label>Weight Trend:</label>
+                                <span>[Display weight trend
+                                    values]</span><br><br>
+                                <label>Calculated Ultrafiltration Rate
+                                    (mL/kg/hr):</label>
+                                <span>[Display ultrafiltration rate
+                                    values]</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Isolated Ultrafiltration Section -->
+            <div id="isolatedUltrafiltration"
+                 style="display: none;">
+                <h3>Standard</h3>
+                <div
+                     style="display: flex; justify-content: space-around; outline:#949494 3px solid; padding: 20px; border-radius: 20px;">
+                    <div>
+                        <label>Dialyzer:</label>
+                        <select name="Dialyzer">
+                            <option value="Revaclear 300">Revaclear 300</option>
+                            <option value="Cellentia">Cellentia</option>
+                            <option value="Other">Other</option>
+                        </select><br>
+                    </div>
+                    <div>
+                        <label>Blood Flow Rate:</label>
+                        <input type="number"
+                               name="Blood_Flow_Rate"
+                               value="350"
+                               min="200"
+                               max="500"><br>
+                    </div>
+                    <div>
+                        <label>Treatment Duration (HH:MM):</label>
+                        <div style="display:flex;">
+                            <select name="Duration_Hours"
+                                    style="text-align: center;"
+                                    required>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option selected
+                                        value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                            </select> : <select name="Duration_Minutes"
+                                    style="text-align: center;"
+                                    required>
+                                <option value="15">15</option>
+                                <option selected
+                                        value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Volume</h3>
+                    <div
+                         style="display: flex; outline:#949494 3px solid; padding: 20px; border-radius: 20px;">
+                        <div style="flex: 1;">
+                            <label>Target Ultrafiltration:</label>
+                            <input type="number"
+                                   name="Target_Ultrafiltration"
+                                   min="0"
+                                   max="6"
+                                   step="0.5"><br>
+                            <label>Minimum Acceptable Ultrafiltration:</label>
+                            <input type="number"
+                                   name="Minimum_Acceptable_Ultrafiltration"
+                                   min="0"
+                                   max="6"
+                                   step="0.5"><br>
+                            <label>Keep Systolic Blood Pressure above:</label>
+                            <input type="number"
+                                   name="Blood_Pressure_Threshold"
+                                   value="90"><br>
+                            <label>Notify if Systolic Blood Pressure Drops
+                                by:</label>
+                            <input type="number"
+                                   name="Blood_Pressure_Drop_Threshold"
+                                   value="40"><br>
+                            <label>Notify if Heart Rate is More than:</label>
+                            <input type="number"
+                                   name="Heart_Rate_Threshold"
+                                   value="120"><br>
+                            <div>
+                                <label>Dialysate Temperature:</label>
+                                <select title="The lower range may be preferred in patients at risk for hypotension but it may be uncomfortable for some patients."
+                                        name="Dialysate_Temperature">
+                                    <option value="35">35°C</option>
+                                    <option value="35.5">35.5°C</option>
+                                    <option value="36">36°C</option>
+                                    <option value="36.5">36.5°C</option>
+                                    <option value="37">37°C</option>
+                                </select><br>
+                            </div>
+                        </div>
+                        <div style="flex: 1; margin-left: 30px; width: 100%;"
+                             class="readings">
+                            <div class="data">
+                                <label>Blood Pressure:</label>
+                                <span>[Display blood pressure
+                                    values]</span><br><br>
+                                <label>Heart Rate:</label>
+                                <span>[Display heart rate values]</span><br><br>
+                                <label>Weight Trend:</label>
+                                <span>[Display weight trend
+                                    values]</span><br><br>
+                                <label>Calculated Ultrafiltration Rate
+                                    (mL/kg/hr):</label>
+                                <span>[Display ultrafiltration rate
+                                    values]</span><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit"
+                   value="Sign">
+        </form>
+        <script>
+            var dialysisMachineSelect = document.getElementById('dialysisMachineSelect');
+            var dialysateFlowRateInput = document.getElementById('dialysateFlowRateInput');
+
+            // Function to handle the Treatment_Option change event
+            function handleTreatmentOptionChange() {
+                var treatmentOption = document.getElementsByName("Treatment_Option")[0].value;
+                var hemodialysisSection = document.getElementById("hemodialysis");
+                var isolatedUltrafiltrationSection = document.getElementById("isolatedUltrafiltration");
+                var extraUfSection = document.getElementById("extraUfSection");
+
+                if (treatmentOption === "Hemodialysis") {
+                    hemodialysisSection.style.display = "block";
+                    isolatedUltrafiltrationSection.style.display = "none";
+                } else if (treatmentOption === "Isolated Ultrafiltration") {
+                    hemodialysisSection.style.display = "none";
+                    isolatedUltrafiltrationSection.style.display = "block";
+                }
+
+                if (treatmentOption === "Hemodialysis" && document.getElementsByName("Add_Extra_Isolated_UF")[0].value === "Yes") {
+                    extraUfSection.style.display = "block";
+                } else {
+                    extraUfSection.style.display = "none";
+                }
+            }
+
+
+
+            // Function to handle the Add_Extra_Isolated_UF change event
+            function handleExtraUfChange() {
+                var treatmentOption = document.getElementsByName("Treatment_Option")[0].value;
+                var addExtraUf = document.getElementsByName("Add_Extra_Isolated_UF")[0].value;
+                var extraUfSection = document.getElementById("extraUfSection");
+
+                if (treatmentOption === "Hemodialysis" && addExtraUf === "Yes") {
+                    extraUfSection.style.display = "block";
+                } else {
+                    extraUfSection.style.display = "none";
+                }
+            }
+
+            // Event listeners
+            document.getElementsByName("Treatment_Option")[0].addEventListener("change",handleTreatmentOptionChange);
+            document.getElementsByName("Add_Extra_Isolated_UF")[0].addEventListener("change",handleExtraUfChange);
+
+            // Initial state
+            handleTreatmentOptionChange();
+            handleExtraUfChange();
+
+            document.addEventListener('DOMContentLoaded',function () {
+
+                var dropdown = document.querySelector('.dropdown');
+                var dialysisMachineSelect = document.getElementById('dialysisMachineSelect');
+                var dialysateFlowRateInput = document.getElementById('dialysateFlowRateInput');
+                var bicarbonateBufferInput = document.getElementById('bicarbonateBufferInput');
+
+
+                dialysisMachineSelect.addEventListener('change',function () {
+                    if (dialysisMachineSelect.value === 'Gambro') {
+                        dialysateFlowRateInput.value = '500';
+                        var currentValue = parseInt(bicarbonateBufferInput.value);
+                        bicarbonateBufferInput.value = currentValue - 4;
+                    } else if (dialysisMachineSelect.value === 'Tablo') {
+                        dialysateFlowRateInput.value = '300';
+                        var currentValue = parseInt(bicarbonateBufferInput.value);
+                        bicarbonateBufferInput.value = currentValue + 4;
+                    }
+                });
+
+
+
+                document.addEventListener('click',function (e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdownMenu.classList.remove('show');
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
