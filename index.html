@@ -412,17 +412,17 @@
                              class="readings">
                             <div class="data">
                                 <label>Potassium:</label>
-                                <span>[Display potassium value]</span><br><br>
+                                <span>[Display most recent serum potassium]</span><br><br>
                                 <label>Sodium:</label>
-                                <span>[Display sodium value]</span><br><br>
+                                <span>[Display most recent serum sodium]</span><br><br>
                                 <label>Bicarbonate:</label>
-                                <span>[Display bicarbonate value]</span><br><br>
+                                <span>[Display most recent serum bicarbonate]</span><br><br>
                                 <label>Anion Gap:</label>
-                                <span>[Display anion gap value]</span><br><br>
+                                <span>[Display most recent anion gap]</span><br><br>
                                 <label>Calcium:</label>
-                                <span>[Display calcium value]</span><br><br>
+                                <span>[Display most recent serum calcium]</span><br><br>
                                 <label>PO4:</label>
-                                <span>[Display PO4 value]</span><br>
+                                <span>[Display most recent serum PO4]</span><br>
                             </div>
                         </div>
                     </div>
@@ -615,21 +615,21 @@
                                max="500"><br>
                     </div>
                     <div>
-                        <label>Treatment Duration (HH:MM):</label>
+                        <label>Duration of Extra Isolated UF (HH:MM):</label>
                         <div style="display:flex;">
                             <select name="Duration_Hours"
                                     style="text-align: center;"
                                     required>
-                                <option value="01">01</option>
+                                <option selected value="01">01</option>
                                 <option value="02">02</option>
-                                <option selected
-                                        value="03">03</option>
+                                <option value="03">03</option>
                                 <option value="04">04</option>
                                 <option value="05">05</option>
                                 <option value="06">06</option>
                             </select> : <select name="Duration_Minutes"
                                     style="text-align: center;"
                                     required>
+                                <option value="0">0</option>
                                 <option value="15">15</option>
                                 <option selected
                                         value="30">30</option>
