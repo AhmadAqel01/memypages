@@ -2,6 +2,9 @@
 <html>
     <head>
         <title>Inpatient Dialysis Order Set</title>
+            <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+                  rel="stylesheet">
+
         <style>
             * {
                 box-sizing: border-box;
@@ -17,7 +20,7 @@
             }
 
             form {
-                width: 1200px;
+                width: 1600px;
                 margin: 20px auto;
                 background-color: #fff;
                 padding: 30px;
@@ -82,7 +85,6 @@
             }
 
             body {
-                font-family: Arial, sans-serif;
                 background-color: #f2f2f2;
                 margin: 0;
                 padding: 20px;
@@ -262,7 +264,7 @@
             }
 
             form {
-                max-width: 800px;
+                width: 1200px;
                 margin: 20px auto;
                 background-color: #fff;
                 padding: 30px;
@@ -371,7 +373,7 @@
                     <div
                          style="display: flex; outline:#949494 3px solid; padding: 20px; border-radius: 20px;">
                         <div style="flex: 1;">
-                            <label>Potassium Bath:</label>
+                            <label>Dialysate K Concentration:</label>
                             <select name="Potassium_Bath">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -538,9 +540,30 @@
                             </select><br>
                             <div id="extraUfSection"
                                  style="display: none;">
-                                <label>Duration Isolated UF (L):</label>
-                                <input type="time"
-                                       name="Duration_Isolated_UF"><br>
+                    <div>
+                        <label>Treatment Duration (HH:MM):</label>
+                        <div style="display:flex;">
+                            <select name="Duration_Hours"
+                                    style="text-align: center;"
+                                    required>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option selected
+                                        value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                            </select> : <select name="Duration_Minutes"
+                                    style="text-align: center;"
+                                    required>
+                                <option value="15">15</option>
+                                <option selected
+                                        value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                        </div>
+                    </div>
+<br>
                                 <label>Volume Removal - Isolated UF (L):</label>
                                 <input type="number"
                                        name="Ultrafiltration_Goal_During_UF"
