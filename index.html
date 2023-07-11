@@ -2,9 +2,8 @@
 <html>
     <head>
         <title>Inpatient Dialysis Order Set</title>
-            <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
-                  rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap"
+              rel="stylesheet">
         <style>
             * {
                 box-sizing: border-box;
@@ -412,15 +411,20 @@
                              class="readings">
                             <div class="data">
                                 <label>Potassium:</label>
-                                <span>[Display most recent serum potassium]</span><br><br>
+                                <span>[Display most recent serum
+                                    potassium]</span><br><br>
                                 <label>Sodium:</label>
-                                <span>[Display most recent serum sodium]</span><br><br>
+                                <span>[Display most recent serum
+                                    sodium]</span><br><br>
                                 <label>Bicarbonate:</label>
-                                <span>[Display most recent serum bicarbonate]</span><br><br>
+                                <span>[Display most recent serum
+                                    bicarbonate]</span><br><br>
                                 <label>Anion Gap:</label>
-                                <span>[Display most recent anion gap]</span><br><br>
+                                <span>[Display most recent anion
+                                    gap]</span><br><br>
                                 <label>Calcium:</label>
-                                <span>[Display most recent serum calcium]</span><br><br>
+                                <span>[Display most recent serum
+                                    calcium]</span><br><br>
                                 <label>PO4:</label>
                                 <span>[Display most recent serum PO4]</span><br>
                             </div>
@@ -520,6 +524,17 @@
                                    min="0"
                                    max="6"
                                    step="0.5"><br>
+                            <div>
+                                <label>Dialysate Temperature:</label>
+                                <select title="The lower range may be preferred in patients at risk for hypotension but it may be uncomfortable for some patients."
+                                        name="Dialysate_Temperature">
+                                    <option value="35">35°C</option>
+                                    <option value="35.5">35.5°C</option>
+                                    <option value="36">36°C</option>
+                                    <option value="36.5">36.5°C</option>
+                                    <option value="37">37°C</option>
+                                </select><br>
+                            </div>
                             <label>Keep Systolic Blood Pressure above:</label>
                             <input type="number"
                                    name="Blood_Pressure_Threshold"
@@ -540,30 +555,31 @@
                             </select><br>
                             <div id="extraUfSection"
                                  style="display: none;">
-                    <div>
-                        <label>Treatment Duration (HH:MM):</label>
-                        <div style="display:flex;">
-                            <select name="Duration_Hours"
-                                    style="text-align: center;"
-                                    required>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option selected
-                                        value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                                <option value="06">06</option>
-                            </select> : <select name="Duration_Minutes"
-                                    style="text-align: center;"
-                                    required>
-                                <option value="15">15</option>
-                                <option selected
-                                        value="30">30</option>
-                                <option value="45">45</option>
-                            </select>
-                        </div>
-                    </div>
-<br>
+                                <div>
+                                    <label>Treatment Duration (HH:MM):</label>
+                                    <div style="display:flex;">
+                                        <select name="Duration_Hours"
+                                                style="text-align: center;"
+                                                required>
+                                            <option value="01">01</option>
+                                            <option value="02">02</option>
+                                            <option selected
+                                                    value="03">03</option>
+                                            <option value="04">04</option>
+                                            <option value="05">05</option>
+                                            <option value="06">06</option>
+                                        </select> : <select
+                                                name="Duration_Minutes"
+                                                style="text-align: center;"
+                                                required>
+                                            <option value="15">15</option>
+                                            <option selected
+                                                    value="30">30</option>
+                                            <option value="45">45</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
                                 <label>Volume Removal - Isolated UF (L):</label>
                                 <input type="number"
                                        name="Ultrafiltration_Goal_During_UF"
@@ -620,7 +636,8 @@
                             <select name="Duration_Hours"
                                     style="text-align: center;"
                                     required>
-                                <option selected value="01">01</option>
+                                <option selected
+                                        value="01">01</option>
                                 <option value="02">02</option>
                                 <option value="03">03</option>
                                 <option value="04">04</option>
@@ -668,17 +685,6 @@
                             <input type="number"
                                    name="Heart_Rate_Threshold"
                                    value="120"><br>
-                            <div>
-                                <label>Dialysate Temperature:</label>
-                                <select title="The lower range may be preferred in patients at risk for hypotension but it may be uncomfortable for some patients."
-                                        name="Dialysate_Temperature">
-                                    <option value="35">35°C</option>
-                                    <option value="35.5">35.5°C</option>
-                                    <option value="36">36°C</option>
-                                    <option value="36.5">36.5°C</option>
-                                    <option value="37">37°C</option>
-                                </select><br>
-                            </div>
                         </div>
                         <div style="flex: 1; margin-left: 30px; width: 100%;"
                              class="readings">
