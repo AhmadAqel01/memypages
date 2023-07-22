@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                background-color: #f2f2f2;
+            }
+
+            .input-group {
+                margin: 10px;
+            }
+
+            .slider {
+                width: 80%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="input-group">
+            <label for="BFR">BFR (Blood Flow Rate mL/min): </label>
+            <input type="range"
+                   min="1"
+                   max="1000"
+                   value="500"
+                   class="slider"
+                   id="BFR">
+            <input type="text"
+                   id="BFR-text"
+                   value="500">
+        </div>
+        <div class="input-group">
+            <label for="DFR">DFR (Dialysate Flow Rate mL/min): </label>
+            <input type="range"
+                   min="1"
+                   max="1000"
+                   value="500"
+                   class="slider"
+                   id="DFR">
+            <input type="text"
+                   id="DFR-text"
+                   value="500">
+        </div>
+        <div class="input-group">
+            <label for="KoA">KoA: </label>
+            <input type="range"
+                   min="1"
+                   max="1000"
+                   value="500"
+                   class="slider"
+                   id="KoA">
+            <input type="text"
+                   id="KoA-text"
+                   value="500">
+        </div>
+        <div class="input-group">
+            <label for="clearance">Clearance (mL/min): </label>
+            <input type="text"
+                   id="clearance"
+                   readonly>
+        </div>
+        <script>
+            const BFR = document.querySelector('#BFR');
+            const DFR = document.querySelector('#DFR');
+            const KoA = document.querySelector('#KoA');
+            const BFRText = document.querySelector('#BFR-text');
+            const DFRText = document.querySelector('#DFR-text');
+            const KoAText = document.querySelector('#KoA-text');
+            const clearance = document.querySelector('#clearance');
+
+            function updateValues() {
+                BFRText.value = BFR.value;
+                DFRText.value = DFR.value;
+                KoAText.value = KoA.value;
+                const B = parseFloat(BFR.value);
+                const D = parseFloat(DFR.value);
+                const K = parseFloat(KoA.value);
+                const C = (B * (Math.exp(K * ((1 / B) - (1 / D))) - 1)) / (Math.exp(K * ((1 / B) - (1 / D))) - (B / D));
+                clearance.value = C.toFixed(2);
+            }
+
+            BFR.addEventListener('input',updateValues);
+            DFR.addEventListener('input',updateValues);
+            KoA.addEventListener('input',updateValues);
+
+            // Update values on page load
+            updateValues();
+        </script>
+    </body>
+</html>
