@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Parser</title>
+  <style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#output {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+#parsed-html {
+    background-color: #f5f5f5;
+    padding: 10px;
+    white-space: pre-line;
+}
+
+#tag-tree {
+    list-style-type: none;
+}
+
+</style>
+</head>
+<body>
+    <h1>HTML Parser</h1>
+    <label for="input">Input HTML:</label>
+    <textarea id="input" rows="10" cols="50"></textarea>
+    <button onclick="parseHTML()">Parse HTML</button>
+    <div id="output">
+        <h2>Output:</h2>
+        <div id="parsed-html"></div>
+        <h2>Hierarchical Tree of Tags:</h2>
+        <ul id="tag-tree"></ul>
+    </div>
+    <script>
+  function parseHTML() {
+    const inputHTML = document.getElementById('input').value;
+    let domParser = new DOMParser();
+    let doc = domParser.parseFromString(inputHTML, 'text/html');
+
+    // Removing <a> and <button> tags
+    let aTags = doc.querySelectorAll('a');
+    let buttonTags = doc.querySelectorAll('button');
+    aTags.forEach(tag => tag.remove());
+    buttonTags.forEach(tag => tag.remove());
+
+    document.getElementById('parsed-html').innerHTML = doc.body.innerHTML;
+
+    // Generating hierarchical tree
+    let tagTree = document.getElementById('tag-tree');
+    tagTree.innerHTML = '';
+    generateTagTree(doc.body, tagTree);
+}
+
+function generateTagTree(element, parentList) {
+    let listItem = document.createElement('li');
+    listItem.textContent = element.tagName;
+    parentList.appendChild(listItem);
+
+    if (element.children.length > 0) {
+        let childList = document.createElement('ul');
+        listItem.appendChild(childList);
+        Array.from(element.children).forEach(child => {
+            generateTagTree(child, childList);
+        });
+    }
+}
+</script>
+</body>
+</html>
