@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Element Extractor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Math Element Extractor</h1>
+    <textarea id="inputText" placeholder="Enter your text containing math elements here..."></textarea>
+    <button onclick="extractMathElements()">Extract Math Elements</button>
+    <div class="results" id="results"></div>
+
+    <script>
+        function extractMathElements() {
+            var inputText = document.getElementById('inputText').value;
+            var pattern = /<math.*?math>/g;
+            var matches = inputText.match(pattern);
+            var resultDiv = document.getElementById('results');
+
+            if (matches && matches.length > 0) {
+                resultDiv.innerHTML = "<h3>Extracted Math Elements:</h3>" + matches.join("<br>");
+            } else {
+                resultDiv.innerHTML = "<h3>No math elements found.</h3>";
+            }
+        }
+    </script>
+</body>
+</html>
