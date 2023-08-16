@@ -23,6 +23,7 @@
             color: #fff;
             border: none;
             cursor: pointer;
+            margin-right: 10px;
         }
         .results {
             margin-top: 20px;
@@ -35,6 +36,8 @@
     <h1>Math Element Extractor</h1>
     <textarea id="inputText" placeholder="Enter your text containing math elements here..."></textarea>
     <button onclick="extractMathElements()">Extract Math Elements</button>
+    <button onclick="copyResultsToClipboard()">Copy Results</button>
+    <button onclick="downloadResultsAsHTML()">Download as HTML</button>
     <div class="results" id="results"></div>
 
     <script>
@@ -49,6 +52,24 @@
             } else {
                 resultDiv.innerHTML = "<h3>No math elements found.</h3>";
             }
+        }
+
+        function copyResultsToClipboard() {
+            var results = document.getElementById('results').innerText;
+            navigator.clipboard.writeText(results).then(function() {
+                alert('Results copied to clipboard.');
+            }).catch(function(err) {
+                alert('Failed to copy results: ', err);
+            });
+        }
+
+        function downloadResultsAsHTML() {
+            var results = document.getElementById('results').innerHTML;
+            var blob = new Blob([results], {type: "text/html;charset=utf-8"});
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "math-elements.html";
+            link.click();
         }
     </script>
 </body>
