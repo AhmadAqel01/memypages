@@ -1,100 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV to JSON Converter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .buttons {
-            margin: 10px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>CSV to JSON Converter</h1>
-        <input type="file" id="csvFile" accept=".csv" />
-        <div id="columns"></div>
-        <button onclick="convertCSVToJson()">Convert</button>
-        <div class="buttons">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+        <title>CSV to JSON Converter</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #output {
+                width: 100%;
+                height: 200px;
+                margin-top: 10px;
+            }
+
+            button {
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <input type="file"
+                   id="csvFile"
+                   accept=".csv" />
+            <div id="columnSelection"></div>
+            <textarea id="output"
+                      readonly></textarea>
             <button onclick="copyToClipboard()">Copy to Clipboard</button>
             <button onclick="downloadJSON()">Download JSON</button>
         </div>
-        <textarea id="output" rows="10" style="width: 100%;"></textarea>
-    </div>
-    <script>
-        document.getElementById('csvFile').addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const lines = e.target.result.split('\n');
-                const columns = lines[0].split(',');
-                const columnDiv = document.getElementById('columns');
-                columnDiv.innerHTML = '';
-                columns.forEach((column, index) => {
-                    columnDiv.innerHTML += `
-                        <div>
-                            <label>${column.trim()}:</label>
-                            <select id="column-${index}">
-                                <option value="key">Key</option>
-                                <option value="value">Value</option>
-                                <option value="ignore">Ignore</option>
-                            </select>
-                        </div>
-                    `;
+        <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+        <script>
+            document.getElementById('csvFile').addEventListener('change',function (e) {
+                const file = e.target.files[0];
+                Papa.parse(file,{
+                    complete: function (results) {
+                        const titles = results.data[0];
+                        let selectionHtml = '<label>Select Key:</label><select id="keySelect">';
+                        let valueHtml = '<label>Select Value:</label><select id="valueSelect">';
+                        titles.forEach((title,index) => {
+                            selectionHtml += `<option value="${index}">${title}</option>`;
+                            valueHtml += `<option value="${index}">${title}</option>`;
+                        });
+                        selectionHtml += '</select>';
+                        valueHtml += '</select>';
+                        selectionHtml += valueHtml + '<button onclick="generateJSON()">Generate JSON</button>';
+                        document.getElementById('columnSelection').innerHTML = selectionHtml;
+                    }
                 });
-            };
-            reader.readAsText(file);
-        });
+            });
 
-        function convertCSVToJson() {
-            const file = document.getElementById('csvFile').files[0];
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const lines = e.target.result.split('\n');
-                const jsonArray = [];
-                const columns = lines[0].split(',');
-                for (let i = 1; i < lines.length; i++) {
-                    const obj = {};
-                    const currentline = lines[i].split(',');
-                    columns.forEach((column, index) => {
-                        const selection = document.getElementById(`column-${index}`).value;
-                        if (selection !== 'ignore') {
-                            obj[column.trim()] = selection === 'key' ? currentline[index].trim() : currentline[index];
-                        }
-                    });
-                    jsonArray.push(obj);
-                }
-                document.getElementById('output').value = JSON.stringify(jsonArray, null, 2);
-            };
-            reader.readAsText(file);
-        }
+            function generateJSON() {
+                const keySelect = document.getElementById('keySelect');
+                const valueSelect = document.getElementById('valueSelect');
+                const keyIndex = keySelect.value;
+                const valueIndex = valueSelect.value;
 
-        function copyToClipboard() {
-            const output = document.getElementById('output');
-            output.select();
-            document.execCommand('copy');
-            alert('Copied to clipboard!');
-        }
+                const fileInput = document.getElementById('csvFile');
+                const file = fileInput.files[0];
+                Papa.parse(file,{
+                    complete: function (results) {
+                        const jsonArray = [];
+                        results.data.slice(1).forEach((row) => {
+                            const jsonObject = {};
+                            jsonObject[row[keyIndex]] = row[valueIndex];
+                            jsonArray.push(jsonObject);
+                        });
 
-        function downloadJSON() {
-            const data = document.getElementById('output').value;
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'data.json';
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-    </script>
-</body>
+                        document.getElementById('output').value = JSON.stringify(jsonArray,null,2);
+                    }
+                });
+            }
+
+            function copyToClipboard() {
+                const output = document.getElementById('output');
+                output.select();
+                document.execCommand('copy');
+                alert('Copied to clipboard!');
+            }
+
+            function downloadJSON() {
+                const output = document.getElementById('output').value;
+                const blob = new Blob([output],{ type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'output.json';
+                a.click();
+            }
+        </script>
+    </body>
 </html>
