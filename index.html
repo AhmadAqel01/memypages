@@ -1,164 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Parser</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-
-        textarea {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            margin-bottom: 10px;
-        }
-
-        pre {
-            background-color: #f0f0f0;
-            padding: 15px;
-            border: 1px solid #ccc;
-            line-height: 1.5;
-            font-family: 'Courier New', monospace;
-            overflow: auto;
-            /* Add scrollbars if needed */
-            width: 100%;
-            /* Fixed width */
-        }
-
-        pre>div:nth-child(even) {
-            background-color: #f9f9f9;
-            /* Alternating background color */
-        }
-
-        strong {
-            font-weight: bold;
-            /* Highlight labels */
-        }
-    </style>
-</head>
-
-<body>
-    <textarea id="inputText" rows="10" cols="50" placeholder="Paste your text here..." oninput="processData()"></textarea>
-    <pre id="output"></pre>
-    <button onclick="copyOutput()">Copy Output</button>
-
-    <script>
-        const mappings = {
-            "Sodium": "Na",
-            "Potassium": "K",
-            "Chloride": "Cl",
-            "CO2": "CO2",
-            "BUN (blood urea nitrogen)": "BUN",
-            "Creatinine": "Cr",
-            "Calcium": "Ca",
-            "Ionized Calcium": "iCa",
-            "Ionized Calcium - Post Filter": "pfCa",
-            "Magnesium": "Mg",
-            "Phosphorus": "PO4",
-            "WBC Count": "WBC",
-            "Hemoglobin": "Hb",
-            "Platelet Count": "PLTs",
-            "pH - Arterial": "A-pH",
-            "pH - Venous, Peripheral": "V-pH",
-            "pCO2 - Arterial": "PaCO2",
-            "pCO2 - Venous, Periperal": "PvCO2",
-
-        };
-        async function pasteAndProcess() {
-            if (navigator.clipboard) {
-                const text = await navigator.clipboard.readText();
-                document.getElementById('inputText').value = text;
-                processData();
-            }
-        }
-
-        function copyOutput() {
-            const output = document.getElementById('output').innerText;
-            navigator.clipboard.writeText(output).then(function () {
-                document.getElementById('inputText').value = ''; // Clear the input text
-            }).catch(function (err) {
-                alert('Failed to copy output: ' + err);
-            });
-        }
-
-        function processData() {
-            const text = document.getElementById('inputText').value;
-            const lines = text.trim().split('\n');
-            const resultArrayNumerical = [];
-            const outputLines = []; // <-- Define the array here
-
-            let currentTimestamp = null;
-            const currentValues = {};
-
-            for (const line of lines) {
-                if (line.includes('/') && line.includes(':') && !line.includes('-')) {
-                    if (currentTimestamp) {
-                        resultArrayNumerical.push({ [currentTimestamp]: { ...currentValues } });
-                    }
-                    currentTimestamp = line.trim();
-                    Object.keys(currentValues).forEach(key => delete currentValues[key]);
-                } else if (line.includes(':')) {
-                    const [key, value] = line.split(':');
-                    const mappedKey = mappings[key.trim()];
-                    if (mappedKey) {
-                        currentValues[mappedKey] = value.replace(/\s*(\(H\)|\(L\))/, '').trim();
-                    }
-                }
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0">
+        <title>Index Page</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
             }
 
-            if (currentTimestamp) {
-                resultArrayNumerical.push({ [currentTimestamp]: { ...currentValues } });
+            ul {
+                list-style-type: none;
+                padding: 0;
             }
 
-            resultArrayNumerical.reverse(); // Reverse to process from newest to oldest
-
-            const labels = [["Na", "K", "Cl", "CO2", "BUN", "Cr"], ["Ca", "iCa", "pfCa"], ["Mg", "PO4"], ["WBC", "Hb", "PLTs"], ["LA", "A-pH", "V-pH", "PaCO2", "PvCO2"]];
-            const results = {};
-
-            document.getElementById('output').innerHTML = outputLines.map(line => `<div>${line}</div>`).join('');
-
-            for (const item of resultArrayNumerical) {
-                const timestampData = Object.values(item)[0];
-                for (const labelGroup of labels) {
-                    for (const label of labelGroup) {
-                        const value = timestampData[label] || '';
-                        if (!results[label]) results[label] = [];
-                        if (value) results[label].push(value);
-                    }
-                }
-            }
-            for (const labelGroup of labels) {
-                const lineOutput = [];
-                let groupHasValues = false;
-                for (const label of labelGroup) {
-                    const values = results[label];
-                    if (values && values.length) {
-                        groupHasValues = true;
-                        lineOutput.push(`<strong>${label}</strong>: ${values.join(' < ')}`);
-                    }
-                }
-                if (groupHasValues || labelGroup.toString() !== ["LA", "A-pH", "V-pH", "PaCO2", "PvCO2"].toString()) {
-                    outputLines.push(lineOutput.join(' | '));
-                }
+            li {
+                margin: 10px 0;
             }
 
-            document.getElementById('output').innerHTML = outputLines.join('<br>');
-        }
+            a {
+                text-decoration: none;
+                color: #007bff;
+            }
 
-
-    </script>
-</body>
-
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome to the Index Page</h1>
+        <p>Select a page to navigate:</p>
+        <ul>
+            <li><a href="CRRTSimulator.html">CRRT Simulator</a></li>
+            <li><a href="CSVtoJSON.html">CSV to JSON Converter</a></li>
+            <li><a href="HDOrderSet.html">HD Order Set</a></li>
+            <li><a href="HTMLEditor.html">HTML Editor</a></li>
+            <li><a href="MathExtractor.html">Math Extractor</a></li>
+        </ul>
+    </body>
 </html>
