@@ -30,47 +30,50 @@
             border: 1px solid #ccc;
             padding: 10px;
         }
+
     </style>
 </head>
 <body>
     <h1>Math Element Extractor</h1>
-    <textarea id="inputText" placeholder="Enter your text containing math elements here..."></textarea>
+    <textarea id="inputText" placeholder="Enter your HTML containing math elements here..."></textarea>
     <button onclick="extractMathElements()">Extract Math Elements</button>
     <button onclick="copyResultsToClipboard()">Copy Results</button>
     <button onclick="downloadResultsAsHTML()">Download as HTML</button>
+    <h4> Copy and extract mathML and go to <a href="https://demo.wiris.com/mathtype/en/developers.php"> this webpage</a> to extract the Latex form of these equations</h1>
+    
     <div class="results" id="results"></div>
 
-    <script>
-        function extractMathElements() {
-            var inputText = document.getElementById('inputText').value;
-            var pattern = /<math.*?math>/g;
-            var matches = inputText.match(pattern);
-            var resultDiv = document.getElementById('results');
+<script>
+    function extractMathElements() {
+        var inputText = document.getElementById('inputText').value;
+        var pattern = /<math.*?math>/g;
+        var matches = inputText.match(pattern);
+        var resultDiv = document.getElementById('results');
 
-            if (matches && matches.length > 0) {
-                resultDiv.innerHTML = "<h3>Extracted Math Elements:</h3>" + matches.join("<br>");
-            } else {
-                resultDiv.innerHTML = "<h3>No math elements found.</h3>";
-            }
+        if (matches && matches.length > 0) {
+            resultDiv.innerHTML = "<h3>Extracted Math Elements:</h3>" + matches.join("<br>");
+        } else {
+            resultDiv.innerHTML = "<h3>No math elements found.</h3>";
         }
+    }
 
-        function copyResultsToClipboard() {
-            var results = document.getElementById('results').innerText;
-            navigator.clipboard.writeText(results).then(function() {
-                alert('Results copied to clipboard.');
-            }).catch(function(err) {
-                alert('Failed to copy results: ', err);
-            });
-        }
+    function copyResultsToClipboard() {
+        var results = document.getElementById('results').innerHTML; // Changed from innerText to innerHTML
+        navigator.clipboard.writeText(results).then(function() {
+            alert('Results copied to clipboard.');
+        }).catch(function(err) {
+            alert('Failed to copy results: ', err);
+        });
+    }
 
-        function downloadResultsAsHTML() {
-            var results = document.getElementById('results').innerHTML;
-            var blob = new Blob([results], {type: "text/html;charset=utf-8"});
-            var link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = "math-elements.html";
-            link.click();
-        }
-    </script>
+    function downloadResultsAsHTML() {
+        var results = document.getElementById('results').innerHTML;
+        var blob = new Blob([results], {type: "text/html;charset=utf-8"});
+        var link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = "math-elements.html";
+        link.click();
+    }
+</script>
 </body>
 </html>
