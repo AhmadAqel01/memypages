@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Processor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <h3>Options</h3>
+        <div id="hierarchyContainer"></div>
+
+        <div id="tagCheckboxes"></div>
+
+        <label for="action">Action: </label>
+        <select id="action">
+          <option value="show">Show</option>
+          <option value="remove">Remove</option>
+        </select>
+
+        <label for="displayType">Display: </label>
+        <select id="displayType">
+          <option value="outerHTML">Outer HTML</option>
+          <option value="textContent">Text Content</option>
+        </select>
+
+        <button id="extractBtn">Extract</button>
+      </div>
+
+      <div class="right">
+        <h3>HTML Input</h3>
+        <textarea id="inputArea"></textarea>
+        <button id="pasteBtn">Paste</button>
+        <button id="importBtn">Import HTML</button>
+
+        <h3>Output</h3>
+        <textarea id="outputArea" readonly></textarea>
+        <input type="checkbox" id="addDividerCheckbox" /> Separate tags with a
+        horizontal divider
+
+        <button id="formatBtn">Format HTML</button>
+        <label> </label>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
