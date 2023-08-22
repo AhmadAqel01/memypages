@@ -10,23 +10,24 @@
     <div class="container">
       <div class="left">
         <h3>Options</h3>
-        <div id="hierarchyContainer"></div>
+
+
+        <div id="selectors-wrapper">
+          <label for="action">Action: </label>
+          <select id="action">
+            <option value="show">Show</option>
+            <option value="remove">Remove</option>
+          </select>
+          <label for="displayType">Display: </label>
+          <select id="displayType">
+            <option value="outerHTML">Outer HTML</option>
+            <option value="textContent">Text Content</option>
+          </select>
+        </div>
 
         <div id="tagCheckboxes"></div>
-
-        <label for="action">Action: </label>
-        <select id="action">
-          <option value="show">Show</option>
-          <option value="remove">Remove</option>
-        </select>
-
-        <label for="displayType">Display: </label>
-        <select id="displayType">
-          <option value="outerHTML">Outer HTML</option>
-          <option value="textContent">Text Content</option>
-        </select>
-
         <button id="extractBtn">Extract</button>
+
       </div>
 
       <div class="right">

@@ -21,19 +21,46 @@ body {
     padding: 20px;
     flex: 1;
     border-top: 1px solid #e6e6e6;
+    margin-right: 10px;
+    height: 85vh;
 }
 
+
+#extractBtn {
+    justify-self: flex-end;
+}
 .left {
     border-right: 1px solid #e6e6e6;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.right {
+    border-left:1px solid #e6e6e6 ;
 }
 
 h3 {
     border-bottom: 1px solid #e6e6e6;
     padding-bottom: 10px;
-    margin-top: 0;
+    margin-top: 10px;
     font-weight: 600;
     font-size: 18px;
     margin-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    font-family: monospace;
+}
+
+#selectors-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+    font-weight: 700;
 }
 
 textarea {
@@ -85,8 +112,16 @@ label {
 
 input[type="checkbox"] {
     margin-right: 5px;
+
 }
 
 #tagCheckboxes {
-    margin-bottom: 20px;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    overflow-y: scroll;
+
 }
