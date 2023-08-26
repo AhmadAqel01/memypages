@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replace LaTeX Notation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Input Text:</h2>
+    <textarea id="inputText" oninput="replaceNotation()"></textarea>
+    <button onclick="pasteFromClipboard()">Paste Content</button>
+    <h2>Output Text:</h2>
+    <textarea id="outputText" readonly></textarea>
+
+    <script>
+        async function pasteFromClipboard() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById("inputText").value = text;
+                replaceNotation();
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+            }
+        }
+
+        function replaceNotation() {
+            let text = document.getElementById("inputText").value;
+            
+            // Replacements
+            text = text.replace(/\\\(\s*/g, '$');
+            text = text.replace(/\s*\\\)/g, '$ ');
+            text = text.replace(/\\\[\s*/g, '$$$');
+            text = text.replace(/\s*\\\]/g, '$$$ ');
+            
+            document.getElementById("outputText").value = text;
+        }
+    </script>
+</body>
+</html>
