@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Medication List Abbreviator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Enter Medication Details</h1>
+    <textarea id="medicationInput" rows="20" cols="50"></textarea>
+    <br />
+    <button onclick="abbreviateMedication()">Abbreviate</button>
+
+    <h1>Abbreviated List</h1>
+    <p id="abbreviatedList"></p>
+
+    <script>
+        function abbreviateMedication() {
+            const inputData = $("#medicationInput").val().split('\n');
+            let medicationInfo = "";
+            let medicationName = "";
+            let dose = "";
+            let freq = "";
+
+            inputData.forEach((line) => {
+                if (line.includes("Medications")) {
+                    medicationName = "";
+                    dose = "";
+                    freq = "";
+                }
+
+                if (line.includes("Dose:")) {
+                    dose = line.split("Dose:")[1].trim();
+                }
+
+                if (line.includes("Freq:")) {
+                    freq = line.split("Freq:")[1].trim().split(" ")[0];
+                    if (freq.toLowerCase().includes('every')) {
+                        const everyDetail = line.split("Freq:")[1].trim().split(" ")[1];
+                        freq = `Every ${everyDetail}`;
+                    }
+                }
+
+                if (line.includes("tablet") || line.includes("capsule")) {
+                    medicationName = line.split(" ")[0];
+                }
+
+                if (medicationName && dose && freq) {
+                    medicationInfo += `${medicationName}: ${dose}, ${freq}; `;
+                    medicationName = "";
+                    dose = "";
+                    freq = "";
+                }
+            });
+
+            // Remove trailing semicolon and space
+            medicationInfo = medicationInfo.replace(/; $/, "");
+
+            $("#abbreviatedList").text(medicationInfo);
+        }
+
+    </script>
+
+</body>
+
+</html>
