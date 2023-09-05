@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown Splitter</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <textarea id="markdownContent" rows="20" cols="100"></textarea><br>
+    <button id="generateOutline">Generate Outline</button>
+    <select id="splitLevel">
+        <option value="1">Level 1</option>
+        <option value="2">Level 2</option>
+        <!-- Add more levels as needed -->
+    </select>
+    <button id="splitDocument">Split Document</button>
+    <div id="outline"></div>
+    <div id="splitResult"></div>
+    
+    <script>
+        $(document).ready(function() {
+            $('#generateOutline').click(function() {
+                const content = $('#markdownContent').val();
+                const headings = content.match(/^#+\s+.+$/gm);
+                let outline = '<ul>';
+                headings.forEach(function(heading) {
+                    const level = heading.match(/^#+/)[0].length;
+                    outline += `<li data-level="${level}">${heading}</li>`;
+                });
+                outline += '</ul>';
+                $('#outline').html(outline);
+            });
+
+            $('#splitDocument').click(function() {
+                const splitLevel = $('#splitLevel').val();
+                const content = $('#markdownContent').val();
+                const sections = content.split(/^#+\s+.+$/gm);
+                const headings = content.match(/^#+\s+.+$/gm);
+                let splitResult = '';
+                let sectionIndex = 0;
+                headings.forEach(function(heading, index) {
+                    const level = heading.match(/^#+/)[0].length;
+                    if (level == splitLevel) {
+                        splitResult += `<h3>Section ${++sectionIndex}</h3><pre>${sections[index]}</pre>`;
+                    }
+                });
+                $('#splitResult').html(splitResult);
+            });
+        });
+    </script>
+</body>
+</html>
