@@ -4,36 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Parser</title>
-  <style>
 body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 2% 5%;
+    line-height: 1.5;
+}
+
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+p, ol {
+    margin-bottom: 20px;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 10px;
 }
 
 textarea {
     width: 100%;
-    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2980b9;
 }
 
 #output {
-    margin-top: 20px;
+    margin-top: 30px;
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-top: 0;
 }
 
 #parsed-html {
-    background-color: #f5f5f5;
-    padding: 10px;
+    background-color: #eaeaea;
+    padding: 15px;
     white-space: pre-line;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
 #tag-tree {
     list-style-type: none;
+    padding-left: 0;
 }
-
-</style>
 </head>
 <body>
     <h1>HTML Parser</h1>
+    <p>
+        This tool allows you to visualize the structure of an HTML document. Here's how it works:
+    </p>
+    <ol>
+        <li>Enter your HTML content into the textarea below.</li>
+        <li>Click the "Parse HTML" button.</li>
+        <li>All &lt;a&gt; and &lt;button&gt; tags in the entered content will be removed.</li>
+        <li>The modified HTML content will be displayed in the "Output" section.</li>
+        <li>A hierarchical tree representation of the tags in the entered content will be displayed below the modified HTML.</li>
+    </ol>
     <label for="input">Input HTML:</label>
     <textarea id="input" rows="10" cols="50"></textarea>
     <button onclick="parseHTML()">Parse HTML</button>
