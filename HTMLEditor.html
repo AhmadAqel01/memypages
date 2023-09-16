@@ -126,24 +126,26 @@ h2 {
         </div>
     </div>
     <script>
-        function parseHTML() {
-            const inputHTML = document.getElementById('input').value;
-            let domParser = new DOMParser();
-            let doc = domParser.parseFromString(inputHTML, 'text/html');
+function parseHTML() {
+    const inputHTML = document.getElementById('input').value;
+    let domParser = new DOMParser();
+    let doc = domParser.parseFromString(inputHTML, 'text/html');
 
-            // Removing <a> and <button> tags
-            let aTags = doc.querySelectorAll('a');
-            let buttonTags = doc.querySelectorAll('button');
-            aTags.forEach(tag => tag.remove());
-            buttonTags.forEach(tag => tag.remove());
+    // Removing <a> tags
+    let aTags = doc.querySelectorAll('a');
+    aTags.forEach(tag => tag.remove());
 
-            document.getElementById('parsed-html').innerHTML = doc.body.innerHTML;
+    // Removing <button> tags that contain <sup> inside them
+    let buttonTagsWithSup = doc.querySelectorAll('button:has(sup)');
+    buttonTagsWithSup.forEach(tag => tag.remove());
 
-            // Generating hierarchical tree
-            let tagTree = document.getElementById('tag-tree');
-            tagTree.innerHTML = '';
-            generateTagTree(doc.body, tagTree);
-        }
+    document.getElementById('parsed-html').innerHTML = doc.body.innerHTML;
+
+    // Generating hierarchical tree
+    let tagTree = document.getElementById('tag-tree');
+    tagTree.innerHTML = '';
+    generateTagTree(doc.body, tagTree);
+}
 
         function generateTagTree(element, parentList) {
             let listItem = document.createElement('li');
