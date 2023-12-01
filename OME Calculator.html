@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Opioid to OME Converter</title>
+    <style>
+        /* Base styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        h1 {
+            font-family: 'Arial', sans-serif;
+            /* Secondary font for headings */
+            color: #003366;
+            /* Updated color */
+            font-size: 1.8em;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        /* Container for the app */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .opioidEntry {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 30px;
+            /* Layout for select/input and remove button */
+
+
+
+
+            gap: 10px;
+            align-items: center;
+            background-color: #f6f6f6;
+            /* Background color for the box */
+            padding: 10px;
+            /* Padding inside the box */
+            margin-bottom: 15px;
+            /* Margin between each entry box */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Subtle box shadow */
+            border-radius: 5px;
+            /* Slightly rounded corners for aesthetics */
+        }
+
+        .opioidEntry>* {
+            margin: 0;
+            /* Aligning items without external margins */
+        }
+
+
+        /* Style for select and input elements */
+        select,
+        input[type="number"] {
+            width: calc(100% - 10px);
+            /* Adjusting width */
+            padding: 8px;
+            /* Comfortable padding */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+
+        /* Button styles */
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Redesigned Remove Button */
+        .removeBtn {
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            /* Circular button */
+            padding: 0 10px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            /* Fixed width and height */
+            height: 30px;
+        }
+
+        .removeBtn:hover {
+            background-color: #ff5252;
+        }
+
+        #addOpioidBtn,
+        #calculateBtn {
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        #addOpioidBtn:hover,
+        #calculateBtn:hover {
+            background-color: #4cae4c;
+        }
+
+        /* Results and error styling */
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: #d32f2f;
+            border-color: #d32f2f;
+        }
+
+        ;
+
+        input[type="number"],
+        select {
+            width: calc(100% - 600px);
+            /* Adjusting width for padding */
+            padding: 10px;
+            /* Comfortable padding */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            /* Background color */
+            font-size: 1em;
+            /* Font size */
+            cursor: pointer;
+            /* Cursor to indicate dropdown */
+            appearance: none;
+            /* Remove default styling */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="14" height="12" viewBox="0 0 14 12" xmlns="http://www.w3.org/2000/svg"><path d="M1 1l6 6 6-6" stroke="%23999" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            /* Position for arrow icon */
+            background-size: 14px 12px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+
+            /* Subtle inner shadow for depth */
+            &:focus {
+                border-color: #007bff;
+                /* Focus style */
+                outline: none;
+                /* Remove default focus styling */
+            }
+
+            ;
+        }
+
+        /* Attempting minimal styling for options */
+        select option {
+            padding: 8px;
+            /* Padding for each option */
+            background-color: #f0f2f5;
+            /* Background color for options */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Consistent font */
+        }
+
+        ;
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid blue;
+        }
+
+        button {
+
+            /* Existing styles */
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+
+        .individualOmeResult {
+            min-width: 100%;
+            border: none;
+            background-color:#f4f4f4;
+            /* A softer shade of yellow for subtlety */
+            text-align: left;
+            font-size: 1em;
+            font-weight: bold;
+            padding: 10px;
+            /* Added padding for better spacing */
+            /* Margin for separation from other elements */
+            border-radius: 5px;
+            /* Rounded corners for a gentle look */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow for depth */
+            justify-self: center;
+            align-self: start;
+            justify-self: center;
+            flex-basis: 100%;
+            /* Aligning text to the left */
+            color: #333;
+            /* Updated color */
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Opioid to Oral Morphine Equivalent (OME) Converter</h1>
+        <p>Add the opioids you wish to convert, select the type and form, and enter the amount.  </p>
+
+        <div id="opioidEntries"></div>
+        <button id="addOpioidBtn">Add Another Opioid</button>
+
+        <div class="result" id="totalOmeContainer">
+            <label><strong>Total OME:</strong></label>
+            <span id="totalOmeResult"></span>
+        </div>
+
+        <br>
+        <h1 style="text-align: center;">Converting to Outpatient Management:</h1>
+        <div>Basal Rate: <span id="OMEtoPatch"></span></div>
+
+    
+    </div>
+
+    <script>
+        const conversionFactors = {
+            "Codeine": { "Oral": 0.15 }, // 200 mg oral codeine = 30 mg oral morphine
+            "Fentanyl": { "IV": 300 }, // 0.1 mg IV fentanyl = 10 mg IV morphine = 30 mg oral morphine
+            "Hydrocodone": { "Oral": 1 }, // 30 mg oral hydrocodone = 30 mg oral morphine
+            "Hydromorphone": { "Oral": 4, "IV": 20 }, // 7.5 mg oral or 1.5 mg IV hydromorphone = 30 mg or 10 mg IV morphine
+            "Morphine": { "Oral": 1, "IV": 3}, // 30 mg oral or 10 mg IV morphine = 30 mg oral morphine
+            "Oxycodone": { "Oral": 1.5 }, // 20 mg oral oxycodone = 30 mg oral morphine
+            "Oxymorphone": { "Oral": 3 }, // 10 mg oral oxymorphone = 30 mg oral morphine
+            // Add other opioids with oral and IV factors here
+        };
+
+
+
+        document.getElementById("addOpioidBtn").addEventListener("click", addOpioidEntry);
+        document.getElementById("opioidEntries").addEventListener("input", calculateConversions);
+
+        function addOpioidEntry() {
+            const div = document.createElement("div");
+            div.className = "opioidEntry";
+            div.innerHTML = `
+                <select class="opioidType"></select>
+                <select class="opioidForm"></select>
+                <input type="number" class="opioidAmount" min="0" placeholder="Amount (mg)">
+                <button type="button" class="removeBtn" aria-label="Remove Opioid">X</button>
+                <input style="display: block;" type="text" class="individualOmeResult" readonly placeholder="OME Result">
+            `;
+            document.getElementById("opioidEntries").appendChild(div);
+
+            const opioidTypeSelect = div.querySelector(".opioidType");
+            populateOpioidTypes(opioidTypeSelect);
+            populateFormOptions(opioidTypeSelect.value, div.querySelector(".opioidForm"));
+
+            opioidTypeSelect.addEventListener("change", function () {
+                populateFormOptions(this.value, div.querySelector(".opioidForm"));
+            });
+
+            div.querySelector(".removeBtn").addEventListener("click", function () {
+                div.remove();
+                calculateConversions(); // Recalculate OME when an entry is removed
+            });
+        }
+
+        function populateOpioidTypes(selectElement) {
+            selectElement.innerHTML = Object.keys(conversionFactors)
+                .map(opioid => `<option value="${opioid}">${opioid}</option>`)
+                .join('');
+        }
+
+        function populateFormOptions(opioidType, formSelectElement) {
+            const formOptions = conversionFactors[opioidType];
+            formSelectElement.innerHTML = Object.keys(formOptions)
+                .map(form => `<option value="${form}">${form}</option>`)
+                .join('');
+        }
+
+        function calculateConversions() {
+            let totalOme = 0;
+            let isValid = true;
+            const entries = document.querySelectorAll(".opioidEntry");
+
+            entries.forEach(entry => {
+                const amountInput = entry.querySelector(".opioidAmount");
+                const amount = parseFloat(amountInput.value) || 0;
+
+                if (amount <= 0) {
+                    amountInput.classList.add('error');
+                    isValid = false;
+                } else {
+                    amountInput.classList.remove('error');
+                    const type = entry.querySelector(".opioidType").value;
+                    const form = entry.querySelector(".opioidForm").value;
+                    const individualOme = amount * conversionFactors[type][form];
+                    totalOme += individualOme;
+
+                    entry.querySelector(".individualOmeResult").value = `${individualOme.toFixed(2)} mg OME`;
+                }
+            });
+
+            if (isValid) {
+                document.getElementById("totalOmeResult").textContent = `${totalOme.toFixed(2)} mg OME`;
+            } else {
+                document.getElementById("totalOmeResult").textContent = 'Please correct the errors.';
+            }
+        }
+
+        // Initialize the form with a default opioid entry
+        addOpioidEntry();
+    
+        
+
+    </script>
+</body>
+
+</html>
