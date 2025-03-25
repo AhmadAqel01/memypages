@@ -2,9 +2,9 @@
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
+  # Runs on pushes targeting the default branch - **VERIFY YOUR BRANCH NAME (e.g., main or Main)**
   push:
-    branches: ["Main"]
+    branches: ["main"] # *** ADJUST THIS TO YOUR DEFAULT BRANCH NAME ***
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,22 +22,53 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # Build job (optional, add if you need to build your site)
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4 # Use latest major version
+  #     - name: Setup Node.js # Example: If using Node.js for build
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20' # Specify your Node.js version
+  #         cache: 'npm' # or 'yarn', 'pnpm'
+  #     - name: Install dependencies # Example build steps
+  #       run: npm ci
+  #     - name: Build static site # Example build command
+  #       run: npm run build # Or your build command (e.g., hugo, jekyll build)
+  #     - name: Upload build artifact
+  #       uses: actions/upload-artifact@v4 # Use v4 for build artifacts between jobs
+  #       with:
+  #         name: github-pages # Artifact name must match download below
+  #         path: ./dist # *** ADJUST THIS to your build output directory ***
+  #         retention-days: 1 # Optional: Keep artifact for 1 day
+
+  # Deploy job
   deploy:
+    # needs: build # Uncomment this if you add the build job above
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout # Keep checkout if NOT using a separate build job that uploads artifacts
+        uses: actions/checkout@v4 # Use latest major version - remove if using build job artifact
+      # - name: Download build artifact # Uncomment if using the build job above
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: github-pages # Must match the upload artifact name
+      #     path: . # Download to the root for upload-pages-artifact path '.'
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5 # Use latest major version
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3 # Use latest major version
         with:
-          # Upload entire repository
-          path: '.'
+          # *** IMPORTANT: Change this path to the directory containing your static files ***
+          # Common examples: './public', './dist', './_site', './docs'
+          # If using a build job that downloads artifact to '.', then '.' is correct here.
+          # If checking out directly AND your files are in the root, '.' might be okay, but usually not ideal.
+          path: '.' # *** ADJUST THIS PATH ***
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4 # Use latest major version
