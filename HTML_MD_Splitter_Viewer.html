@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Section Splitter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .section-output {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-family: monospace;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .section-output:hover {
+            background-color: #f7f7f7;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            width: 80%;
+            max-height: 80%;
+            overflow-y: auto;
+            border-radius: 5px;
+            position: relative;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        #output-area {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Document Section Splitter</h1>
+        
+        <div>
+            <h2>Input</h2>
+            <div>
+                <input type="file" id="file-upload" accept=".md,.html,.txt">
+                <p>Or paste your content here:</p>
+                <textarea id="content-input" placeholder="Enter your Markdown or HTML content here..."></textarea>
+            </div>
+        </div>
+        
+        <div id="slider-container" style="display: none;" class="slider-container">
+            <label for="heading-level">Split at heading level:</label>
+            <input type="range" id="heading-level" min="1" max="6" value="1" step="1">
+            <span id="level-display">1</span>
+        </div>
+        
+        <div id="output-area">
+            <h2>Output</h2>
+            <div id="original-content" class="section-output"></div>
+            <div id="split-sections"></div>
+        </div>
+    </div>
+    
+    <div id="content-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-modal">&times;</span>
+            <div id="rendered-content"></div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // DOM Elements
+        const fileUpload = document.getElementById('file-upload');
+        const contentInput = document.getElementById('content-input');
+        const headingLevelSlider = document.getElementById('heading-level');
+        const levelDisplay = document.getElementById('level-display');
+        const sliderContainer = document.getElementById('slider-container');
+        const originalContent = document.getElementById('original-content');
+        const splitSections = document.getElementById('split-sections');
+        const contentModal = document.getElementById('content-modal');
+        const closeModal = document.getElementById('close-modal');
+        const renderedContent = document.getElementById('rendered-content');
+        
+        // Listen for content input changes
+        fileUpload.addEventListener('change', handleFileUpload);
+        contentInput.addEventListener('input', processContent);
+        
+        // Listen for slider changes
+        headingLevelSlider.addEventListener('input', () => {
+            levelDisplay.textContent = headingLevelSlider.value;
+            splitContent();
+        });
+        
+        // Modal controls
+        closeModal.addEventListener('click', () => {
+            contentModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (event) => {
+            if (event.target === contentModal) {
+                contentModal.style.display = 'none';
+            }
+        });
+        
+        // Functions
+        function handleFileUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                contentInput.value = e.target.result;
+                processContent();
+            };
+            reader.readAsText(file);
+        }
+        
+        function processContent() {
+            const content = contentInput.value;
+            if (!content) return;
+            
+            // Display original content
+            originalContent.textContent = content;
+            
+            // Find heading levels in the content
+            const headingLevels = findHeadingLevels(content);
+            
+            if (headingLevels.length > 0) {
+                // Update slider range based on heading levels found
+                const minLevel = Math.min(...headingLevels);
+                const maxLevel = Math.max(...headingLevels);
+                
+                headingLevelSlider.min = minLevel;
+                headingLevelSlider.max = maxLevel;
+                headingLevelSlider.value = minLevel;
+                levelDisplay.textContent = minLevel;
+                
+                sliderContainer.style.display = 'flex';
+                splitContent();
+            } else {
+                sliderContainer.style.display = 'none';
+                splitSections.innerHTML = '<p>No headings found in the content.</p>';
+            }
+        }
+        
+        function findHeadingLevels(content) {
+            const levels = new Set();
+            
+            // Check if content is HTML or Markdown
+            const isHtml = /<html|<!DOCTYPE|<h[1-6]/i.test(content);
+            
+            if (isHtml) {
+                // Look for HTML heading tags
+                for (let i = 1; i <= 6; i++) {
+                    if (new RegExp(`<h${i}[^>]*>`, 'i').test(content)) {
+                        levels.add(i);
+                    }
+                }
+            } else {
+                // Look for Markdown headings
+                const lines = content.split('\n');
+                for (const line of lines) {
+                    const match = line.match(/^(#{1,6})\s/);
+                    if (match) {
+                        levels.add(match[1].length);
+                    }
+                }
+            }
+            
+            return Array.from(levels).sort((a, b) => a - b);
+        }
+        
+        function splitContent() {
+            const content = contentInput.value;
+            if (!content) return;
+            
+            const level = parseInt(headingLevelSlider.value);
+            let sections;
+            
+            // Check if content is HTML or Markdown
+            const isHtml = /<html|<!DOCTYPE|<h[1-6]/i.test(content);
+            
+            if (isHtml) {
+                sections = splitHtmlContent(content, level);
+            } else {
+                sections = splitMarkdownContent(content, level);
+            }
+            
+            displaySections(sections, isHtml);
+        }
+        
+        function splitMarkdownContent(content, level) {
+            const sections = [];
+            let currentSection = '';
+            const lines = content.split('\n');
+            
+            // Create regex to match headings at or above the selected level
+            const headingRegex = new RegExp(`^#{1,${level}}\\s`);
+            
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                
+                // If line starts with heading of target level or higher level
+                if (headingRegex.test(line)) {
+                    // Save previous section if it exists
+                    if (currentSection.trim()) {
+                        sections.push(currentSection.trim());
+                    }
+                    currentSection = line + '\n';
+                } else {
+                    currentSection += line + '\n';
+                }
+            }
+            
+            // Add final section
+            if (currentSection.trim()) {
+                sections.push(currentSection.trim());
+            }
+            
+            return sections;
+        }
+        
+        function splitHtmlContent(content, level) {
+            const sections = [];
+            const headingTags = [];
+            
+            // Create array of heading tags to match (h1 to hX where X is the selected level)
+            for (let i = 1; i <= level; i++) {
+                headingTags.push(`h${i}`);
+            }
+            
+            // Create regex to find headings
+            const headingRegex = new RegExp(`<(${headingTags.join('|')})[^>]*>(.*?)</\\1>`, 'gi');
+            
+            // Find all heading positions
+            const headingPositions = [];
+            let match;
+            while ((match = headingRegex.exec(content)) !== null) {
+                headingPositions.push({ 
+                    start: match.index, 
+                    end: match.index + match[0].length
+                });
+            }
+            
+            if (headingPositions.length === 0) {
+                // No headings found, return the whole content
+                sections.push(content);
+                return sections;
+            }
+            
+            // Add content before first heading if any
+            if (headingPositions[0].start > 0) {
+                sections.push(content.substring(0, headingPositions[0].start));
+            }
+            
+            // Add each section (from heading to next heading)
+            for (let i = 0; i < headingPositions.length; i++) {
+                const start = headingPositions[i].start;
+                const end = i < headingPositions.length - 1 
+                    ? headingPositions[i + 1].start 
+                    : content.length;
+                
+                sections.push(content.substring(start, end));
+            }
+            
+            return sections;
+        }
+        
+        function displaySections(sections, isHtml) {
+            splitSections.innerHTML = '';
+            
+            sections.forEach((section, index) => {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'section-output';
+                sectionDiv.textContent = section;
+                sectionDiv.addEventListener('click', () => {
+                    showRenderedContent(section, isHtml);
+                });
+                
+                splitSections.appendChild(sectionDiv);
+            });
+        }
+        
+        function showRenderedContent(content, isHtml) {
+            if (isHtml) {
+                // Content is HTML, display directly
+                renderedContent.innerHTML = content;
+            } else {
+                // Content is Markdown, render it
+                renderedContent.innerHTML = marked.parse(content);
+            }
+            
+            contentModal.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
