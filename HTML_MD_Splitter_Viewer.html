@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Enhanced Document Section Splitter</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
       media="(prefers-color-scheme: dark)"
     />
-     <link
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css"
       media="(prefers-color-scheme: light)"
@@ -34,7 +37,8 @@
         --card-color: #ffffff;
         --border-color: #dee2e6;
         --hover-color: #f1f3f5;
-        --opened-bg: #e8f0fe; /* Subtle highlight for opened sections */
+        --opened-bg: #e8f0fe;
+        /* Subtle highlight for opened sections */
         --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         --transition: all 0.2s ease-in-out;
         --success-color: #28a745;
@@ -51,11 +55,14 @@
         --rgb-accent: 139, 173, 216;
 
         --text-color: #e0e0e0;
-        --background-color: #1a1a1a; /* Darker background */
-        --card-color: #2c2c2c; /* Slightly lighter card */
+        --background-color: #1a1a1a;
+        /* Darker background */
+        --card-color: #2c2c2c;
+        /* Slightly lighter card */
         --border-color: #444;
         --hover-color: #383838;
-        --opened-bg: #3a4a6a; /* Darker subtle opened highlight */
+        --opened-bg: #3a4a6a;
+        /* Darker subtle opened highlight */
         --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
 
@@ -78,7 +85,8 @@
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 15px; /* Add horizontal padding */
+        padding: 0 15px;
+        /* Add horizontal padding */
       }
 
       header {
@@ -92,11 +100,11 @@
 
       h1 {
         color: var(--primary-color);
-         font-size: 1.8rem;
-         margin: 0;
-         display: inline-flex;
-         align-items: center;
-         gap: 10px;
+        font-size: 1.8rem;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
       }
 
       h2 {
@@ -139,30 +147,36 @@
         font-size: 0.95rem;
         line-height: 1.5;
         resize: vertical;
-        background-color: var(--background-color); /* Slightly different background */
+        background-color: var(--background-color);
+        /* Slightly different background */
         color: var(--text-color);
         transition: var(--transition);
       }
+
       .dark-mode textarea {
-         background-color: #222; /* Even darker for contrast */
+        background-color: #222;
+        /* Even darker for contrast */
       }
 
       textarea:focus {
         border-color: var(--primary-color);
         outline: none;
-        box-shadow: 0 0 0 3px rgba(var(--rgb-primary), 0.25); /* Use RGB var */
+        box-shadow: 0 0 0 3px rgba(var(--rgb-primary), 0.25);
+        /* Use RGB var */
       }
 
       .file-upload-container {
         display: flex;
         align-items: center;
         margin-bottom: 1rem;
-        flex-wrap: wrap; /* Allow wrapping on small screens */
+        flex-wrap: wrap;
+        /* Allow wrapping on small screens */
         gap: 10px;
       }
 
       .file-upload-label {
-        display: inline-flex; /* Align icon */
+        display: inline-flex;
+        /* Align icon */
         align-items: center;
         gap: 8px;
         padding: 8px 16px;
@@ -184,9 +198,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        flex-grow: 1; /* Take remaining space */
-        min-width: 100px; /* Ensure it doesn't collapse too much */
-        margin-left: 5px; /* Add small space from button */
+        flex-grow: 1;
+        /* Take remaining space */
+        min-width: 100px;
+        /* Ensure it doesn't collapse too much */
+        margin-left: 5px;
+        /* Add small space from button */
       }
 
       input[type="file"] {
@@ -197,52 +214,59 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        margin-top: 0.5rem; /* Reduced margin */
-        padding: 10px 0; /* Add vertical padding */
+        margin-top: 0.5rem;
+        /* Reduced margin */
+        padding: 10px 0;
+        /* Add vertical padding */
       }
 
       .slider {
         flex: 1;
         cursor: pointer;
-        accent-color: var(--primary-color); /* Modern way to style range slider */
+        accent-color: var(--primary-color);
+        /* Modern way to style range slider */
         height: 8px;
         background: var(--border-color);
         border-radius: 4px;
         outline: none;
         opacity: 0.7;
         transition: opacity 0.2s;
-        -webkit-appearance: none; /* Override default look */
+        -webkit-appearance: none;
+        /* Override default look */
         appearance: none;
       }
-       .slider:hover {
-         opacity: 1;
-       }
+
+      .slider:hover {
+        opacity: 1;
+      }
 
       /* Thumb styles */
-       .slider::-webkit-slider-thumb {
-         -webkit-appearance: none;
-         appearance: none;
-         width: 20px;
-         height: 20px;
-         background: var(--primary-color);
-         border-radius: 50%;
-         cursor: pointer;
-       }
+      .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+      }
 
-       .slider::-moz-range-thumb {
-         width: 20px;
-         height: 20px;
-         background: var(--primary-color);
-         border-radius: 50%;
-         cursor: pointer;
-         border: none; /* Reset border */
-       }
+      .slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+        /* Reset border */
+      }
 
       .level-display {
         font-size: 1.1rem;
         font-weight: bold;
         color: var(--primary-color);
-        min-width: 25px; /* Ensure space */
+        min-width: 25px;
+        /* Ensure space */
         text-align: center;
         background-color: var(--hover-color);
         padding: 4px 8px;
@@ -258,40 +282,49 @@
         cursor: pointer;
         font-size: 0.95rem;
         transition: var(--transition);
-        display: inline-flex; /* Align icon and text */
+        display: inline-flex;
+        /* Align icon and text */
         align-items: center;
         justify-content: center;
-        gap: 8px; /* Space between icon and text */
-        text-decoration: none; /* For potential future <a> usage */
-        line-height: 1.2; /* Ensure text aligns well */
+        gap: 8px;
+        /* Space between icon and text */
+        text-decoration: none;
+        /* For potential future <a> usage */
+        line-height: 1.2;
+        /* Ensure text aligns well */
       }
 
       .btn:hover {
         background-color: var(--secondary-color);
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
+
       .btn:active {
         transform: translateY(1px);
         box-shadow: none;
       }
+
       .btn.btn-secondary {
-         background-color: var(--accent-color);
+        background-color: var(--accent-color);
       }
-       .btn.btn-secondary:hover {
-         background-color: var(--primary-color);
-       }
-       .btn:disabled {
-         background-color: #ccc;
-         color: #666;
-         cursor: not-allowed;
-         opacity: 0.7;
-         box-shadow: none;
-         transform: none;
-       }
-       .dark-mode .btn:disabled {
-         background-color: #555;
-         color: #aaa;
-       }
+
+      .btn.btn-secondary:hover {
+        background-color: var(--primary-color);
+      }
+
+      .btn:disabled {
+        background-color: #ccc;
+        color: #666;
+        cursor: not-allowed;
+        opacity: 0.7;
+        box-shadow: none;
+        transform: none;
+      }
+
+      .dark-mode .btn:disabled {
+        background-color: #555;
+        color: #aaa;
+      }
 
       .section-output {
         border: 1px solid var(--border-color);
@@ -300,7 +333,8 @@
         border-radius: 6px;
         max-height: 250px;
         overflow-y: auto;
-        white-space: pre-wrap; /* Keep for preview text */
+        white-space: pre-wrap;
+        /* Keep for preview text */
         word-wrap: break-word;
         font-family: var(--monospace-font);
         cursor: pointer;
@@ -309,11 +343,24 @@
         background-color: var(--card-color);
         color: var(--text-color);
       }
+
       /* Make scrollbar less intrusive */
-      .section-output::-webkit-scrollbar { width: 8px; }
-      .section-output::-webkit-scrollbar-track { background: transparent; }
-      .section-output::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px;}
-      .section-output::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
+      .section-output::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      .section-output::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .section-output::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+      }
+
+      .section-output::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color);
+      }
 
 
       .section-output:hover {
@@ -321,19 +368,27 @@
         border-color: var(--accent-color);
         box-shadow: var(--shadow);
       }
-       /* Style for sections that have been opened (Subtle Highlight) */
+
+      /* Style for sections that have been opened (Subtle Highlight) */
       .section-output.opened {
         background-color: var(--opened-bg);
-        border-left: 4px solid var(--primary-color); /* Add a visual indicator */
-        padding-left: 12px; /* Adjust padding to compensate for border */
+        border-left: 4px solid var(--primary-color);
+        /* Add a visual indicator */
+        padding-left: 12px;
+        /* Adjust padding to compensate for border */
       }
+
       /* Keep hover effect distinct on opened sections */
       .section-output.opened:hover {
-        filter: brightness(98%); /* Slightly adjust brightness on hover */
-        border-color: var(--primary-color); /* Use primary color for hover border */
+        filter: brightness(98%);
+        /* Slightly adjust brightness on hover */
+        border-color: var(--primary-color);
+        /* Use primary color for hover border */
       }
+
       .dark-mode .section-output.opened:hover {
-         filter: brightness(110%); /* Adjust for dark mode */
+        filter: brightness(110%);
+        /* Adjust for dark mode */
       }
 
 
@@ -342,7 +397,8 @@
         color: var(--primary-color);
         margin-bottom: 8px;
         font-size: 1rem;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Use regular font for title */
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        /* Use regular font for title */
       }
 
       .modal {
@@ -353,28 +409,38 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
-        overflow: hidden; /* Prevent body scroll when modal is open */
-        padding: 20px; /* Add padding for small screens */
-        align-items: center; /* Vertically center */
-        justify-content: center; /* Horizontally center */
+        background-color: rgba(0, 0, 0, 0.6);
+        /* Slightly darker overlay */
+        overflow: hidden;
+        /* Prevent body scroll when modal is open */
+        padding: 20px;
+        /* Add padding for small screens */
+        align-items: center;
+        /* Vertically center */
+        justify-content: center;
+        /* Horizontally center */
       }
 
       .modal-content {
         background-color: var(--card-color);
-        margin: 0; /* Centered by flexbox */
-        padding: 0; /* Remove padding, handle internally */
+        margin: 0;
+        /* Centered by flexbox */
+        padding: 0;
+        /* Remove padding, handle internally */
         width: 90%;
         max-width: 950px;
-        max-height: 90vh; /* Limit height relative to viewport */
+        max-height: 90vh;
+        /* Limit height relative to viewport */
         border-radius: 8px;
         position: relative;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         color: var(--text-color);
         transition: var(--transition);
-        display: flex; /* Use flexbox for layout */
+        display: flex;
+        /* Use flexbox for layout */
         flex-direction: column;
-        overflow: hidden; /* Prevent content overflow */
+        overflow: hidden;
+        /* Prevent content overflow */
       }
 
       .modal-header {
@@ -383,7 +449,8 @@
         align-items: center;
         border-bottom: 1px solid var(--border-color);
         padding: 15px 25px;
-        flex-shrink: 0; /* Prevent header shrinking */
+        flex-shrink: 0;
+        /* Prevent header shrinking */
       }
 
       .modal-title {
@@ -398,7 +465,8 @@
 
       .close-button {
         color: var(--text-color);
-        font-size: 2rem; /* Larger click target */
+        font-size: 2rem;
+        /* Larger click target */
         font-weight: normal;
         cursor: pointer;
         transition: var(--transition);
@@ -406,7 +474,8 @@
         background: none;
         border: none;
         padding: 0 5px;
-        flex-shrink: 0; /* Prevent shrinking */
+        flex-shrink: 0;
+        /* Prevent shrinking */
       }
 
       .close-button:hover,
@@ -418,9 +487,12 @@
 
       .modal-body {
         padding: 25px;
-        overflow-y: auto; /* Scroll only the body */
-        flex-grow: 1; /* Take remaining height */
-        font-size: 1rem; /* Slightly smaller base font */
+        overflow-y: auto;
+        /* Scroll only the body */
+        flex-grow: 1;
+        /* Take remaining height */
+        font-size: 1rem;
+        /* Slightly smaller base font */
       }
 
       .modal-actions {
@@ -431,20 +503,26 @@
         background-color: var(--background-color);
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
-        flex-shrink: 0; /* Prevent footer shrinking */
-        flex-wrap: wrap; /* Allow wrapping */
-        align-items: center; /* Vertically align items if they wrap */
+        flex-shrink: 0;
+        /* Prevent footer shrinking */
+        flex-wrap: wrap;
+        /* Allow wrapping */
+        align-items: center;
+        /* Vertically align items if they wrap */
       }
+
       .modal-actions-info {
-         margin-left: auto;
-         font-size: 0.9rem;
-         color: var(--secondary-color);
-         align-self: center;
-         padding: 5px 0; /* Ensure consistent height */
+        margin-left: auto;
+        font-size: 0.9rem;
+        color: var(--secondary-color);
+        align-self: center;
+        padding: 5px 0;
+        /* Ensure consistent height */
       }
-       .dark-mode .modal-actions-info {
-           color: var(--accent-color);
-       }
+
+      .dark-mode .modal-actions-info {
+        color: var(--accent-color);
+      }
 
 
       /* Rendered content styles */
@@ -460,87 +538,181 @@
         font-weight: 600;
         line-height: 1.3;
       }
-      .rendered-content h1 { font-size: 2em; }
-      .rendered-content h2 { font-size: 1.6em; border-bottom: 1px solid var(--border-color); padding-bottom: 0.3em; }
-      .rendered-content h3 { font-size: 1.3em; }
-      .rendered-content h4 { font-size: 1.1em; }
-      .rendered-content h5 { font-size: 1em; }
-      .rendered-content h6 { font-size: 0.9em; color: var(--secondary-color); }
 
-      .rendered-content p { margin-bottom: 1.1em; }
-      .rendered-content a { color: var(--accent-color); text-decoration: none; }
-      .rendered-content a:hover { text-decoration: underline; }
+      .rendered-content h1 {
+        font-size: 2em;
+      }
+
+      .rendered-content h2 {
+        font-size: 1.6em;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.3em;
+      }
+
+      .rendered-content h3 {
+        font-size: 1.3em;
+      }
+
+      .rendered-content h4 {
+        font-size: 1.1em;
+      }
+
+      .rendered-content h5 {
+        font-size: 1em;
+      }
+
+      .rendered-content h6 {
+        font-size: 0.9em;
+        color: var(--secondary-color);
+      }
+
+      .rendered-content p {
+        margin-bottom: 1.1em;
+      }
+
+      .rendered-content a {
+        color: var(--accent-color);
+        text-decoration: none;
+      }
+
+      .rendered-content a:hover {
+        text-decoration: underline;
+      }
+
       .rendered-content blockquote {
-         border-left: 4px solid var(--accent-color);
-         padding: 10px 15px;
-         margin: 1.5em 0;
-         background-color: var(--hover-color);
-         color: var(--secondary-color);
-         font-style: italic;
-       }
-      .dark-mode .rendered-content blockquote { color: #ccc; }
+        border-left: 4px solid var(--accent-color);
+        padding: 10px 15px;
+        margin: 1.5em 0;
+        background-color: var(--hover-color);
+        color: var(--secondary-color);
+        font-style: italic;
+      }
 
-      .rendered-content ul, .rendered-content ol { margin-bottom: 1.1em; padding-left: 1.8em; } /* Increased padding */
-      .rendered-content li { margin-bottom: 0.4em; }
+      .dark-mode .rendered-content blockquote {
+        color: #ccc;
+      }
+
+      .rendered-content ul,
+      .rendered-content ol {
+        margin-bottom: 1.1em;
+        padding-left: 1.8em;
+      }
+
+      /* Increased padding */
+      .rendered-content li {
+        margin-bottom: 0.4em;
+      }
 
       /* Inline code */
       .rendered-content code:not(pre code) {
-         font-family: var(--monospace-font);
-         background-color: var(--hover-color);
-         padding: 0.2em 0.4em;
-         border-radius: 3px;
-         font-size: 0.9em;
-         color: var(--secondary-color); /* Changed color for better contrast */
-         border: 1px solid var(--border-color); /* Subtle border */
-       }
-      .dark-mode .rendered-content code:not(pre code) { color: #9cdcfe; border-color: #555; }
+        font-family: var(--monospace-font);
+        background-color: var(--hover-color);
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-size: 0.9em;
+        color: var(--secondary-color);
+        /* Changed color for better contrast */
+        border: 1px solid var(--border-color);
+        /* Subtle border */
+      }
+
+      .dark-mode .rendered-content code:not(pre code) {
+        color: #9cdcfe;
+        border-color: #555;
+      }
 
       /* Code blocks */
       .rendered-content pre {
-        background-color: #f0f0f0; /* Lighter background for light mode */
+        background-color: #f0f0f0;
+        /* Lighter background for light mode */
         padding: 15px;
         border-radius: 5px;
         overflow-x: auto;
         margin-bottom: 1.1em;
         border: 1px solid var(--border-color);
       }
-       .dark-mode .rendered-content pre { background-color: #1e1e1e; } /* Keep dark for dark mode */
+
+      .dark-mode .rendered-content pre {
+        background-color: #1e1e1e;
+      }
+
+      /* Keep dark for dark mode */
 
       .rendered-content pre code {
         font-family: var(--monospace-font);
-        background-color: transparent !important; /* Override inline style */
+        background-color: transparent !important;
+        /* Override inline style */
         padding: 0 !important;
         border: none !important;
         font-size: 0.9em;
         line-height: 1.5;
-        color: #333; /* Default code color for light mode */
+        color: #333;
+        /* Default code color for light mode */
       }
-       .dark-mode .rendered-content pre code { color: #c9d1d9; } /* Default code color for dark */
 
-      .rendered-content img { max-width: 100%; height: auto; display: block; margin: 1.5em auto; border-radius: 4px; border: 1px solid var(--border-color); }
-      .rendered-content table { width: 100%; border-collapse: collapse; margin-bottom: 1.1em; border: 1px solid var(--border-color); }
-      .rendered-content th, .rendered-content td { border: 1px solid var(--border-color); padding: 8px 12px; text-align: left; }
-      .rendered-content th { background-color: var(--hover-color); font-weight: 600; }
-      .rendered-content tr:nth-child(even) { background-color: rgba(0, 0, 0, 0.02); }
-       .dark-mode .rendered-content tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.05); }
+      .dark-mode .rendered-content pre code {
+        color: #c9d1d9;
+      }
+
+      /* Default code color for dark */
+
+      .rendered-content img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1.5em auto;
+        border-radius: 4px;
+        border: 1px solid var(--border-color);
+      }
+
+      .rendered-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.1em;
+        border: 1px solid var(--border-color);
+      }
+
+      .rendered-content th,
+      .rendered-content td {
+        border: 1px solid var(--border-color);
+        padding: 8px 12px;
+        text-align: left;
+      }
+
+      .rendered-content th {
+        background-color: var(--hover-color);
+        font-weight: 600;
+      }
+
+      .rendered-content tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.02);
+      }
+
+      .dark-mode .rendered-content tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
 
       .theme-toggle {
         background: none;
         border: none;
         color: var(--text-color);
-        font-size: 1.3rem; /* Larger icon */
+        font-size: 1.3rem;
+        /* Larger icon */
         cursor: pointer;
         transition: var(--transition);
-        padding: 5px; /* Add padding for easier clicking */
+        padding: 5px;
+        /* Add padding for easier clicking */
         line-height: 1;
-        border-radius: 50%; /* Make it round */
+        border-radius: 50%;
+        /* Make it round */
       }
 
       .theme-toggle:hover,
       .theme-toggle:focus {
         color: var(--primary-color);
         transform: rotate(15deg);
-        background-color: var(--hover-color); /* Subtle background on hover */
+        background-color: var(--hover-color);
+        /* Subtle background on hover */
         outline: none;
       }
 
@@ -559,13 +731,28 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        max-width: 350px; /* Limit width */
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+        /* Limit width */
       }
-      .notification.success { background-color: var(--success-color); }
-      .notification.error { background-color: var(--error-color); }
-      .notification.warning { background-color: var(--warning-color); color: #333; } /* Darker text for warning */
-      .notification.info { background-color: var(--info-color); }
+
+      .notification.success {
+        background-color: var(--success-color);
+      }
+
+      .notification.error {
+        background-color: var(--error-color);
+      }
+
+      .notification.warning {
+        background-color: var(--warning-color);
+        color: #333;
+      }
+
+      /* Darker text for warning */
+      .notification.info {
+        background-color: var(--info-color);
+      }
 
       .notification.show {
         opacity: 1;
@@ -576,19 +763,27 @@
         display: inline-block;
         width: 18px;
         height: 18px;
-        border: 3px solid rgba(var(--rgb-primary), 0.3); /* Use variable color */
+        border: 3px solid rgba(var(--rgb-primary), 0.3);
+        /* Use variable color */
         border-radius: 50%;
         border-top-color: var(--primary-color);
         animation: spin 1s ease-in-out infinite;
-        vertical-align: middle; /* Align with text */
-        margin-right: 8px; /* Space from text */
-      }
-      .dark-mode .spinner {
-          border-color: rgba(var(--rgb-primary), 0.4);
-          border-top-color: var(--primary-color);
+        vertical-align: middle;
+        /* Align with text */
+        margin-right: 8px;
+        /* Space from text */
       }
 
-      @keyframes spin { to { transform: rotate(360deg); } }
+      .dark-mode .spinner {
+        border-color: rgba(var(--rgb-primary), 0.4);
+        border-top-color: var(--primary-color);
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
       /* Keyboard shortcuts help panel */
       .shortcuts-panel {
@@ -597,14 +792,17 @@
         left: 20px;
         background-color: var(--card-color);
         border-radius: 8px;
-        padding: 15px 20px; /* Slightly reduced padding */
+        padding: 15px 20px;
+        /* Slightly reduced padding */
         box-shadow: var(--shadow);
         z-index: 1000;
         max-width: 320px;
-        transform: translateY(120%); /* Start further down */
+        transform: translateY(120%);
+        /* Start further down */
         transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         border: 1px solid var(--border-color);
-        visibility: hidden; /* Use visibility for smoother transitions */
+        visibility: hidden;
+        /* Use visibility for smoother transitions */
         opacity: 0;
       }
 
@@ -624,9 +822,18 @@
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
       }
-      .shortcuts-title span:first-child { font-size: 1.1rem; display: inline-flex; align-items: center; gap: 8px; }
+
+      .shortcuts-title span:first-child {
+        font-size: 1.1rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
       /* Uses modal close button style */
-      .shortcuts-panel .close-button { font-size: 1.5rem; }
+      .shortcuts-panel .close-button {
+        font-size: 1.5rem;
+      }
 
       .shortcut-item {
         display: flex;
@@ -635,11 +842,13 @@
         margin-bottom: 10px;
         font-size: 0.9rem;
       }
+
       .shortcut-item span:first-child {
-         color: var(--secondary-color);
+        color: var(--secondary-color);
       }
+
       .dark-mode .shortcut-item span:first-child {
-          color: var(--accent-color);
+        color: var(--accent-color);
       }
 
       .shortcut-key {
@@ -652,23 +861,33 @@
         color: var(--text-color);
         margin-left: 10px;
       }
-      .dark-mode .shortcut-key { color: var(--text-color); }
+
+      .dark-mode .shortcut-key {
+        color: var(--text-color);
+      }
 
       /* Print styles */
       @media print {
         body {
           padding: 0;
-          background-color: #fff !important; /* Override */
-          color: #000 !important; /* Override */
-          font-size: 12pt; /* Standard print size */
+          background-color: #fff !important;
+          /* Override */
+          color: #000 !important;
+          /* Override */
+          font-size: 12pt;
+          /* Standard print size */
         }
+
         /* Hide non-content elements */
         header,
-        .card:not(#output-card), /* Keep output card conceptually if needed, but hide its chrome */
+        .card:not(#output-card),
+        /* Keep output card conceptually if needed, but hide its chrome */
         #slider-card,
         .file-upload-container,
-        .input-group .btn, /* Hide input buttons */
-        #split-sections, /* Hide the preview list */
+        .input-group .btn,
+        /* Hide input buttons */
+        #split-sections,
+        /* Hide the preview list */
         .theme-toggle,
         .shortcuts-panel,
         .notification,
@@ -678,22 +897,24 @@
         }
 
         .container {
-            max-width: 100%;
-            padding: 0;
-            margin: 0;
+          max-width: 100%;
+          padding: 0;
+          margin: 0;
         }
 
         .modal {
-           position: static !important;
-           display: block !important; /* Ensure it shows */
-           background-color: transparent !important;
-           padding: 0 !important;
-           overflow: visible !important;
-           height: auto !important;
-           width: auto !important;
-           align-items: stretch !important;
-           justify-content: flex-start !important;
+          position: static !important;
+          display: block !important;
+          /* Ensure it shows */
+          background-color: transparent !important;
+          padding: 0 !important;
+          overflow: visible !important;
+          height: auto !important;
+          width: auto !important;
+          align-items: stretch !important;
+          justify-content: flex-start !important;
         }
+
         .modal-content {
           width: 100% !important;
           max-width: 100% !important;
@@ -703,69 +924,114 @@
           box-shadow: none !important;
           max-height: none !important;
           overflow: visible !important;
-          color: #000 !important; /* Ensure text is black for print */
+          color: #000 !important;
+          /* Ensure text is black for print */
           border-radius: 0 !important;
           background-color: #fff !important;
-          display: block !important; /* Override flex for simpler print */
+          display: block !important;
+          /* Override flex for simpler print */
         }
+
         .modal-header {
           border-bottom: 1px solid #ccc !important;
-          padding: 0 0 10px 0 !important; /* Adjust padding */
+          padding: 0 0 10px 0 !important;
+          /* Adjust padding */
           margin-bottom: 15px !important;
         }
+
         .modal-title {
-           color: #000 !important; /* Black title for print */
-           font-size: 1.5rem; /* Make title prominent */
+          color: #000 !important;
+          /* Black title for print */
+          font-size: 1.5rem;
+          /* Make title prominent */
         }
+
         .modal-body {
           padding: 0 !important;
           overflow: visible !important;
           height: auto !important;
         }
+
         /* Ensure dark mode styles don't interfere in print */
-        :root, .dark-mode, body, .modal-content, .rendered-content, .rendered-content pre code {
-            --primary-color: #000;
-            --secondary-color: #333;
-            --accent-color: #555;
-            --text-color: #000;
-            --background-color: #fff;
-            --card-color: #fff;
-            --border-color: #ccc;
-            --hover-color: #eee;
-            color: #000 !important;
-            background-color: #fff !important;
+        :root,
+        .dark-mode,
+        body,
+        .modal-content,
+        .rendered-content,
+        .rendered-content pre code {
+          --primary-color: #000;
+          --secondary-color: #333;
+          --accent-color: #555;
+          --text-color: #000;
+          --background-color: #fff;
+          --card-color: #fff;
+          --border-color: #ccc;
+          --hover-color: #eee;
+          color: #000 !important;
+          background-color: #fff !important;
         }
-        .rendered-content a { color: #000 !important; text-decoration: underline !important; }
+
+        .rendered-content a {
+          color: #000 !important;
+          text-decoration: underline !important;
+        }
+
         .rendered-content pre,
         .rendered-content code:not(pre code),
         .rendered-content blockquote,
         .rendered-content table,
         .rendered-content th,
         .rendered-content td {
-            background-color: #f8f8f8 !important; /* Light background for blocks */
-            border: 1px solid #ccc !important;
-            color: #000 !important;
-            page-break-inside: avoid; /* Try to avoid breaking these elements */
+          background-color: #f8f8f8 !important;
+          /* Light background for blocks */
+          border: 1px solid #ccc !important;
+          color: #000 !important;
+          page-break-inside: avoid;
+          /* Try to avoid breaking these elements */
         }
-        .rendered-content pre { white-space: pre-wrap !important; word-wrap: break-word; } /* Allow wrapping in print */
-        .rendered-content blockquote { border-left-color: #ccc !important; }
-        .rendered-content img { max-width: 80% !important; /* Slightly smaller images */ page-break-inside: avoid; border: 1px solid #ccc !important; }
-        .rendered-content h1, .rendered-content h2, .rendered-content h3 { page-break-after: avoid; } /* Avoid breaks after headings */
-      }
 
+        .rendered-content pre {
+          white-space: pre-wrap !important;
+          word-wrap: break-word;
+        }
+
+        /* Allow wrapping in print */
+        .rendered-content blockquote {
+          border-left-color: #ccc !important;
+        }
+
+        .rendered-content img {
+          max-width: 80% !important;
+          /* Slightly smaller images */
+          page-break-inside: avoid;
+          border: 1px solid #ccc !important;
+        }
+
+        .rendered-content h1,
+        .rendered-content h2,
+        .rendered-content h3 {
+          page-break-after: avoid;
+        }
+
+        /* Avoid breaks after headings */
+      }
     </style>
-</head>
-<body>
+  </head>
+
+  <body>
     <div class="container">
       <header>
-        <h1><i class="fa-solid fa-wand-magic-sparkles"></i> Enhanced Splitter</h1>
+        <h1>
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Enhanced Splitter
+        </h1>
         <button
           id="theme-toggle"
           class="theme-toggle"
           title="Toggle dark/light mode (Alt+D)"
           aria-label="Toggle dark light mode"
         >
-          <i class="fas fa-moon"></i> <!-- Icon updated dynamically -->
+          <i class="fas fa-moon"></i>
+          <!-- Icon updated dynamically -->
         </button>
       </header>
 
@@ -784,55 +1050,74 @@
           placeholder="Enter Markdown or HTML content..."
           aria-label="Content Input Area"
         ></textarea>
-        <div class="input-group" style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
-          <button id="process-btn" class="btn" disabled> <!-- Start disabled -->
+        <div
+          class="input-group"
+          style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;"
+        >
+          <button id="process-btn" class="btn" disabled>
+            <!-- Start disabled -->
             <i class="fas fa-play"></i> Process Content (Alt+P)
           </button>
           <button id="clear-btn" class="btn btn-secondary">
-              <i class="fas fa-eraser"></i> Clear Input (Alt+C)
+            <i class="fas fa-eraser"></i> Clear Input (Alt+C)
           </button>
-          <button id="help-btn" class="btn btn-secondary" style="margin-left: auto;">
-              <i class="fas fa-keyboard"></i> Shortcuts
+          <button
+            id="help-btn"
+            class="btn btn-secondary"
+            style="margin-left: auto;"
+          >
+            <i class="fas fa-keyboard"></i> Shortcuts
           </button>
         </div>
       </div>
 
       <div id="slider-card" class="card" style="display: none;">
-           <h2><i class="fa-solid fa-sliders"></i> Split Options</h2>
-           <div id="slider-container" class="slider-container">
-                <label for="heading-level">Split at heading level:</label>
-                <input
-                  type="range"
-                  id="heading-level"
-                  class="slider"
-                  min="1"
-                  max="6"
-                  value="1"
-                  step="1"
-                  aria-label="Heading level slider"
-                />
-                <span id="level-display" class="level-display">1</span>
-           </div>
-       </div>
-
+        <h2><i class="fa-solid fa-sliders"></i> Split Options</h2>
+        <div id="slider-container" class="slider-container">
+          <label for="heading-level">Split at heading level:</label>
+          <input
+            type="range"
+            id="heading-level"
+            class="slider"
+            min="1"
+            max="6"
+            value="1"
+            step="1"
+            aria-label="Heading level slider"
+          />
+          <span id="level-display" class="level-display">1</span>
+        </div>
+      </div>
 
       <div id="output-card" class="card" style="display: none;">
         <h2><i class="fas fa-puzzle-piece"></i> Split Sections</h2>
         <div id="split-sections">
-           <p>Process content to see split sections here.</p>
+          <p>Process content to see split sections here.</p>
         </div>
       </div>
     </div>
 
     <!-- Modal -->
-    <div id="content-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div
+      id="content-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
       <div class="modal-content">
         <header class="modal-header">
           <h3 class="modal-title" id="modal-title">Section Preview</h3>
-          <button class="close-button" id="close-modal" aria-label="Close modal">×</button>
+          <button
+            class="close-button"
+            id="close-modal"
+            aria-label="Close modal"
+          >
+            ×
+          </button>
         </header>
         <div class="modal-body">
-           <div id="rendered-content" class="rendered-content"></div>
+          <div id="rendered-content" class="rendered-content"></div>
         </div>
         <footer class="modal-actions">
           <button id="copy-html-btn" class="btn">
@@ -844,21 +1129,30 @@
           <button id="print-btn" class="btn">
             <i class="fas fa-print"></i> Print Section
           </button>
-          <span class="modal-actions-info">
-              Alt + ← / → to navigate
-          </span>
+          <span class="modal-actions-info"> Alt + ← / → to navigate </span>
         </footer>
       </div>
     </div>
 
     <!-- Notification Element -->
-    <div id="notification" class="notification" role="alert" aria-live="assertive"></div>
+    <div
+      id="notification"
+      class="notification"
+      role="alert"
+      aria-live="assertive"
+    ></div>
 
     <!-- Shortcuts Panel -->
     <div id="shortcuts-panel" class="shortcuts-panel">
       <div class="shortcuts-title">
         <span><i class="fas fa-keyboard"></i> Keyboard Shortcuts</span>
-        <button id="close-shortcuts" class="close-button" aria-label="Close shortcuts panel">×</button>
+        <button
+          id="close-shortcuts"
+          class="close-button"
+          aria-label="Close shortcuts panel"
+        >
+          ×
+        </button>
       </div>
       <div class="shortcut-item">
         <span>Toggle dark mode</span>
@@ -868,7 +1162,7 @@
         <span>Process content</span>
         <span class="shortcut-key">Alt + P</span>
       </div>
-       <div class="shortcut-item">
+      <div class="shortcut-item">
         <span>Clear Input</span>
         <span class="shortcut-key">Alt + C</span>
       </div>
@@ -880,7 +1174,7 @@
         <span>Previous section (modal)</span>
         <span class="shortcut-key">Alt + ←</span>
       </div>
-       <div class="shortcut-item">
+      <div class="shortcut-item">
         <span>Close modal/panel</span>
         <span class="shortcut-key">Esc</span>
       </div>
@@ -889,39 +1183,39 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>
-    // Wrap in IIFE for scope protection
-    (function() {
-        'use strict';
+      // Wrap in IIFE for scope protection
+      (function () {
+        "use strict";
 
         // --- DOM Elements ---
-        const fileUpload = document.getElementById('file-upload');
-        const fileNameSpan = document.getElementById('file-name');
-        const contentInput = document.getElementById('content-input');
-        const processBtn = document.getElementById('process-btn');
-        const clearBtn = document.getElementById('clear-btn');
-        const helpBtn = document.getElementById('help-btn');
-        const sliderCard = document.getElementById('slider-card');
+        const fileUpload = document.getElementById("file-upload");
+        const fileNameSpan = document.getElementById("file-name");
+        const contentInput = document.getElementById("content-input");
+        const processBtn = document.getElementById("process-btn");
+        const clearBtn = document.getElementById("clear-btn");
+        const helpBtn = document.getElementById("help-btn");
+        const sliderCard = document.getElementById("slider-card");
         // const sliderContainer = document.getElementById('slider-container'); // No longer directly needed
-        const headingLevelSlider = document.getElementById('heading-level');
-        const levelDisplay = document.getElementById('level-display');
-        const outputCard = document.getElementById('output-card');
-        const splitSectionsDiv = document.getElementById('split-sections');
-        const contentModal = document.getElementById('content-modal');
-        const closeModalBtn = document.getElementById('close-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const renderedContentDiv = document.getElementById('rendered-content');
-        const copyHtmlBtn = document.getElementById('copy-html-btn');
-        const copyMarkdownBtn = document.getElementById('copy-markdown-btn');
-        const printBtn = document.getElementById('print-btn');
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const notificationEl = document.getElementById('notification');
-        const shortcutsPanel = document.getElementById('shortcuts-panel');
-        const closeShortcutsBtn = document.getElementById('close-shortcuts');
-        const hljsLightTheme = document.getElementById('hljs-light-theme');
-
+        const headingLevelSlider = document.getElementById("heading-level");
+        const levelDisplay = document.getElementById("level-display");
+        const outputCard = document.getElementById("output-card");
+        const splitSectionsDiv = document.getElementById("split-sections");
+        const contentModal = document.getElementById("content-modal");
+        const closeModalBtn = document.getElementById("close-modal");
+        const modalTitle = document.getElementById("modal-title");
+        const renderedContentDiv = document.getElementById("rendered-content");
+        const copyHtmlBtn = document.getElementById("copy-html-btn");
+        const copyMarkdownBtn = document.getElementById("copy-markdown-btn");
+        const printBtn = document.getElementById("print-btn");
+        const themeToggleBtn = document.getElementById("theme-toggle");
+        const notificationEl = document.getElementById("notification");
+        const shortcutsPanel = document.getElementById("shortcuts-panel");
+        const closeShortcutsBtn = document.getElementById("close-shortcuts");
+        const hljsLightTheme = document.getElementById("hljs-light-theme");
 
         // --- State ---
-        let currentRawContent = ''; // Raw content from input/file
+        //#region
+        let currentRawContent = ""; // Raw content from input/file
         let currentSections = []; // Array of { title: string, content: string, isHtml: boolean }
         let isHtmlContent = false; // Detected content type
         let openedSectionIndices = new Set(); // Indices of viewed sections (persisted)
@@ -929,158 +1223,177 @@
         let notificationTimer = null; // Timer for hiding notifications
         let debounceTimer = null; // Timer for debouncing slider/processing
         let lastFocusedSection = null; // Track which section opened the modal
-
+        //#endregion
 
         // --- Constants ---
         const DEBOUNCE_DELAY = 300; // ms delay for debouncing slider
-        const NOTIFICATION_DURATION = 3000; // ms
-        const LS_CONTENT_KEY = 'documentSplitterContent_v2';
-        const LS_THEME_KEY = 'documentSplitterTheme_v2';
-        const LS_OPENED_KEY = 'documentSplitterOpened_v2'; // Key for storing opened sections
-
+        const NOTIFICATION_DURATION = 1500; // ms
+        const LS_CONTENT_KEY = "documentSplitterContent_v2";
+        const LS_THEME_KEY = "documentSplitterTheme_v2";
+        const LS_OPENED_KEY = "documentSplitterOpened_v2"; // Key for storing opened sections
 
         // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', () => {
-            setupMarked();
-            setupHighlightJs();
-            loadThemePreference();
-            loadOpenedSections(); // Load opened state before content
-            loadContentFromStorage(); // Load content last
+        document.addEventListener("DOMContentLoaded", () => {
+          setupMarked();
+          setupHighlightJs();
+          loadThemePreference();
+          loadOpenedSections(); // Load opened state before content
+          loadContentFromStorage(); // Load content last
 
-            // If content was loaded, attempt to initialize the UI state
-            if (currentRawContent.trim()) {
-                // Use timeout to ensure DOM is fully ready for potential updates
-                setTimeout(() => {
-                    const levels = findHeadingLevels(currentRawContent);
-                    if (levels.length > 0) {
-                         updateSliderUI(levels);
-                         // Split and display using the loaded content and potentially restored opened state
-                         splitAndDisplayContent();
-                         outputCard.style.display = 'block';
-                    } else if (currentRawContent.trim()) {
-                        // If content exists but no headings, show as one section
-                         currentSections = [{ title: 'Full Document', content: currentRawContent, isHtml: isHtmlContent }];
-                         displaySections(currentSections);
-                         outputCard.style.display = 'block';
-                         sliderCard.style.display = 'none';
-                    }
-                }, 100); // Small delay
-            } else {
-                processBtn.disabled = true; // Ensure disabled if no content loaded
-            }
+          // If content was loaded, attempt to initialize the UI state
+          if (currentRawContent.trim()) {
+            // Use timeout to ensure DOM is fully ready for potential updates
+            setTimeout(() => {
+              const levels = findHeadingLevels(currentRawContent);
+              if (levels.length > 0) {
+                updateSliderUI(levels);
+                // Split and display using the loaded content and potentially restored opened state
+                splitAndDisplayContent();
+                outputCard.style.display = "block";
+              } else if (currentRawContent.trim()) {
+                // If content exists but no headings, show as one section
+                currentSections = [
+                  {
+                    title: "Full Document",
+                    content: currentRawContent,
+                    isHtml: isHtmlContent,
+                  },
+                ];
+                displaySections(currentSections);
+                outputCard.style.display = "block";
+                sliderCard.style.display = "none";
+              }
+            }, 100); // Small delay
+          } else {
+            processBtn.disabled = true; // Ensure disabled if no content loaded
+          }
         });
 
         // --- Event Listeners ---
-        fileUpload.addEventListener('change', handleFileUpload);
-        contentInput.addEventListener('input', handleContentInput); // Save content on input
-        processBtn.addEventListener('click', () => runProcessing(true)); // Pass flag to clear opened state
-        clearBtn.addEventListener('click', clearAll);
-        headingLevelSlider.addEventListener('input', handleSliderChange);
-        closeModalBtn.addEventListener('click', closeModal);
-        contentModal.addEventListener('click', (event) => { if (event.target === contentModal) closeModal(); }); // Close on backdrop click
-        themeToggleBtn.addEventListener('click', toggleDarkMode);
-        helpBtn.addEventListener('click', toggleShortcutsPanel);
-        closeShortcutsBtn.addEventListener('click', () => toggleShortcutsPanel(false)); // Explicitly hide
-        copyHtmlBtn.addEventListener('click', handleCopyHtml);
-        copyMarkdownBtn.addEventListener('click', handleCopyMarkdown);
-        printBtn.addEventListener('click', handlePrint);
-        document.addEventListener('keydown', handleKeyboardShortcuts);
-
+        fileUpload.addEventListener("change", handleFileUpload);
+        contentInput.addEventListener("input", handleContentInput); // Save content on input
+        processBtn.addEventListener("click", () => runProcessing(true)); // Pass flag to clear opened state
+        clearBtn.addEventListener("click", clearAll);
+        headingLevelSlider.addEventListener("input", handleSliderChange);
+        closeModalBtn.addEventListener("click", closeModal);
+        contentModal.addEventListener("click", (event) => {
+          if (event.target === contentModal) closeModal();
+        }); // Close on backdrop click
+        themeToggleBtn.addEventListener("click", toggleDarkMode);
+        helpBtn.addEventListener("click", toggleShortcutsPanel);
+        closeShortcutsBtn.addEventListener("click", () =>
+          toggleShortcutsPanel(false)
+        ); // Explicitly hide
+        copyHtmlBtn.addEventListener("click", handleCopyHtml);
+        copyMarkdownBtn.addEventListener("click", handleCopyMarkdown);
+        printBtn.addEventListener("click", handlePrint);
+        document.addEventListener("keydown", handleKeyboardShortcuts);
 
         // --- Core Logic Functions ---
 
         function setupMarked() {
-            if (typeof marked !== 'undefined') {
-                try {
-                    marked.setOptions({
-                        gfm: true,
-                        breaks: false, // CommonMark standard
-                        headerIds: true, // Add IDs to headings
-                        mangle: false, // Avoid email obfuscation
-                        highlight: (code, lang) => {
-                            if (typeof hljs !== 'undefined') {
-                                const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-                                try {
-                                    return hljs.highlight(code, { language, ignoreIllegals: true }).value;
-                                } catch (error) {
-                                    console.error("Highlight.js error:", error);
-                                    // Fallback to auto-detection on error
-                                    return hljs.highlightAuto(code).value;
-                                }
-                            }
-                            return escapeHtml(code); // Fallback if hljs is missing
-                        },
-                    });
-                } catch (error) {
-                    console.error("Error configuring Marked.js:", error);
-                    showNotification("Error setting up Markdown parser.", "error");
-                }
-            } else {
-                console.error("Marked.js library not loaded!");
-                showNotification("Markdown library (Marked.js) failed to load.", "error", 0); // Persistent error
+          if (typeof marked !== "undefined") {
+            try {
+              marked.setOptions({
+                gfm: true,
+                breaks: false, // CommonMark standard
+                headerIds: true, // Add IDs to headings
+                mangle: false, // Avoid email obfuscation
+                highlight: (code, lang) => {
+                  if (typeof hljs !== "undefined") {
+                    const language = hljs.getLanguage(lang)
+                      ? lang
+                      : "plaintext";
+                    try {
+                      return hljs.highlight(code, {
+                        language,
+                        ignoreIllegals: true,
+                      }).value;
+                    } catch (error) {
+                      console.error("Highlight.js error:", error);
+                      // Fallback to auto-detection on error
+                      return hljs.highlightAuto(code).value;
+                    }
+                  }
+                  return escapeHtml(code); // Fallback if hljs is missing
+                },
+              });
+            } catch (error) {
+              console.error("Error configuring Marked.js:", error);
+              showNotification("Error setting up Markdown parser.", "error");
             }
+          } else {
+            console.error("Marked.js library not loaded!");
+            showNotification(
+              "Markdown library (Marked.js) failed to load.",
+              "error",
+              0
+            ); // Persistent error
+          }
         }
+
         function setupHighlightJs() {
-             if (typeof hljs !== 'undefined') {
-                try {
-                    hljs.configure({ ignoreUnescapedHTML: true }); // Important for security with HTML content
-                } catch (error) {
-                     console.error("Error configuring Highlight.js:", error);
-                     showNotification("Error setting up syntax highlighter.", "error");
-                }
-             } else {
-                  console.error("Highlight.js library not loaded!");
-                  // Don't show persistent notification, highlighting is optional enhancement
-             }
+          if (typeof hljs !== "undefined") {
+            try {
+              hljs.configure({ ignoreUnescapedHTML: true }); // Important for security with HTML content
+            } catch (error) {
+              console.error("Error configuring Highlight.js:", error);
+              showNotification("Error setting up syntax highlighter.", "error");
+            }
+          } else {
+            console.error("Highlight.js library not loaded!");
+            // Don't show persistent notification, highlighting is optional enhancement
+          }
         }
 
         function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) {
-                 fileNameSpan.textContent = 'No file chosen';
-                 processBtn.disabled = !currentRawContent.trim(); // Re-evaluate based on existing content
-                 return;
-            }
+          const file = event.target.files[0];
+          if (!file) {
+            fileNameSpan.textContent = "No file chosen";
+            processBtn.disabled = !currentRawContent.trim(); // Re-evaluate based on existing content
+            return;
+          }
 
-            fileNameSpan.textContent = file.name;
-            showNotification('Loading file...', 'info', 0); // Show indefinitely until loaded/error
-            processBtn.disabled = true; // Disable while loading
+          fileNameSpan.textContent = file.name;
+          showNotification("Loading file...", "info", 0); // Show indefinitely until loaded/error
+          processBtn.disabled = true; // Disable while loading
 
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                contentInput.value = e.target.result;
-                currentRawContent = e.target.result;
-                saveContentToStorage(); // Save loaded content
-                showNotification('File loaded successfully!', 'success');
-                // Enable processing now that content is loaded
-                processBtn.disabled = false;
-                 // Suggest processing, maybe auto-process? For now, manual.
-                // runProcessing(true); // Option: auto-process new file (clears opened state)
-                // Reset UI state for the new content
-                sliderCard.style.display = 'none';
-                outputCard.style.display = 'none';
-                splitSectionsDiv.innerHTML = '<p>Press "Process Content" to split the new file.</p>';
-                clearOpenedSections(); // Clear opened state for the *new* file
-            };
-            reader.onerror = (err) => {
-                console.error("File reading error:", err);
-                showNotification('Error reading file!', 'error');
-                fileNameSpan.textContent = 'Error reading file';
-                processBtn.disabled = true; // Can't process if read failed
-            };
-            reader.readAsText(file);
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            contentInput.value = e.target.result;
+            currentRawContent = e.target.result;
+            saveContentToStorage(); // Save loaded content
+            showNotification("File loaded successfully!", "success");
+            // Enable processing now that content is loaded
+            processBtn.disabled = false;
+            // Suggest processing, maybe auto-process? For now, manual.
+            // runProcessing(true); // Option: auto-process new file (clears opened state)
+            // Reset UI state for the new content
+            sliderCard.style.display = "none";
+            outputCard.style.display = "none";
+            splitSectionsDiv.innerHTML =
+              '<p>Press "Process Content" to split the new file.</p>';
+            clearOpenedSections(); // Clear opened state for the *new* file
+          };
+          reader.onerror = (err) => {
+            console.error("File reading error:", err);
+            showNotification("Error reading file!", "error");
+            fileNameSpan.textContent = "Error reading file";
+            processBtn.disabled = true; // Can't process if read failed
+          };
+          reader.readAsText(file);
         }
 
         function handleContentInput() {
-            currentRawContent = contentInput.value;
-            saveContentToStorage();
-             // Enable process button if there's content, disable if empty
-            processBtn.disabled = !currentRawContent.trim();
-            // Maybe hide slider/output if content becomes empty? Optional.
-            if (!currentRawContent.trim()) {
-                sliderCard.style.display = 'none';
-                outputCard.style.display = 'none';
-            }
+          currentRawContent = contentInput.value;
+          saveContentToStorage();
+          // Enable process button if there's content, disable if empty
+          processBtn.disabled = !currentRawContent.trim();
+          // Maybe hide slider/output if content becomes empty? Optional.
+          if (!currentRawContent.trim()) {
+            sliderCard.style.display = "none";
+            outputCard.style.display = "none";
+          }
         }
 
         /**
@@ -1088,124 +1401,149 @@
          * @param {boolean} clearOpened - If true, resets the opened sections state (e.g., for new file/manual process).
          */
         function runProcessing(clearOpened = false) {
-             if (!currentRawContent.trim()) {
-                 showNotification('Input is empty!', 'warning');
-                 splitSectionsDiv.innerHTML = '<p>Please enter or upload content first.</p>';
-                 sliderCard.style.display = 'none';
-                 outputCard.style.display = 'block'; // Show card but with message
-                 processBtn.disabled = true;
-                 return;
-             }
+          if (!currentRawContent.trim()) {
+            showNotification("Input is empty!", "warning");
+            splitSectionsDiv.innerHTML =
+              "<p>Please enter or upload content first.</p>";
+            sliderCard.style.display = "none";
+            outputCard.style.display = "block"; // Show card but with message
+            processBtn.disabled = true;
+            return;
+          }
 
-             if (clearOpened) {
-                 clearOpenedSections(); // Reset opened state if requested
-             }
+          if (clearOpened) {
+            clearOpenedSections(); // Reset opened state if requested
+          }
 
-             // Show loading state
-             splitSectionsDiv.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; padding: 20px; color: var(--secondary-color);">
+          // Show loading state
+          splitSectionsDiv.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; padding: 20px; color: var(--secondary-color);">
                                            <div class="spinner"></div> Processing...
                                          </div>`;
-             outputCard.style.display = 'block'; // Show output card immediately
-             processBtn.disabled = true; // Disable button during processing
+          outputCard.style.display = "block"; // Show output card immediately
+          processBtn.disabled = true; // Disable button during processing
 
-             // Use setTimeout to allow spinner to render before potentially heavy processing
-             setTimeout(() => {
-                 try {
-                     const headingLevels = findHeadingLevels(currentRawContent);
+          // Use setTimeout to allow spinner to render before potentially heavy processing
+          setTimeout(() => {
+            try {
+              const headingLevels = findHeadingLevels(currentRawContent);
 
-                     if (headingLevels.length > 0) {
-                         updateSliderUI(headingLevels);
-                         splitAndDisplayContent(); // This will use currentRawContent and current slider value
-                         showNotification('Content processed!', 'success');
-                     } else {
-                         // No headings found, display as one section
-                         sliderCard.style.display = 'none';
-                         currentSections = [{ title: 'Full Document', content: currentRawContent, isHtml: isHtmlContent }];
-                         displaySections(currentSections); // displaySections handles the message if empty
-                         showNotification('No headings found. Displaying full content.', 'info');
-                     }
-                 } catch (error) {
-                    console.error("Error during processing:", error);
-                    showNotification("Error processing content. Check console.", "error");
-                    splitSectionsDiv.innerHTML = `<p style="color: var(--error-color);">Error occurred during processing. Check console for details.</p>`;
-                    sliderCard.style.display = 'none';
-                 } finally {
-                    // Re-enable button after processing attempt
-                    processBtn.disabled = false;
-                 }
-             }, 50); // Small delay for UI update
+              if (headingLevels.length > 0) {
+                updateSliderUI(headingLevels);
+                splitAndDisplayContent(); // This will use currentRawContent and current slider value
+                showNotification("Content processed!", "success");
+              } else {
+                // No headings found, display as one section
+                sliderCard.style.display = "none";
+                currentSections = [
+                  {
+                    title: "Full Document",
+                    content: currentRawContent,
+                    isHtml: isHtmlContent,
+                  },
+                ];
+                displaySections(currentSections); // displaySections handles the message if empty
+                showNotification(
+                  "No headings found. Displaying full content.",
+                  "info"
+                );
+              }
+            } catch (error) {
+              console.error("Error during processing:", error);
+              showNotification(
+                "Error processing content. Check console.",
+                "error"
+              );
+              splitSectionsDiv.innerHTML = `<p style="color: var(--error-color);">Error occurred during processing. Check console for details.</p>`;
+              sliderCard.style.display = "none";
+            } finally {
+              // Re-enable button after processing attempt
+              processBtn.disabled = false;
+            }
+          }, 50); // Small delay for UI update
         }
 
-         function updateSliderUI(headingLevels) {
-             if (!headingLevels || headingLevels.length === 0) {
-                 sliderCard.style.display = 'none';
-                 return;
-             }
-             const minLevel = Math.min(...headingLevels);
-             const maxLevel = Math.max(...headingLevels);
+        function updateSliderUI(headingLevels) {
+          if (!headingLevels || headingLevels.length === 0) {
+            sliderCard.style.display = "none";
+            return;
+          }
+          const minLevel = Math.min(...headingLevels);
+          const maxLevel = Math.max(...headingLevels);
 
-             headingLevelSlider.min = minLevel;
-             headingLevelSlider.max = maxLevel;
-             // Set value smartly: keep current if valid, else set to min available level
-             let currentSliderValue = parseInt(headingLevelSlider.value, 10);
-             if (isNaN(currentSliderValue) || currentSliderValue < minLevel || currentSliderValue > maxLevel) {
-                headingLevelSlider.value = minLevel;
-                currentSliderValue = minLevel; // Update for display
-             }
-             levelDisplay.textContent = currentSliderValue;
-             sliderCard.style.display = 'block'; // Show the slider card
-         }
+          headingLevelSlider.min = minLevel;
+          headingLevelSlider.max = maxLevel;
+          // Set value smartly: keep current if valid, else set to min available level
+          let currentSliderValue = parseInt(headingLevelSlider.value, 10);
+          if (
+            isNaN(currentSliderValue) ||
+            currentSliderValue < minLevel ||
+            currentSliderValue > maxLevel
+          ) {
+            headingLevelSlider.value = minLevel;
+            currentSliderValue = minLevel; // Update for display
+          }
+          levelDisplay.textContent = currentSliderValue;
+          sliderCard.style.display = "block"; // Show the slider card
+        }
 
         /**
          * Finds available heading levels (1-6) in the content.
          * Detects if content is likely HTML.
          */
         function findHeadingLevels(content) {
-            const levels = new Set();
-            // Improved HTML check: look for common tags AND specifically heading tags
-            isHtmlContent = /<([a-z][a-z0-9]*)\b[^>]*>/i.test(content) && /<h[1-6](?![0-9])[\s>]/i.test(content);
+          const levels = new Set();
+          // Improved HTML check: look for common tags AND specifically heading tags
+          isHtmlContent =
+            /<([a-z][a-z0-9]*)\b[^>]*>/i.test(content) &&
+            /<h[1-6](?![0-9])[\s>]/i.test(content);
 
-            if (isHtmlContent) {
-                // Use regex to find HTML headings efficiently
-                const htmlHeadingRegex = /<h([1-6])(?![0-9])[\s>]/gi; // Match <h1..h6> followed by space or >
-                let match;
-                while ((match = htmlHeadingRegex.exec(content)) !== null) {
-                    levels.add(parseInt(match[1], 10));
-                }
-            } else {
-                // Look for Markdown headings (# style and underline style)
-                const lines = content.split('\n');
-                for (let i = 0; i < lines.length; i++) {
-                    const line = lines[i].trim();
-                    // # style headings
-                    const hashMatch = line.match(/^(#{1,6})\s+/);
-                    if (hashMatch) {
-                        levels.add(hashMatch[1].length);
-                    }
-                    // Underline style headings (check next line)
-                    else if (line && i + 1 < lines.length) { // Ensure current line isn't empty
-                        const nextLine = lines[i + 1].trim();
-                        if (nextLine.match(/^=+$/) && line.match(/\S/)) { // Check current line has non-space chars
-                            levels.add(1);
-                        } else if (nextLine.match(/^-+$/) && line.match(/\S/)) { // Check current line has non-space chars
-                            levels.add(2);
-                        }
-                    }
-                }
+          if (isHtmlContent) {
+            // Use regex to find HTML headings efficiently
+            const htmlHeadingRegex = /<h([1-6])(?![0-9])[\s>]/gi; // Match <h1..h6> followed by space or >
+            let match;
+            while ((match = htmlHeadingRegex.exec(content)) !== null) {
+              levels.add(parseInt(match[1], 10));
             }
-            return Array.from(levels).sort((a, b) => a - b);
+          } else {
+            // Look for Markdown headings (# style and underline style)
+            const lines = content.split("\n");
+            for (let i = 0; i < lines.length; i++) {
+              const line = lines[i].trim();
+              // # style headings
+              const hashMatch = line.match(/^(#{1,6})\s+/);
+              if (hashMatch) {
+                levels.add(hashMatch[1].length);
+              }
+              // Underline style headings (check next line)
+              else if (line && i + 1 < lines.length) {
+                // Ensure current line isn't empty
+                const nextLine = lines[i + 1].trim();
+                if (nextLine.match(/^=+$/) && line.match(/\S/)) {
+                  // Check current line has non-space chars
+                  levels.add(1);
+                } else if (nextLine.match(/^-+$/) && line.match(/\S/)) {
+                  // Check current line has non-space chars
+                  levels.add(2);
+                }
+              }
+            }
+          }
+          return Array.from(levels).sort((a, b) => a - b);
         }
 
-
         function handleSliderChange() {
-            levelDisplay.textContent = headingLevelSlider.value;
-            // Debounce the splitting function call
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                // Re-split without clearing opened sections for the current content
-                splitAndDisplayContent();
-                showNotification(`Split level updated to H${headingLevelSlider.value}`, 'info', 1500);
-            }, DEBOUNCE_DELAY);
+          levelDisplay.textContent = headingLevelSlider.value;
+          // Debounce the splitting function call
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(() => {
+            // Re-split without clearing opened sections for the current content
+            splitAndDisplayContent();
+            showNotification(
+              `Split level updated to H${headingLevelSlider.value}`,
+              "info",
+              1500
+            );
+          }, DEBOUNCE_DELAY);
         }
 
         /**
@@ -1213,652 +1551,942 @@
          * Updates `currentSections` and calls `displaySections`.
          */
         function splitAndDisplayContent() {
-            if (!currentRawContent) return;
+          if (!currentRawContent) return;
 
-            const level = parseInt(headingLevelSlider.value, 10);
-            let sections = [];
+          const level = parseInt(headingLevelSlider.value, 10);
+          let sections = [];
 
-            try {
-                if (isHtmlContent) {
-                    sections = splitHtmlContentUsingDOM(currentRawContent, level);
-                } else {
-                    sections = splitMarkdownContent(currentRawContent, level);
-                }
-                currentSections = sections; // Update global state
-                displaySections(currentSections);
-            } catch (error) {
-                console.error("Error during content splitting:", error);
-                showNotification("Error splitting content. Check console.", "error");
-                splitSectionsDiv.innerHTML = `<p style="color: var(--error-color);">Error occurred during splitting. Check console for details.</p>`;
+          try {
+            if (isHtmlContent) {
+              sections = splitHtmlContentUsingDOM(currentRawContent, level);
+            } else {
+              sections = splitMarkdownContent(currentRawContent, level);
             }
-             outputCard.style.display = 'block'; // Ensure output card is visible
+            currentSections = sections; // Update global state
+            displaySections(currentSections);
+          } catch (error) {
+            console.error("Error during content splitting:", error);
+            showNotification(
+              "Error splitting content. Check console.",
+              "error"
+            );
+            splitSectionsDiv.innerHTML = `<p style="color: var(--error-color);">Error occurred during splitting. Check console for details.</p>`;
+          }
+          outputCard.style.display = "block"; // Ensure output card is visible
         }
 
         function splitMarkdownContent(content, level) {
-            const sections = [];
-            let currentSectionContent = '';
-            let currentTitle = 'Introduction'; // Default for content before first heading
-            const lines = content.split('\n');
-             // Regex for # style headings up to the specified level
-            const hashHeadingRegex = new RegExp(`^(#{1,${level}})\\s+(.*)`);
-            let firstRelevantHeadingFound = false;
+          const sections = [];
+          let currentSectionContent = "";
+          let currentTitle = "Introduction"; // Default for content before first heading
+          const lines = content.split("\n");
+          // Regex for # style headings up to the specified level
+          const hashHeadingRegex = new RegExp(`^(#{1,${level}})\\s+(.*)`);
+          let firstRelevantHeadingFound = false;
 
-            for (let i = 0; i < lines.length; i++) {
-                const line = lines[i]; // Keep original line with potential whitespace
-                const trimmedLine = line.trim();
-                const hashMatch = trimmedLine.match(hashHeadingRegex);
+          for (let i = 0; i < lines.length; i++) {
+            const line = lines[i]; // Keep original line with potential whitespace
+            const trimmedLine = line.trim();
+            const hashMatch = trimmedLine.match(hashHeadingRegex);
 
-                let isSplitPoint = false;
-                let headingText = '';
-                let headingLevelDetected = 0;
+            let isSplitPoint = false;
+            let headingText = "";
+            let headingLevelDetected = 0;
 
-                if (hashMatch) {
-                    // Found a # style heading at or above the split level
-                    isSplitPoint = true;
-                    headingText = hashMatch[2] || `Heading Level ${hashMatch[1].length}`;
-                    headingLevelDetected = hashMatch[1].length;
-                } else if (trimmedLine && i + 1 < lines.length) {
-                     // Check for underline style headings
-                     const nextLine = lines[i + 1].trim();
-                     if (nextLine.match(/^=+$/) && level >= 1 && trimmedLine.match(/\S/)) {
-                         isSplitPoint = true;
-                         headingText = trimmedLine || 'Heading Level 1';
-                         headingLevelDetected = 1;
-                     } else if (nextLine.match(/^-+$/) && level >= 2 && trimmedLine.match(/\S/)) {
-                         isSplitPoint = true;
-                         headingText = trimmedLine || 'Heading Level 2';
-                         headingLevelDetected = 2;
-                     }
-                }
-
-                if (isSplitPoint) {
-                    // If this is a split point, finish the previous section (if any content exists)
-                    if (firstRelevantHeadingFound || currentSectionContent.trim()) {
-                         sections.push({ title: currentTitle, content: currentSectionContent.trimEnd(), isHtml: false });
-                    }
-                    // Start the new section
-                    currentTitle = headingText;
-                    currentSectionContent = line + '\n'; // Start with the heading line itself
-                    if (headingLevelDetected === 1 || headingLevelDetected === 2) { // If underline heading
-                        currentSectionContent += lines[i+1] + '\n'; // Add underline too
-                        i++; // Skip the underline line in the next iteration
-                    }
-                    firstRelevantHeadingFound = true;
-                } else {
-                    // Not a split point, add the line to the current section
-                    currentSectionContent += line + '\n';
-                }
+            if (hashMatch) {
+              // Found a # style heading at or above the split level
+              isSplitPoint = true;
+              headingText =
+                hashMatch[2] || `Heading Level ${hashMatch[1].length}`;
+              headingLevelDetected = hashMatch[1].length;
+            } else if (trimmedLine && i + 1 < lines.length) {
+              // Check for underline style headings
+              const nextLine = lines[i + 1].trim();
+              if (
+                nextLine.match(/^=+$/) &&
+                level >= 1 &&
+                trimmedLine.match(/\S/)
+              ) {
+                isSplitPoint = true;
+                headingText = trimmedLine || "Heading Level 1";
+                headingLevelDetected = 1;
+              } else if (
+                nextLine.match(/^-+$/) &&
+                level >= 2 &&
+                trimmedLine.match(/\S/)
+              ) {
+                isSplitPoint = true;
+                headingText = trimmedLine || "Heading Level 2";
+                headingLevelDetected = 2;
+              }
             }
 
-            // Add the last section if it has content
-            if (currentSectionContent.trim()) {
-                sections.push({ title: currentTitle, content: currentSectionContent.trimEnd(), isHtml: false });
+            if (isSplitPoint) {
+              // If this is a split point, finish the previous section (if any content exists)
+              if (firstRelevantHeadingFound || currentSectionContent.trim()) {
+                sections.push({
+                  title: currentTitle,
+                  content: currentSectionContent.trimEnd(),
+                  isHtml: false,
+                });
+              }
+              // Start the new section
+              currentTitle = headingText;
+              currentSectionContent = line + "\n"; // Start with the heading line itself
+              if (headingLevelDetected === 1 || headingLevelDetected === 2) {
+                // If underline heading
+                currentSectionContent += lines[i + 1] + "\n"; // Add underline too
+                i++; // Skip the underline line in the next iteration
+              }
+              firstRelevantHeadingFound = true;
+            } else {
+              // Not a split point, add the line to the current section
+              currentSectionContent += line + "\n";
             }
+          }
 
-             // If no sections were created (e.g., only headings below split level), return whole content
-             if (sections.length === 0 && content.trim()) {
-                return [{ title: 'Full Document', content: content, isHtml: false }];
-             }
+          // Add the last section if it has content
+          if (currentSectionContent.trim()) {
+            sections.push({
+              title: currentTitle,
+              content: currentSectionContent.trimEnd(),
+              isHtml: false,
+            });
+          }
 
-            return sections;
+          // If no sections were created (e.g., only headings below split level), return whole content
+          if (sections.length === 0 && content.trim()) {
+            return [
+              { title: "Full Document", content: content, isHtml: false },
+            ];
+          }
+
+          return sections;
         }
 
-       /**
-        * Splits HTML content using DOMParser. More robust approach.
-        */
-       function splitHtmlContentUsingDOM(htmlContent, level) {
-           const sections = [];
-           const parser = new DOMParser();
-           const doc = parser.parseFromString(`<!DOCTYPE html><html><body>${htmlContent}</body></html>`, 'text/html'); // Wrap to ensure body exists
-           const body = doc.body;
-           let currentSectionFragment = doc.createDocumentFragment(); // Use fragments for efficiency
-           let sectionTitle = 'Introduction';
+        /**
+         * Splits HTML content using DOMParser. More robust approach.
+         */
+        function splitHtmlContentUsingDOM(htmlContent, level) {
+          const sections = [];
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(
+            `<!DOCTYPE html><html><body>${htmlContent}</body></html>`,
+            "text/html"
+          ); // Wrap to ensure body exists
+          const body = doc.body;
+          let currentSectionFragment = doc.createDocumentFragment(); // Use fragments for efficiency
+          let sectionTitle = "Introduction";
 
-           const headingTags = Array.from({ length: level }, (_, i) => `h${i + 1}`).map(tag => tag.toLowerCase());
-           // console.log("Splitting HTML at tags:", headingTags);
+          const headingTags = Array.from(
+            { length: level },
+            (_, i) => `h${i + 1}`
+          ).map((tag) => tag.toLowerCase());
+          // console.log("Splitting HTML at tags:", headingTags);
 
-           // Helper to finalize and add the current section
-           const finalizeSection = () => {
-               const tempDiv = doc.createElement('div');
-               tempDiv.appendChild(currentSectionFragment); // Append fragment to temporary div
-               const sectionContent = tempDiv.innerHTML.trim();
-               if (sectionContent) {
-                   sections.push({ title: sectionTitle, content: sectionContent, isHtml: true });
-               }
-               currentSectionFragment = doc.createDocumentFragment(); // Reset fragment
-           };
+          // Helper to finalize and add the current section
+          const finalizeSection = () => {
+            const tempDiv = doc.createElement("div");
+            tempDiv.appendChild(currentSectionFragment); // Append fragment to temporary div
+            const sectionContent = tempDiv.innerHTML.trim();
+            if (sectionContent) {
+              sections.push({
+                title: sectionTitle,
+                content: sectionContent,
+                isHtml: true,
+              });
+            }
+            currentSectionFragment = doc.createDocumentFragment(); // Reset fragment
+          };
 
-           // Iterate through all direct children of the body
-           Array.from(body.childNodes).forEach(node => {
-               if (node.nodeType === Node.ELEMENT_NODE && headingTags.includes(node.tagName.toLowerCase())) {
-                   // Found a heading at the split level or above
-                   finalizeSection(); // Finalize the previous section
-                   sectionTitle = node.textContent?.trim() || `Heading ${node.tagName.substring(1)}`;
-                   currentSectionFragment.appendChild(node.cloneNode(true)); // Start new section with the heading
-               } else {
-                   // Any other node (element, text, comment), add it to the current fragment
-                   // Only add non-empty text nodes or element/comment nodes
-                   if (node.nodeType !== Node.TEXT_NODE || node.textContent?.trim()) {
-                       currentSectionFragment.appendChild(node.cloneNode(true));
-                   }
-               }
-           });
+          // Iterate through all direct children of the body
+          Array.from(body.childNodes).forEach((node) => {
+            if (
+              node.nodeType === Node.ELEMENT_NODE &&
+              headingTags.includes(node.tagName.toLowerCase())
+            ) {
+              // Found a heading at the split level or above
+              finalizeSection(); // Finalize the previous section
+              sectionTitle =
+                node.textContent?.trim() ||
+                `Heading ${node.tagName.substring(1)}`;
+              currentSectionFragment.appendChild(node.cloneNode(true)); // Start new section with the heading
+            } else {
+              // Any other node (element, text, comment), add it to the current fragment
+              // Only add non-empty text nodes or element/comment nodes
+              if (
+                node.nodeType !== Node.TEXT_NODE ||
+                node.textContent?.trim()
+              ) {
+                currentSectionFragment.appendChild(node.cloneNode(true));
+              }
+            }
+          });
 
-           // Finalize the very last section
-           finalizeSection();
+          // Finalize the very last section
+          finalizeSection();
 
-           // If no sections were created (e.g., no headings found at the level), return the whole content
-           if (sections.length === 0 && htmlContent.trim()) {
-               // console.log("No HTML sections found, returning full content.");
-               return [{ title: 'Full Document', content: htmlContent, isHtml: true }];
-           }
-            // console.log(`Split HTML into ${sections.length} sections.`);
-           return sections;
-       }
+          // If no sections were created (e.g., no headings found at the level), return the whole content
+          if (sections.length === 0 && htmlContent.trim()) {
+            // console.log("No HTML sections found, returning full content.");
+            return [
+              { title: "Full Document", content: htmlContent, isHtml: true },
+            ];
+          }
+          // console.log(`Split HTML into ${sections.length} sections.`);
+          return sections;
+        }
 
+        /**
+         * Initializes a text highlighter on a specified element
+         * @param {string} selector - CSS selector for the target element
+         */
+        function initTextHighlighter(selector) {
+          const targetElement = document.querySelector(selector);
+
+          if (!targetElement) {
+            console.error(`Element not found: ${selector}`);
+            return;
+          }
+
+          // Store all highlights with their text
+          const highlights = [];
+
+          // Add event listeners
+          targetElement.addEventListener("mouseup", handleTextSelection);
+          document.addEventListener("click", handleHighlightClick);
+
+          /**
+           * Handles user text selection
+           */
+          function handleTextSelection(event) {
+            const selection = window.getSelection();
+            const selectedText = selection.toString().trim();
+
+            if (selectedText === "" || !selection.rangeCount) return;
+
+            const range = selection.getRangeAt(0);
+
+            // Ensure selection is within our target element
+            if (!targetElement.contains(range.commonAncestorContainer)) return;
+
+            try {
+              // Create a unique ID for this highlight
+              const highlightId = `highlight-${Date.now()}`;
+
+              // Create highlight element
+              const highlightSpan = document.createElement("span");
+              highlightSpan.className = "text-highlight";
+              highlightSpan.dataset.highlightId = highlightId;
+              highlightSpan.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
+              highlightSpan.style.cursor = "pointer";
+              highlightSpan.title = "Click to remove this highlight";
+
+              // Apply the highlight
+              range.surroundContents(highlightSpan);
+
+              // Store highlight data
+              highlights.push({
+                id: highlightId,
+                element: highlightSpan,
+                text: selectedText,
+              });
+
+              // Update clipboard with all highlighted text
+              updateClipboard();
+
+              // Clear selection
+              selection.removeAllRanges();
+            } catch (e) {
+              console.warn("Could not create highlight:", e);
+              showNotification(
+                "Please select text within a single element",
+                true
+              );
+            }
+          }
+
+          /**
+           * Handles clicks on highlighted text
+           */
+          function handleHighlightClick(event) {
+            const highlight = event.target.closest(".text-highlight");
+            if (!highlight) return;
+
+            const highlightId = highlight.dataset.highlightId;
+            const index = highlights.findIndex((h) => h.id === highlightId);
+
+            if (index !== -1) {
+              // Remove from our highlights array
+              highlights.splice(index, 1);
+
+              // Replace highlight with its text content
+              const parent = highlight.parentNode;
+              const textNode = document.createTextNode(highlight.textContent);
+              parent.replaceChild(textNode, highlight);
+
+              // Normalize to merge adjacent text nodes
+              parent.normalize();
+
+              // Update clipboard with remaining highlights
+              updateClipboard();
+
+              showNotification("Highlight removed");
+            }
+          }
+
+          /**
+           * Updates the clipboard with all highlighted text
+           */
+          function updateClipboard() {
+            if (highlights.length === 0) {
+              showNotification("Clipboard cleared");
+              navigator.clipboard.writeText("");
+              return;
+            }
+
+            const clipboardText = highlights.map((h) => h.text).join("\n");
+
+            navigator.clipboard
+              .writeText(clipboardText)
+              .then(() => {
+                showNotification(
+                  `Copied ${highlights.length} selection(s) to clipboard`
+                );
+              })
+              .catch((err) => {
+                console.error("Clipboard error:", err);
+                fallbackCopyTextToClipboard(clipboardText);
+              });
+          }
+
+          /**
+           * Fallback method for copying to clipboard
+           */
+          function fallbackCopyTextToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "-9999px";
+            document.body.appendChild(textArea);
+
+            textArea.focus();
+            textArea.select();
+
+            try {
+              const successful = document.execCommand("copy");
+              if (successful) {
+                showNotification(
+                  `Copied ${highlights.length} selection(s) to clipboard`
+                );
+              } else {
+                showNotification("Unable to copy to clipboard", true);
+              }
+            } catch (err) {
+              console.error("Fallback clipboard error:", err);
+              showNotification("Unable to copy to clipboard", true);
+            }
+
+            document.body.removeChild(textArea);
+          }
+        }
 
         // --- UI Functions ---
 
         function displaySections(sections) {
-            splitSectionsDiv.innerHTML = ''; // Clear previous
+          splitSectionsDiv.innerHTML = ""; // Clear previous
 
-            if (!sections || sections.length === 0) {
-                splitSectionsDiv.innerHTML = '<p>No sections to display with the current settings.</p>';
-                return;
-            }
-
-            const fragment = document.createDocumentFragment();
-            sections.forEach((section, index) => {
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'section-output';
-                sectionDiv.dataset.sectionIndex = index;
-                sectionDiv.setAttribute('role', 'button');
-                sectionDiv.setAttribute('tabindex', '0'); // Make it focusable
-
-                // Add title
-                const titleDiv = document.createElement('div');
-                titleDiv.className = 'section-title';
-                // Sanitize title slightly for display - prevent potential basic HTML injection in title
-                titleDiv.textContent = section.title.replace(/</g, '<') || `Section ${index + 1}`;
-                sectionDiv.appendChild(titleDiv);
-
-                // Add content preview
-                const contentPreview = document.createElement('div');
-                contentPreview.textContent = getPreviewText(section.content, section.isHtml);
-                sectionDiv.appendChild(contentPreview);
-
-
-                // *** Apply 'opened' class if this index was previously opened ***
-                if (openedSectionIndices.has(index)) {
-                    sectionDiv.classList.add('opened');
-                }
-
-                // Event listener for opening modal
-                sectionDiv.addEventListener('click', (e) => {
-                    lastFocusedSection = e.currentTarget; // Store element that was clicked
-                    showSectionInModal(index);
-                });
-                sectionDiv.addEventListener('keydown', (e) => {
-                     if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          lastFocusedSection = e.currentTarget; // Store element triggered by key
-                          showSectionInModal(index);
-                     }
-                 });
-
-
-                fragment.appendChild(sectionDiv);
-            });
-            splitSectionsDiv.appendChild(fragment);
-        }
-
-         function getPreviewText(content, isHtml) {
-              const MAX_PREVIEW_LENGTH = 200;
-              let text = content;
-              if (isHtml) {
-                   // Basic HTML stripping for preview - use DOMParser for slightly more safety
-                   try {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(content, 'text/html');
-                        text = doc.body.textContent || '';
-                   } catch (e) {
-                        // Fallback for potentially invalid HTML in preview
-                        text = content.replace(/<[^>]+>/g, ' ');
-                   }
-              }
-              text = text.replace(/\s+/g, ' ').trim(); // Normalize whitespace
-              if (text.length > MAX_PREVIEW_LENGTH) {
-                  return text.substring(0, MAX_PREVIEW_LENGTH) + '...';
-              }
-              return text || '[Empty Section]'; // Indicate if section seems empty
+          if (!sections || sections.length === 0) {
+            splitSectionsDiv.innerHTML =
+              "<p>No sections to display with the current settings.</p>";
+            return;
           }
 
-        function showSectionInModal(index) {
-            if (index < 0 || index >= currentSections.length) {
-                console.warn(`Attempted to show invalid section index: ${index}`);
-                return;
+          const fragment = document.createDocumentFragment();
+          sections.forEach((section, index) => {
+            const sectionDiv = document.createElement("div");
+            sectionDiv.className = "section-output";
+            sectionDiv.dataset.sectionIndex = index;
+            sectionDiv.setAttribute("role", "button");
+            sectionDiv.setAttribute("tabindex", "0"); // Make it focusable
+
+            // Add title
+            const titleDiv = document.createElement("div");
+            titleDiv.className = "section-title";
+            // Sanitize title slightly for display - prevent potential basic HTML injection in title
+            titleDiv.textContent =
+              section.title.replace(/</g, "<") || `Section ${index + 1}`;
+            sectionDiv.appendChild(titleDiv);
+
+            // Add content preview
+            const contentPreview = document.createElement("div");
+            contentPreview.textContent = getPreviewText(
+              section.content,
+              section.isHtml
+            );
+            sectionDiv.appendChild(contentPreview);
+
+            // *** Apply 'opened' class if this index was previously opened ***
+            if (openedSectionIndices.has(index)) {
+              sectionDiv.classList.add("opened");
             }
 
-            currentModalIndex = index;
-            const section = currentSections[index];
+            // Event listener for opening modal
+            sectionDiv.addEventListener("click", (e) => {
+              lastFocusedSection = e.currentTarget; // Store element that was clicked
+              showSectionInModal(index);
+            });
+            sectionDiv.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                lastFocusedSection = e.currentTarget; // Store element triggered by key
+                showSectionInModal(index);
+              }
+            });
 
-            modalTitle.textContent = section.title.replace(/</g, '<') || `Section ${index + 1}`; // Sanitize title
+            fragment.appendChild(sectionDiv);
+          });
+          splitSectionsDiv.appendChild(fragment);
+        }
 
-            // Render content
+        function getPreviewText(content, isHtml) {
+          const MAX_PREVIEW_LENGTH = 200;
+          let text = content;
+          if (isHtml) {
+            // Basic HTML stripping for preview - use DOMParser for slightly more safety
             try {
-                let htmlToRender = '';
-                if (section.isHtml) {
-                    htmlToRender = section.content;
-                } else {
-                    if (typeof marked !== 'undefined') {
-                        htmlToRender = marked.parse(section.content);
-                    } else {
-                        // Fallback if marked is missing
-                        htmlToRender = `<pre>${escapeHtml(section.content)}</pre>`;
-                        showNotification("Markdown parser missing, showing raw text.", "warning");
-                    }
-                }
-                renderedContentDiv.innerHTML = htmlToRender;
-
-                 // Apply syntax highlighting after rendering
-                if (typeof hljs !== 'undefined') {
-                     renderedContentDiv.querySelectorAll('pre code').forEach((block) => {
-                        try {
-                            hljs.highlightElement(block);
-                        } catch (e) {
-                            console.error("Highlighting failed for a block:", e);
-                        }
-                     });
-                }
-            } catch(error) {
-                 console.error("Error rendering section content:", error);
-                 renderedContentDiv.innerHTML = `<p style="color: var(--error-color);">Error rendering content.</p><pre>${escapeHtml(section.content)}</pre>`;
-                 showNotification("Error rendering section content.", "error");
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(content, "text/html");
+              text = doc.body.textContent || "";
+            } catch (e) {
+              // Fallback for potentially invalid HTML in preview
+              text = content.replace(/<[^>]+>/g, " ");
             }
+          }
+          text = text.replace(/\s+/g, " ").trim(); // Normalize whitespace
+          if (text.length > MAX_PREVIEW_LENGTH) {
+            return text.substring(0, MAX_PREVIEW_LENGTH) + "...";
+          }
+          return text || "[Empty Section]"; // Indicate if section seems empty
+        }
 
+        function showSectionInModal(index) {
+          if (index < 0 || index >= currentSections.length) {
+            console.warn(`Attempted to show invalid section index: ${index}`);
+            return;
+          }
 
-            // *** Mark section as opened in UI and state ***
-            const sectionDiv = splitSectionsDiv.querySelector(`.section-output[data-section-index="${index}"]`);
-            if (sectionDiv) {
-                sectionDiv.classList.add('opened');
+          currentModalIndex = index;
+          const section = currentSections[index];
+
+          modalTitle.textContent =
+            section.title.replace(/</g, "<") || `Section ${index + 1}`; // Sanitize title
+
+          // Render content
+          try {
+            let htmlToRender = "";
+            if (section.isHtml) {
+              htmlToRender = section.content;
+            } else {
+              if (typeof marked !== "undefined") {
+                htmlToRender = marked.parse(section.content);
+              } else {
+                // Fallback if marked is missing
+                htmlToRender = `<pre>${escapeHtml(section.content)}</pre>`;
+                showNotification(
+                  "Markdown parser missing, showing raw text.",
+                  "warning"
+                );
+              }
             }
-            if (!openedSectionIndices.has(index)) {
-                openedSectionIndices.add(index);
-                saveOpenedSections(); // Persist the change
+            renderedContentDiv.innerHTML = htmlToRender;
+
+            // Apply syntax highlighting after rendering
+            if (typeof hljs !== "undefined") {
+              renderedContentDiv
+                .querySelectorAll("pre code")
+                .forEach((block) => {
+                  try {
+                    hljs.highlightElement(block);
+                  } catch (e) {
+                    console.error("Highlighting failed for a block:", e);
+                  }
+                });
             }
+          } catch (error) {
+            console.error("Error rendering section content:", error);
+            renderedContentDiv.innerHTML = `<p style="color: var(--error-color);">Error rendering content.</p><pre>${escapeHtml(
+              section.content
+            )}</pre>`;
+            showNotification("Error rendering section content.", "error");
+          }
 
-            // Enable/disable appropriate copy button
-            copyMarkdownBtn.disabled = section.isHtml;
-            // HTML copy should always be possible (render MD if needed)
-            copyHtmlBtn.disabled = false;
+          // *** Mark section as opened in UI and state ***
+          const sectionDiv = splitSectionsDiv.querySelector(
+            `.section-output[data-section-index="${index}"]`
+          );
+          if (sectionDiv) {
+            sectionDiv.classList.add("opened");
+          }
+          if (!openedSectionIndices.has(index)) {
+            openedSectionIndices.add(index);
+            saveOpenedSections(); // Persist the change
+          }
 
-            // Show modal
-            document.body.style.overflow = 'hidden'; // Prevent body scrolling
-            contentModal.style.display = 'flex'; // Use flex for centering
-            renderedContentDiv.scrollTop = 0; // Scroll modal content to top
-            // Delay focus slightly to ensure modal is fully visible and transition ended
-            setTimeout(() => closeModalBtn.focus(), 100);
+          // Enable/disable appropriate copy button
+          copyMarkdownBtn.disabled = section.isHtml;
+          // HTML copy should always be possible (render MD if needed)
+          copyHtmlBtn.disabled = false;
+
+          // Show modal
+          document.body.style.overflow = "hidden"; // Prevent body scrolling
+          contentModal.style.display = "flex"; // Use flex for centering
+          renderedContentDiv.scrollTop = 0; // Scroll modal content to top
+          initTextHighlighter()
+          // Delay focus slightly to ensure modal is fully visible and transition ended
+          setTimeout(() => closeModalBtn.focus(), 100);
         }
 
         function closeModal() {
-            document.body.style.overflow = ''; // Restore body scrolling
-            contentModal.style.display = 'none';
-            renderedContentDiv.innerHTML = ''; // Clear content
-            currentModalIndex = -1;
-             // Return focus to the section element that opened the modal if possible
-             if (lastFocusedSection && document.contains(lastFocusedSection)) {
-                  lastFocusedSection.focus();
-             }
-             lastFocusedSection = null; // Clear the reference
+          document.body.style.overflow = ""; // Restore body scrolling
+          contentModal.style.display = "none";
+          renderedContentDiv.innerHTML = ""; // Clear content
+          currentModalIndex = -1;
+          // Return focus to the section element that opened the modal if possible
+          if (lastFocusedSection && document.contains(lastFocusedSection)) {
+            lastFocusedSection.focus();
+          }
+          lastFocusedSection = null; // Clear the reference
         }
 
         function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDark = document.body.classList.contains('dark-mode');
-            themeToggleBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            themeToggleBtn.setAttribute('title', isDark ? 'Switch to Light Mode (Alt+D)' : 'Switch to Dark Mode (Alt+D)');
-            themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-            // Swap highlight.js theme link's applicability
-            if(hljsLightTheme) {
-                try {
-                    hljsLightTheme.setAttribute('media', isDark ? 'none' : '(prefers-color-scheme: light), (prefers-color-scheme: no-preference)');
-                } catch (e) {
-                    console.error("Error updating hljs theme link:", e);
-                }
+          document.body.classList.toggle("dark-mode");
+          const isDark = document.body.classList.contains("dark-mode");
+          themeToggleBtn.innerHTML = isDark
+            ? '<i class="fas fa-sun"></i>'
+            : '<i class="fas fa-moon"></i>';
+          themeToggleBtn.setAttribute(
+            "title",
+            isDark
+              ? "Switch to Light Mode (Alt+D)"
+              : "Switch to Dark Mode (Alt+D)"
+          );
+          themeToggleBtn.setAttribute(
+            "aria-label",
+            isDark ? "Switch to Light Mode" : "Switch to Dark Mode"
+          );
+          // Swap highlight.js theme link's applicability
+          if (hljsLightTheme) {
+            try {
+              hljsLightTheme.setAttribute(
+                "media",
+                isDark
+                  ? "none"
+                  : "(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+              );
+            } catch (e) {
+              console.error("Error updating hljs theme link:", e);
             }
-            saveThemePreference(isDark);
+          }
+          saveThemePreference(isDark);
         }
 
-        function showNotification(message, type = 'info', duration = NOTIFICATION_DURATION) {
-            clearTimeout(notificationTimer); // Clear existing timer
+        function showNotification(
+          message,
+          type = "info",
+          duration = NOTIFICATION_DURATION
+        ) {
+          clearTimeout(notificationTimer); // Clear existing timer
 
-            // Set icon based on type
-            let iconClass = 'fa-info-circle';
-            if (type === 'success') iconClass = 'fa-check-circle';
-            else if (type === 'warning') iconClass = 'fa-exclamation-triangle';
-            else if (type === 'error') iconClass = 'fa-times-circle';
+          // Set icon based on type
+          let iconClass = "fa-info-circle";
+          if (type === "success") iconClass = "fa-check-circle";
+          else if (type === "warning") iconClass = "fa-exclamation-triangle";
+          else if (type === "error") iconClass = "fa-times-circle";
 
-             // Sanitize message slightly before inserting
-             const safeMessage = escapeHtml(message);
-             notificationEl.innerHTML = `<i class="fas ${iconClass}"></i> ${safeMessage}`;
+          // Sanitize message slightly before inserting
+          const safeMessage = escapeHtml(message);
+          notificationEl.innerHTML = `<i class="fas ${iconClass}"></i> ${safeMessage}`;
 
-            notificationEl.className = `notification show ${type}`; // Reset classes then add 'show' and type
+          notificationEl.className = `notification show ${type}`; // Reset classes then add 'show' and type
 
-            // Auto-hide after duration (if duration > 0)
-            if (duration > 0) {
-                notificationTimer = setTimeout(() => {
-                    notificationEl.classList.remove('show');
-                }, duration);
-            } else if (duration === 0) {
-                // If duration is 0, it means show indefinitely until manually cleared or replaced
-                // No timer needed, but ensure subsequent calls clear it.
-            } else { // Negative duration can be used to clear immediately
-                 notificationEl.classList.remove('show');
-            }
+          // Auto-hide after duration (if duration > 0)
+          if (duration > 0) {
+            notificationTimer = setTimeout(() => {
+              notificationEl.classList.remove("show");
+            }, duration);
+          } else if (duration === 0) {
+            // If duration is 0, it means show indefinitely until manually cleared or replaced
+            // No timer needed, but ensure subsequent calls clear it.
+          } else {
+            // Negative duration can be used to clear immediately
+            notificationEl.classList.remove("show");
+          }
         }
 
-         function clearAll() {
-            contentInput.value = '';
-            currentRawContent = '';
-            fileNameSpan.textContent = 'No file chosen';
-            splitSectionsDiv.innerHTML = '<p>Process content to see split sections here.</p>';
-            currentSections = [];
-            sliderCard.style.display = 'none';
-            outputCard.style.display = 'none';
-            processBtn.disabled = true; // Disable process button
-            clearOpenedSections(); // Clear opened state
-            clearContentFromStorage(); // Also clear saved content
-            fileUpload.value = ''; // Reset file input visually
-            showNotification('Input and state cleared.', 'info');
-         }
+        function clearAll() {
+          contentInput.value = "";
+          currentRawContent = "";
+          fileNameSpan.textContent = "No file chosen";
+          splitSectionsDiv.innerHTML =
+            "<p>Process content to see split sections here.</p>";
+          currentSections = [];
+          sliderCard.style.display = "none";
+          outputCard.style.display = "none";
+          processBtn.disabled = true; // Disable process button
+          clearOpenedSections(); // Clear opened state
+          clearContentFromStorage(); // Also clear saved content
+          fileUpload.value = ""; // Reset file input visually
+          showNotification("Input and state cleared.", "info");
+        }
 
         function toggleShortcutsPanel(forceShow = null) {
-             const showing = shortcutsPanel.classList.contains('show');
-             if (forceShow === true || (forceShow === null && !showing)) {
-                 shortcutsPanel.classList.add('show');
-                 closeShortcutsBtn.focus(); // Focus close button when opening
-             } else if (forceShow === false || (forceShow === null && showing)) {
-                 shortcutsPanel.classList.remove('show');
-                 helpBtn.focus(); // Return focus to help button
-             }
+          const showing = shortcutsPanel.classList.contains("show");
+          if (forceShow === true || (forceShow === null && !showing)) {
+            shortcutsPanel.classList.add("show");
+            closeShortcutsBtn.focus(); // Focus close button when opening
+          } else if (forceShow === false || (forceShow === null && showing)) {
+            shortcutsPanel.classList.remove("show");
+            helpBtn.focus(); // Return focus to help button
+          }
         }
 
         // --- LocalStorage Functions ---
 
         function saveContentToStorage() {
-            if (!currentRawContent) { // Avoid saving empty string if cleared
-                clearContentFromStorage();
-                return;
-            }
-            try {
-                localStorage.setItem(LS_CONTENT_KEY, currentRawContent);
-            } catch (error) {
-                console.error("Error saving content to LocalStorage:", error);
-                showNotification("Could not save content changes.", "warning");
-            }
+          if (!currentRawContent) {
+            // Avoid saving empty string if cleared
+            clearContentFromStorage();
+            return;
+          }
+          try {
+            localStorage.setItem(LS_CONTENT_KEY, currentRawContent);
+          } catch (error) {
+            console.error("Error saving content to LocalStorage:", error);
+            showNotification("Could not save content changes.", "warning");
+          }
         }
 
         function loadContentFromStorage() {
-            try {
-                const savedContent = localStorage.getItem(LS_CONTENT_KEY);
-                if (savedContent) {
-                    contentInput.value = savedContent;
-                    currentRawContent = savedContent;
-                    processBtn.disabled = false; // Enable button if content loaded
-                    // console.log("Content loaded from localStorage.");
-                } else {
-                    processBtn.disabled = true; // Disable if no saved content
-                }
-            } catch (error) {
-                console.error("Error loading content from LocalStorage:", error);
-                showNotification("Could not load saved content.", "warning");
-                 processBtn.disabled = true;
+          try {
+            const savedContent = localStorage.getItem(LS_CONTENT_KEY);
+            if (savedContent) {
+              contentInput.value = savedContent;
+              currentRawContent = savedContent;
+              processBtn.disabled = false; // Enable button if content loaded
+              // console.log("Content loaded from localStorage.");
+            } else {
+              processBtn.disabled = true; // Disable if no saved content
             }
+          } catch (error) {
+            console.error("Error loading content from LocalStorage:", error);
+            showNotification("Could not load saved content.", "warning");
+            processBtn.disabled = true;
+          }
         }
 
         function clearContentFromStorage() {
-             try {
-                 localStorage.removeItem(LS_CONTENT_KEY);
-             } catch (error) {
-                 console.error("Error clearing content from LocalStorage:", error);
-             }
+          try {
+            localStorage.removeItem(LS_CONTENT_KEY);
+          } catch (error) {
+            console.error("Error clearing content from LocalStorage:", error);
+          }
         }
 
-
         function saveThemePreference(isDark) {
-            try {
-                localStorage.setItem(LS_THEME_KEY, isDark ? 'dark' : 'light');
-            } catch (error) {
-                console.error("Error saving theme preference:", error);
-            }
+          try {
+            localStorage.setItem(LS_THEME_KEY, isDark ? "dark" : "light");
+          } catch (error) {
+            console.error("Error saving theme preference:", error);
+          }
         }
 
         function loadThemePreference() {
-            let savedTheme = null;
-             try {
-                savedTheme = localStorage.getItem(LS_THEME_KEY);
-             } catch (error) {
-                 console.error("Error loading theme preference:", error);
-             }
-             // Check system preference if no saved theme
-             const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-             const shouldBeDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
-             const isCurrentlyDark = document.body.classList.contains('dark-mode');
+          let savedTheme = null;
+          try {
+            savedTheme = localStorage.getItem(LS_THEME_KEY);
+          } catch (error) {
+            console.error("Error loading theme preference:", error);
+          }
+          // Check system preference if no saved theme
+          const prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const shouldBeDark =
+            savedTheme === "dark" || (!savedTheme && prefersDark);
+          const isCurrentlyDark = document.body.classList.contains("dark-mode");
 
-             if (shouldBeDark && !isCurrentlyDark) {
-                 toggleDarkMode(); // Sets dark mode and saves preference
-             } else if (!shouldBeDark && isCurrentlyDark) {
-                  toggleDarkMode(); // Sets light mode and saves preference
-             } else {
-                  // If already correct, just update icon and link state
-                  const isDark = document.body.classList.contains('dark-mode');
-                  themeToggleBtn.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-                  themeToggleBtn.setAttribute('title', isDark ? 'Switch to Light Mode (Alt+D)' : 'Switch to Dark Mode (Alt+D)');
-                  themeToggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
-                  if (hljsLightTheme) {
-                      try {
-                        hljsLightTheme.setAttribute('media', isDark ? 'none' : '(prefers-color-scheme: light), (prefers-color-scheme: no-preference)');
-                      } catch(e){ console.error("Error updating hljs theme link on load:", e); }
-                  }
-             }
+          if (shouldBeDark && !isCurrentlyDark) {
+            toggleDarkMode(); // Sets dark mode and saves preference
+          } else if (!shouldBeDark && isCurrentlyDark) {
+            toggleDarkMode(); // Sets light mode and saves preference
+          } else {
+            // If already correct, just update icon and link state
+            const isDark = document.body.classList.contains("dark-mode");
+            themeToggleBtn.innerHTML = isDark
+              ? '<i class="fas fa-sun"></i>'
+              : '<i class="fas fa-moon"></i>';
+            themeToggleBtn.setAttribute(
+              "title",
+              isDark
+                ? "Switch to Light Mode (Alt+D)"
+                : "Switch to Dark Mode (Alt+D)"
+            );
+            themeToggleBtn.setAttribute(
+              "aria-label",
+              isDark ? "Switch to Light Mode" : "Switch to Dark Mode"
+            );
+            if (hljsLightTheme) {
+              try {
+                hljsLightTheme.setAttribute(
+                  "media",
+                  isDark
+                    ? "none"
+                    : "(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+                );
+              } catch (e) {
+                console.error("Error updating hljs theme link on load:", e);
+              }
+            }
+          }
         }
 
         // --- Opened Sections Persistence ---
 
         function saveOpenedSections() {
-            try {
-                const indicesArray = Array.from(openedSectionIndices);
-                localStorage.setItem(LS_OPENED_KEY, JSON.stringify(indicesArray));
-            } catch (error) {
-                console.error("Error saving opened sections:", error);
-            }
+          try {
+            const indicesArray = Array.from(openedSectionIndices);
+            localStorage.setItem(LS_OPENED_KEY, JSON.stringify(indicesArray));
+          } catch (error) {
+            console.error("Error saving opened sections:", error);
+          }
         }
 
         function loadOpenedSections() {
-            try {
-                const savedData = localStorage.getItem(LS_OPENED_KEY);
-                if (savedData) {
-                    const indicesArray = JSON.parse(savedData);
-                    if (Array.isArray(indicesArray)) {
-                        // Filter to ensure only valid numbers are added
-                        openedSectionIndices = new Set(indicesArray.filter(idx => typeof idx === 'number' && Number.isInteger(idx) && idx >= 0));
-                        // console.log("Loaded opened sections:", openedSectionIndices);
-                    } else {
-                        openedSectionIndices = new Set(); // Reset if data is invalid
-                    }
-                } else {
-                    openedSectionIndices = new Set(); // Initialize empty if nothing saved
-                }
-            } catch (error) {
-                console.error("Error loading opened sections:", error);
-                openedSectionIndices = new Set(); // Reset on error
+          try {
+            const savedData = localStorage.getItem(LS_OPENED_KEY);
+            if (savedData) {
+              const indicesArray = JSON.parse(savedData);
+              if (Array.isArray(indicesArray)) {
+                // Filter to ensure only valid numbers are added
+                openedSectionIndices = new Set(
+                  indicesArray.filter(
+                    (idx) =>
+                      typeof idx === "number" &&
+                      Number.isInteger(idx) &&
+                      idx >= 0
+                  )
+                );
+                // console.log("Loaded opened sections:", openedSectionIndices);
+              } else {
+                openedSectionIndices = new Set(); // Reset if data is invalid
+              }
+            } else {
+              openedSectionIndices = new Set(); // Initialize empty if nothing saved
             }
+          } catch (error) {
+            console.error("Error loading opened sections:", error);
+            openedSectionIndices = new Set(); // Reset on error
+          }
         }
 
         function clearOpenedSections() {
-            // console.log("Clearing opened sections state.");
-            openedSectionIndices.clear();
-            try {
-                localStorage.removeItem(LS_OPENED_KEY);
-            } catch (error) {
-                console.error("Error clearing opened sections from LocalStorage:", error);
-            }
-            // Remove .opened class from UI elements immediately
-            splitSectionsDiv.querySelectorAll('.section-output.opened').forEach(el => {
-                el.classList.remove('opened');
+          // console.log("Clearing opened sections state.");
+          openedSectionIndices.clear();
+          try {
+            localStorage.removeItem(LS_OPENED_KEY);
+          } catch (error) {
+            console.error(
+              "Error clearing opened sections from LocalStorage:",
+              error
+            );
+          }
+          // Remove .opened class from UI elements immediately
+          splitSectionsDiv
+            .querySelectorAll(".section-output.opened")
+            .forEach((el) => {
+              el.classList.remove("opened");
             });
         }
 
         // --- Action Handlers (Modal Buttons) ---
 
         function handleCopyHtml() {
-            if (currentModalIndex === -1 || currentModalIndex >= currentSections.length) return;
-            const section = currentSections[currentModalIndex];
-            let htmlToCopy = '';
+          if (
+            currentModalIndex === -1 ||
+            currentModalIndex >= currentSections.length
+          )
+            return;
+          const section = currentSections[currentModalIndex];
+          let htmlToCopy = "";
 
-            try {
-                if (section.isHtml) {
-                    htmlToCopy = section.content;
-                } else {
-                    // Render Markdown to HTML for copying
-                     if (typeof marked !== 'undefined') {
-                        htmlToCopy = marked.parse(section.content);
-                    } else {
-                        showNotification("Markdown parser missing, cannot generate HTML.", "error");
-                        return;
-                    }
-                }
-                copyToClipboard(htmlToCopy, 'HTML content');
-            } catch(error) {
-                console.error("Error preparing HTML for copy:", error);
-                showNotification("Error preparing HTML.", "error");
+          try {
+            if (section.isHtml) {
+              htmlToCopy = section.content;
+            } else {
+              // Render Markdown to HTML for copying
+              if (typeof marked !== "undefined") {
+                htmlToCopy = marked.parse(section.content);
+              } else {
+                showNotification(
+                  "Markdown parser missing, cannot generate HTML.",
+                  "error"
+                );
+                return;
+              }
             }
+            copyToClipboard(htmlToCopy, "HTML content");
+          } catch (error) {
+            console.error("Error preparing HTML for copy:", error);
+            showNotification("Error preparing HTML.", "error");
+          }
         }
 
         function handleCopyMarkdown() {
-            if (currentModalIndex === -1 || currentModalIndex >= currentSections.length) return;
-            const section = currentSections[currentModalIndex];
+          if (
+            currentModalIndex === -1 ||
+            currentModalIndex >= currentSections.length
+          )
+            return;
+          const section = currentSections[currentModalIndex];
 
-            if (section.isHtml) {
-                showNotification("Cannot copy HTML section as Markdown.", "warning");
-                return; // Or attempt basic conversion if desired, but likely inaccurate
-            };
+          if (section.isHtml) {
+            showNotification(
+              "Cannot copy HTML section as Markdown.",
+              "warning"
+            );
+            return; // Or attempt basic conversion if desired, but likely inaccurate
+          }
 
-            copyToClipboard(section.content, 'Markdown content');
+          copyToClipboard(section.content, "Markdown content");
         }
 
         function handlePrint() {
-            // Print styles defined in CSS handle hiding UI and formatting modal content
-            // Temporarily add a class to body or modal for print-specific JS if needed, but CSS is preferred
-            try {
-                 window.print();
-            } catch (error) {
-                 console.error("Error initiating print:", error);
-                 showNotification("Could not initiate print.", "error");
-            }
+          // Print styles defined in CSS handle hiding UI and formatting modal content
+          // Temporarily add a class to body or modal for print-specific JS if needed, but CSS is preferred
+          try {
+            window.print();
+          } catch (error) {
+            console.error("Error initiating print:", error);
+            showNotification("Could not initiate print.", "error");
+          }
         }
-
 
         // --- Helper Functions ---
 
-        function copyToClipboard(text, description = 'Text') {
-            if (!navigator.clipboard) {
-                showNotification('Clipboard API not available in this browser.', 'error');
-                return;
-            }
-            navigator.clipboard.writeText(text).then(() => {
-                showNotification(`${description} copied to clipboard!`, 'success');
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                showNotification('Failed to copy. Check browser permissions.', 'error');
+        function copyToClipboard(text, description = "Text") {
+          if (!navigator.clipboard) {
+            showNotification(
+              "Clipboard API not available in this browser.",
+              "error"
+            );
+            return;
+          }
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              showNotification(
+                `${description} copied to clipboard!`,
+                "success"
+              );
+            })
+            .catch((err) => {
+              console.error("Failed to copy text: ", err);
+              showNotification(
+                "Failed to copy. Check browser permissions.",
+                "error"
+              );
             });
         }
 
-         // Simple HTML escaping helper
-         function escapeHtml(unsafe) {
-             if (typeof unsafe !== 'string') return '';
-             return unsafe
-                  .replace(/&/g, "&")
-                  .replace(/</g, "<")
-                  .replace(/>/g, ">")
-                  .replace(/"/g, "\"")
-                  .replace(/'/g, "'");
-         }
-
+        // Simple HTML escaping helper
+        function escapeHtml(unsafe) {
+          if (typeof unsafe !== "string") return "";
+          return unsafe
+            .replace(/&/g, "&")
+            .replace(/</g, "<")
+            .replace(/>/g, ">")
+            .replace(/"/g, '"')
+            .replace(/'/g, "'");
+        }
 
         // --- Keyboard Shortcuts ---
         function handleKeyboardShortcuts(e) {
-            // Check if focus is inside an input/textarea/modal to avoid conflicts
-            const activeEl = document.activeElement;
-            const isInputFocused = activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA');
-            const isModalOpen = contentModal.style.display === 'flex'; // Check based on display style used
-            const isShortcutsOpen = shortcutsPanel.classList.contains('show');
+          // Check if focus is inside an input/textarea/modal to avoid conflicts
+          const activeEl = document.activeElement;
+          const isInputFocused =
+            activeEl &&
+            (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA");
+          const isModalOpen = contentModal.style.display === "flex"; // Check based on display style used
+          const isShortcutsOpen = shortcutsPanel.classList.contains("show");
 
-            // Alt+D: Toggle dark mode (always active)
-            if (e.altKey && e.key.toLowerCase() === 'd') {
-                e.preventDefault();
-                toggleDarkMode();
-                return; // Prevent other handlers
+          // Alt+D: Toggle dark mode (always active)
+          if (e.altKey && e.key.toLowerCase() === "d") {
+            e.preventDefault();
+            toggleDarkMode();
+            return; // Prevent other handlers
+          }
+
+          // Escape: Close modal or shortcuts panel
+          if (e.key === "Escape") {
+            if (isModalOpen) {
+              e.preventDefault();
+              closeModal();
+            } else if (isShortcutsOpen) {
+              e.preventDefault();
+              toggleShortcutsPanel(false); // Hide panel
             }
+            return;
+          }
 
-            // Escape: Close modal or shortcuts panel
-            if (e.key === 'Escape') {
-                if (isModalOpen) {
-                    e.preventDefault();
-                    closeModal();
-                } else if (isShortcutsOpen) {
-                     e.preventDefault();
-                     toggleShortcutsPanel(false); // Hide panel
-                }
-                return;
+          // Shortcuts specific to when modal is open
+          if (isModalOpen && e.altKey) {
+            if (e.key === "ArrowRight") {
+              e.preventDefault();
+              const nextIndex = currentModalIndex + 1;
+              if (nextIndex < currentSections.length) {
+                showSectionInModal(nextIndex);
+              } else {
+                showNotification("You are at the last section.", "info", 1500);
+              }
+            } else if (e.key === "ArrowLeft") {
+              e.preventDefault();
+              const prevIndex = currentModalIndex - 1;
+              if (prevIndex >= 0) {
+                showSectionInModal(prevIndex);
+              } else {
+                showNotification("You are at the first section.", "info", 1500);
+              }
             }
+            return; // Prevent other handlers if modal navigation occurred
+          }
 
-            // Shortcuts specific to when modal is open
-            if (isModalOpen && e.altKey) {
-                if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    const nextIndex = currentModalIndex + 1;
-                    if (nextIndex < currentSections.length) {
-                        showSectionInModal(nextIndex);
-                    } else {
-                        showNotification("You are at the last section.", "info", 1500);
-                    }
-                } else if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    const prevIndex = currentModalIndex - 1;
-                    if (prevIndex >= 0) {
-                        showSectionInModal(prevIndex);
-                    } else {
-                         showNotification("You are at the first section.", "info", 1500);
-                    }
-                }
-                 return; // Prevent other handlers if modal navigation occurred
+          // Shortcuts active when NOT typing in input/textarea and modal is closed
+          if (!isInputFocused && !isModalOpen) {
+            // Alt+P: Process content
+            if (e.altKey && e.key.toLowerCase() === "p") {
+              e.preventDefault();
+              if (!processBtn.disabled) {
+                runProcessing(true); // Run process, clear opened state
+              }
             }
-
-             // Shortcuts active when NOT typing in input/textarea and modal is closed
-             if (!isInputFocused && !isModalOpen) {
-                 // Alt+P: Process content
-                 if (e.altKey && e.key.toLowerCase() === 'p') {
-                     e.preventDefault();
-                     if (!processBtn.disabled) {
-                         runProcessing(true); // Run process, clear opened state
-                     }
-                 }
-                 // Alt+C: Clear Input
-                 else if (e.altKey && e.key.toLowerCase() === 'c') {
-                     e.preventDefault();
-                     clearAll();
-                 }
-                 // Alt+S or ?: Toggle shortcuts panel (example - could use another key)
-                 // Using helpBtn click simulation is easier
-                 // else if (e.altKey && e.key.toLowerCase() === 's') {
-                 //    e.preventDefault();
-                 //    toggleShortcutsPanel();
-                 // }
-             }
+            // Alt+C: Clear Input
+            else if (e.altKey && e.key.toLowerCase() === "c") {
+              e.preventDefault();
+              clearAll();
+            }
+            // Alt+S or ?: Toggle shortcuts panel (example - could use another key)
+            // Using helpBtn click simulation is easier
+            // else if (e.altKey && e.key.toLowerCase() === 's') {
+            //    e.preventDefault();
+            //    toggleShortcutsPanel();
+            // }
+          }
         }
 
-    })(); // End IIFE
+        // --- Handle Text Selection
+      })(); // End IIFE
     </script>
-</body>
+  </body>
 </html>
