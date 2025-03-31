@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Enhanced Document Section Splitter</title>
+    <title>Document Section Splitter</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -362,7 +362,6 @@
         background: var(--accent-color);
       }
 
-
       .section-output:hover {
         background-color: var(--hover-color);
         border-color: var(--accent-color);
@@ -390,7 +389,6 @@
         filter: brightness(110%);
         /* Adjust for dark mode */
       }
-
 
       .section-title {
         font-weight: bold;
@@ -523,7 +521,6 @@
       .dark-mode .modal-actions-info {
         color: var(--accent-color);
       }
-
 
       /* Rendered content styles */
       .rendered-content h1,
@@ -880,19 +877,19 @@
 
         /* Hide non-content elements */
         header,
-        .card:not(#output-card),
-        /* Keep output card conceptually if needed, but hide its chrome */
-        #slider-card,
-        .file-upload-container,
-        .input-group .btn,
-        /* Hide input buttons */
-        #split-sections,
-        /* Hide the preview list */
-        .theme-toggle,
-        .shortcuts-panel,
-        .notification,
-        .modal-actions,
-        .modal-header .close-button {
+      .card:not(#output-card),
+      /* Keep output card conceptually if needed, but hide its chrome */
+      #slider-card,
+      .file-upload-container,
+      .input-group .btn,
+      /* Hide input buttons */
+      #split-sections,
+      /* Hide the preview list */
+      .theme-toggle,
+      .shortcuts-panel,
+      .notification,
+      .modal-actions,
+      .modal-header .close-button {
           display: none !important;
         }
 
@@ -1044,7 +1041,7 @@
           <input type="file" id="file-upload" accept=".md,.html,.txt" />
           <span id="file-name" class="file-name">No file chosen</span>
         </div>
-        <p style="margin: 1rem 0 0.5rem;">Or paste your content here:</p>
+        <p style="margin: 1rem 0 0.5rem">Or paste your content here:</p>
         <textarea
           id="content-input"
           placeholder="Enter Markdown or HTML content..."
@@ -1052,7 +1049,13 @@
         ></textarea>
         <div
           class="input-group"
-          style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;"
+          style="
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+          "
         >
           <button id="process-btn" class="btn" disabled>
             <!-- Start disabled -->
@@ -1064,14 +1067,14 @@
           <button
             id="help-btn"
             class="btn btn-secondary"
-            style="margin-left: auto;"
+            style="margin-left: auto"
           >
             <i class="fas fa-keyboard"></i> Shortcuts
           </button>
         </div>
       </div>
 
-      <div id="slider-card" class="card" style="display: none;">
+      <div id="slider-card" class="card" style="display: none">
         <h2><i class="fa-solid fa-sliders"></i> Split Options</h2>
         <div id="slider-container" class="slider-container">
           <label for="heading-level">Split at heading level:</label>
@@ -1089,7 +1092,7 @@
         </div>
       </div>
 
-      <div id="output-card" class="card" style="display: none;">
+      <div id="output-card" class="card" style="display: none">
         <h2><i class="fas fa-puzzle-piece"></i> Split Sections</h2>
         <div id="split-sections">
           <p>Process content to see split sections here.</p>
@@ -1738,159 +1741,230 @@
         }
 
         /**
-         * Initializes a text highlighter on a specified element
-         * @param {string} selector - CSS selector for the target element
+         * Activates a text highlighter functionality on the page.
+         * - Selected text gets a light yellow background.
+         * - Clicking a highlight removes it.
+         * - Maintains a sorted array of highlighted text content.
+         * - Copies the sorted text content array (joined by newline) to the clipboard on each change.
+         *
+         * @returns {Function} A cleanup function to deactivate the highlighter and remove listeners.
          */
-        function initTextHighlighter(selector) {
-          const targetElement = document.querySelector(selector);
+        (function activateHighlighter() {
+          // --- Configuration ---
+          const HIGHLIGHT_CLASS = "text-highlighter-highlight"; // CSS class for highlighted spans
+          const HIGHLIGHT_BG_COLOR = "lightyellow"; // Background color for highlights
 
-          if (!targetElement) {
-            console.error(`Element not found: ${selector}`);
-            return;
-          }
+          // --- State ---
+          let selections = []; // Array to store the text content of highlighted elements
 
-          // Store all highlights with their text
-          const highlights = [];
-
-          // Add event listeners
-          targetElement.addEventListener("mouseup", handleTextSelection);
-          document.addEventListener("click", handleHighlightClick);
+          // --- Helper Functions ---
 
           /**
-           * Handles user text selection
+           * Finds all highlighted elements, sorts them by DOM order,
+           * updates the `selections` array, and copies the result to the clipboard.
            */
-          function handleTextSelection(event) {
-            const selection = window.getSelection();
-            const selectedText = selection.toString().trim();
+          const updateSelectionsAndClipboard = () => {
+            console.log("Updating selections and clipboard...");
+            const highlightedElements = Array.from(
+              document.querySelectorAll(`.${HIGHLIGHT_CLASS}`)
+            );
 
-            if (selectedText === "" || !selection.rangeCount) return;
+            // Sort elements based on their order in the document
+            highlightedElements.sort((a, b) => {
+              // compareDocumentPosition returns a bitmask.
+              // The '& Node.DOCUMENT_POSITION_FOLLOWING' isolates the bit indicating 'a' follows 'b'.
+              // If a follows b, it should come later in the sort, so we return 1.
+              // If b follows a (or they are the same, though that shouldn't happen here), return -1.
+              // Docs: https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition
+              const comparison = a.compareDocumentPosition(b);
+              if (comparison & Node.DOCUMENT_POSITION_FOLLOWING) {
+                return 1; // a follows b
+              } else if (comparison & Node.DOCUMENT_POSITION_PRECEDING) {
+                return -1; // a precedes b
+              } else {
+                return 0; // Should ideally not happen if elements are distinct
+              }
+            });
 
-            const range = selection.getRangeAt(0);
+            // Update the selections array with the text content
+            selections = highlightedElements.map((el) => el.textContent);
 
-            // Ensure selection is within our target element
-            if (!targetElement.contains(range.commonAncestorContainer)) return;
+            console.log("Current Selections:", selections);
 
-            try {
-              // Create a unique ID for this highlight
-              const highlightId = `highlight-${Date.now()}`;
-
-              // Create highlight element
-              const highlightSpan = document.createElement("span");
-              highlightSpan.className = "text-highlight";
-              highlightSpan.dataset.highlightId = highlightId;
-              highlightSpan.style.backgroundColor = "rgba(255, 255, 0, 0.7)";
-              highlightSpan.style.cursor = "pointer";
-              highlightSpan.title = "Click to remove this highlight";
-
-              // Apply the highlight
-              range.surroundContents(highlightSpan);
-
-              // Store highlight data
-              highlights.push({
-                id: highlightId,
-                element: highlightSpan,
-                text: selectedText,
-              });
-
-              // Update clipboard with all highlighted text
-              updateClipboard();
-
-              // Clear selection
-              selection.removeAllRanges();
-            } catch (e) {
-              console.warn("Could not create highlight:", e);
-              showNotification(
-                "Please select text within a single element",
-                true
-              );
+            // Write to clipboard
+            const clipboardText = selections.join("\n");
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard
+                .writeText(clipboardText)
+                .then(() => {
+                  console.log("Selections copied to clipboard.");
+                })
+                .catch((err) => {
+                  console.error("Failed to copy selections to clipboard:", err);
+                  // Optionally alert the user or provide fallback for older browsers/permissions issues
+                  // For example, you could display the text in a textarea for manual copying.
+                });
+            } else {
+              console.warn("Clipboard API not available or not permitted.");
+              // Consider adding a fallback mechanism here if needed
             }
-          }
+          };
 
           /**
-           * Handles clicks on highlighted text
+           * Handles the mouseup event to create a highlight.
+           * @param {MouseEvent} event - The mouseup event object.
            */
-          function handleHighlightClick(event) {
-            const highlight = event.target.closest(".text-highlight");
-            if (!highlight) return;
-
-            const highlightId = highlight.dataset.highlightId;
-            const index = highlights.findIndex((h) => h.id === highlightId);
-
-            if (index !== -1) {
-              // Remove from our highlights array
-              highlights.splice(index, 1);
-
-              // Replace highlight with its text content
-              const parent = highlight.parentNode;
-              const textNode = document.createTextNode(highlight.textContent);
-              parent.replaceChild(textNode, highlight);
-
-              // Normalize to merge adjacent text nodes
-              parent.normalize();
-
-              // Update clipboard with remaining highlights
-              updateClipboard();
-
-              showNotification("Highlight removed");
-            }
-          }
-
-          /**
-           * Updates the clipboard with all highlighted text
-           */
-          function updateClipboard() {
-            if (highlights.length === 0) {
-              showNotification("Clipboard cleared");
-              navigator.clipboard.writeText("");
+          const handleMouseUp = (event) => {
+            // Don't highlight if clicking on an existing highlight (that's for removal)
+            if (event.target.classList?.contains(HIGHLIGHT_CLASS)) {
               return;
             }
 
-            const clipboardText = highlights.map((h) => h.text).join("\n");
+            const selection = window.getSelection();
+            const selectedText = selection.toString().trim();
 
-            navigator.clipboard
-              .writeText(clipboardText)
-              .then(() => {
-                showNotification(
-                  `Copied ${highlights.length} selection(s) to clipboard`
-                );
-              })
-              .catch((err) => {
-                console.error("Clipboard error:", err);
-                fallbackCopyTextToClipboard(clipboardText);
-              });
-          }
-
-          /**
-           * Fallback method for copying to clipboard
-           */
-          function fallbackCopyTextToClipboard(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-9999px";
-            textArea.style.top = "-9999px";
-            document.body.appendChild(textArea);
-
-            textArea.focus();
-            textArea.select();
-
-            try {
-              const successful = document.execCommand("copy");
-              if (successful) {
-                showNotification(
-                  `Copied ${highlights.length} selection(s) to clipboard`
-                );
-              } else {
-                showNotification("Unable to copy to clipboard", true);
-              }
-            } catch (err) {
-              console.error("Fallback clipboard error:", err);
-              showNotification("Unable to copy to clipboard", true);
+            if (!selectedText || selection.isCollapsed) {
+              return; // No text selected or selection is just a caret
             }
 
-            document.body.removeChild(textArea);
+            // Important: Get range *before* creating the span
+            const range = selection.getRangeAt(0);
+
+            // Check if the selection is already fully contained within a highlight
+            if (
+              range.commonAncestorContainer.parentElement?.classList.contains(
+                HIGHLIGHT_CLASS
+              ) &&
+              range.startContainer === range.endContainer &&
+              range.startOffset === 0 &&
+              range.endOffset === range.endContainer.length
+            ) {
+              console.log("Selection is already fully highlighted.");
+              selection.removeAllRanges(); // Clear selection to avoid confusion
+              return;
+            }
+
+            const span = document.createElement("span");
+            span.className = HIGHLIGHT_CLASS;
+            span.style.backgroundColor = HIGHLIGHT_BG_COLOR;
+            // Optionally add other styles like slightly rounded corners or padding
+            // span.style.padding = '0 2px';
+            // span.style.borderRadius = '2px';
+
+            try {
+              // surroundContents is the standard way to wrap the selection.
+              // It can throw an error if the selection spans across certain HTML boundaries
+              // or partially selects nodes.
+              range.surroundContents(span);
+
+              // Clear the browser's text selection visually after highlighting
+              selection.removeAllRanges();
+
+              // Update the selections array and clipboard
+              updateSelectionsAndClipboard();
+            } catch (e) {
+              console.error("Error surrounding contents:", e);
+              alert(
+                "Could not highlight this selection. It might span across complex elements."
+              );
+              // Clear the selection to prevent unexpected behavior
+              selection.removeAllRanges();
+            }
+          };
+
+          /**
+           * Handles the click event to remove a highlight.
+           * @param {MouseEvent} event - The click event object.
+           */
+          const handleClick = (event) => {
+            const target = event.target;
+
+            // Check if the clicked element is one of our highlights
+            if (target.classList.contains(HIGHLIGHT_CLASS)) {
+              const spanToRemove = target;
+              const parent = spanToRemove.parentNode;
+
+              // Move all child nodes (usually just a text node) of the span
+              // to be direct children of the parent, inserted right before the span.
+              while (spanToRemove.firstChild) {
+                parent.insertBefore(spanToRemove.firstChild, spanToRemove);
+              }
+
+              // Remove the now-empty span
+              spanToRemove.remove();
+
+              // Normalize the parent node to merge adjacent text nodes.
+              // This cleans up the DOM (e.g., merges "text" + "node" back into "textnode").
+              parent.normalize();
+
+              // Update the selections array and clipboard
+              updateSelectionsAndClipboard();
+
+              // Optional: Prevent the click from triggering other actions (like navigation if it was inside a link)
+              // event.preventDefault();
+              event.stopPropagation(); // Stop the click from potentially triggering mouseup again immediately
+            }
+          };
+
+          // --- Inject Styles ---
+          // Ensure the styles are available for the highlight class
+          const styleId = "text-highlighter-styles";
+          if (!document.getElementById(styleId)) {
+            const style = document.createElement("style");
+            style.id = styleId;
+            style.textContent = `
+      .${HIGHLIGHT_CLASS} {
+        background-color: ${HIGHLIGHT_BG_COLOR};
+        cursor: pointer; /* Indicate it's clickable */
+        /* Add transition for smoother removal appearance */
+        /* transition: background-color 0.2s ease-out; */ /* Uncomment if desired */
+      }
+      /* Optional: Style for when highlight is about to be removed (if using transition) */
+      /* .${HIGHLIGHT_CLASS}:hover { */
+        /* opacity: 0.8; */
+      /* } */
+    `;
+            document.head.appendChild(style);
           }
-        }
+
+          // --- Attach Event Listeners ---
+          // Use document level listeners for simplicity and to catch events anywhere
+          document.addEventListener("mouseup", handleMouseUp);
+          document.addEventListener("click", handleClick);
+
+          console.log("Highlighter activated.");
+
+          // --- Initial Update ---
+          // If there are pre-existing highlights (e.g., from a previous session/state), capture them.
+          updateSelectionsAndClipboard();
+
+          // --- Cleanup Function ---
+          // Return a function that can be called to remove the listeners and styles
+          return () => {
+            document.removeEventListener("mouseup", handleMouseUp);
+            document.removeEventListener("click", handleClick);
+
+            // Optional: Remove all highlights when deactivating
+            // document.querySelectorAll(`.${HIGHLIGHT_CLASS}`).forEach(el => {
+            //    const parent = el.parentNode;
+            //    while (el.firstChild) parent.insertBefore(el.firstChild, el);
+            //    el.remove();
+            //    parent.normalize();
+            // });
+
+            // Remove injected styles
+            const styleElement = document.getElementById(styleId);
+            if (styleElement) {
+              styleElement.remove();
+            }
+
+            // Clear the state
+            selections = [];
+            navigator.clipboard.writeText("").catch(() => {}); // Clear clipboard (best effort)
+
+            console.log("Highlighter deactivated.");
+          };
+        })();
 
         // --- UI Functions ---
 
@@ -2043,7 +2117,7 @@
           document.body.style.overflow = "hidden"; // Prevent body scrolling
           contentModal.style.display = "flex"; // Use flex for centering
           renderedContentDiv.scrollTop = 0; // Scroll modal content to top
-          initTextHighlighter()
+          activateHighlighter(); // Initialize highlighter on the modal content
           // Delay focus slightly to ensure modal is fully visible and transition ended
           setTimeout(() => closeModalBtn.focus(), 100);
         }
