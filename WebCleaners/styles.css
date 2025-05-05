@@ -1,0 +1,86 @@
+/* =============================
+   Global Styles
+   ============================= */
+body > * {
+  -webkit-font-smoothing: subpixel-antialiased;
+  background-color: #f7f7f7;
+  color: #000000;
+  font-family: "Lexend Deca";
+  font-size: 16px;
+  font-weight: 400;
+  hyphens: none;
+  letter-spacing: normal;
+  line-height: 1.5;
+  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70ch;
+  padding-inline: clamp(1rem, 2vw, 3rem);
+  padding-left: 1em;
+  word-break: keep-all;
+  word-spacing: normal;
+}
+
+a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+/* =============================
+   Optimised, Accessible Tables
+   ============================= */
+
+/* ---- Theme tokens ---- */
+:root {
+  --tbl-bg-even: #ffffff;
+  --tbl-bg-odd: #fafafa;
+  --tbl-bg-hover: #f2f4f8;
+  --tbl-text: #1f1f1f;
+  --tbl-border: #d0d7de;
+}
+
+/* ---- Core table styles ---- */
+table {
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.5rem;
+  color: var(--tbl-text);
+  box-shadow: var(--shadow);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+caption {
+  font-weight: 600;
+  padding-block: 0.5rem;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--tbl-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: var(--tbl-bg-hover);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+tbody tr:nth-child(odd) {
+  background: var(--tbl-bg-odd);
+}
+tbody tr:nth-child(even) {
+  background: var(--tbl-bg-even);
+}
+
+tbody tr:is(:hover, :focus-within) {
+  background: var(--tbl-bg-hover);
+  outline: 2px solid transparent;
+}
