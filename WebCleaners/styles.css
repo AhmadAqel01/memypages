@@ -1,7 +1,7 @@
 /* =============================
    Global Styles
    ============================= */
-body > * {
+body > *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
   -webkit-font-smoothing: subpixel-antialiased;
   background-color: #f7f7f7;
   color: #000000;
