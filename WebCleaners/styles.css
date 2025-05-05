@@ -22,7 +22,7 @@ body > * {
 }
 
 /* Style for the main title element */
-#titleElement {
+h1#titleElement {
   font-size: 24px;
   font-weight: bold;
   color: navy;
