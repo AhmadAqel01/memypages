@@ -2,7 +2,6 @@ const selectors_to_remove = [
   "script",
   "style",
   "link",
-  "head",
   "figure>.inline-image-caption",
   ".inline-table-caption:has(i)",
   ".inline-table-caption:has(a)",
