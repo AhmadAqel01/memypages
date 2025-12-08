@@ -1,10 +1,36 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // State
+  // check if patterns.json exist in the directory. If defined, return the value of the json file as default_patterns.
+   fetch('patterns.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (Array.isArray(data)) {
+            default_patterns = data.map(item => ({
+                id: item.id || Date.now() + Math.random(),
+                regex_pattern: item.regex_pattern || '',  
+                flags: item.flags || 'g',
+                replacement: item.replacement || '',
+                description: item.description || ''
+            }));
+        } else {
+            console.error('Invalid JSON format: Expected an array of pattern objects.');
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching patterns.json:', error);
+    });
+
+  
+  // State
     const state = {
         sourceText: '',
         processedText: '',
         docTitle: 'Untitled',
-        patterns: [
+        patterns: default_patterns || [
             { id: Date.now(), regex_pattern: '', flags: 'g', replacement: '', description: '' }
         ],
         fileHandle: null // For File System Access API
