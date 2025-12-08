@@ -1,0 +1,121 @@
+[
+  {
+    "id": 1765204799441.2422,
+    "regex_pattern": "^\\\\\\[\\n",
+    "flags": "gm",
+    "replacement": "$$$$",
+    "description": "Replace \\[ that are on a line of their own with $$"
+  },
+  {
+    "id": 1765204799441.7253,
+    "regex_pattern": "\\n\\\\\\]",
+    "flags": "gm",
+    "replacement": "$$$$",
+    "description": "Replace \\] that are on a line of their own with $$"
+  },
+  {
+    "id": 1765204799441.2556,
+    "regex_pattern": "\\\\[()]",
+    "flags": "gm",
+    "replacement": "$$",
+    "description": "Replace \\( or \\) with $ to represent inline math"
+  },
+  {
+    "id": 1765204799441.3142,
+    "regex_pattern": "\\\\(?=[\\\\*_[\\]()#=+\\-.!])",
+    "flags": "gm",
+    "replacement": "",
+    "description": "remove unneccasry escaping of markdown"
+  },
+  {
+    "id": 1765204799441.7202,
+    "regex_pattern": "(?<!])(?<!])\\((?:[^)\\n]*et al\\.[^)\\n]*|(?=[^)\\n]*[A-Z])(?=[^)\\n]*[a-z])(?=[^)\\n]*(19|20)\\d{2})[^)\\n]*)\\)",
+    "flags": "gm",
+    "replacement": "",
+    "description": "Remove (name, year) citations between parenthesis."
+  },
+  {
+    "id": 1765204799441.0623,
+    "regex_pattern": "(?<=[A-Za-z0-9])\\s*\\(\\s*(?=[^)]*\\d)[0-9pP.,\\u2013\\-\\s]*\\)\\s*(?=[.,;(])",
+    "flags": "gmi",
+    "replacement": "",
+    "description": "Remove numerical citations between parenthesis"
+  },
+  {
+    "id": 1765204799441.6885,
+    "regex_pattern": "^([\\^\\w]*?[^[]*?[;][^\\w]*?[[]*?\\)|\\([^\\;",
+    "flags": "gmi",
+    "replacement": "",
+    "description": "Remove dirt between parenthesis"
+  },
+  {
+    "id": 1765204799441.787,
+    "regex_pattern": "(? <!!)\\[[^a-zA-Z\\alpha\\beta%]*?\\]",
+    "flags": "gmi",
+    "replacement": "",
+    "description": "Remove numerical citations between brackets"
+  },
+  {
+    "id": 1765204799441.059,
+    "regex_pattern": "\\$(\\{\\s*\\})*\\^\\{*[^a-zA-Zαβ]*?\\}*\\$",
+    "flags": "gmi",
+    "replacement": "",
+    "description": "Remove inline citations defined as LaTeX inline superscripts."
+  },
+  {
+    "id": 1765204799441.3674,
+    "regex_pattern": "(?:(?<=[a-zA-Z,0-9])\\n)[\\n\\s]*[\\n\\s]*",
+    "flags": "gm",
+    "replacement": " ",
+    "description": "Merge interrupted lines"
+  },
+  {
+    "id": 1765204799441.6526,
+    "regex_pattern": "^-(?=[a-z])",
+    "flags": "gmi",
+    "replacement": "- ",
+    "description": "Add a space after - whenever it is at start of a line"
+  },
+  {
+    "id": 1765204799441.2322,
+    "regex_pattern": "(?<=^[A-Z])\\s+(?=[a-z])",
+    "flags": "gm",
+    "replacement": "",
+    "description": "Remove the spaces preceded by capital letter at start of a line"
+  },
+  {
+    "id": 1765204799441.0918,
+    "regex_pattern": "[^\\S\\r\\n]{2,}",
+    "flags": "gm",
+    "replacement": "",
+    "description": "Remove Excessive Whitespace"
+  },
+  {
+    "id": 1765204799441.3765,
+    "regex_pattern": "[^\\S\\r\\n]+(?=[\\/)]},;:.!?'\">...—])|(?<=[",
+    "flags": "gmi",
+    "replacement": "",
+    "description": "Remove Unsightly Whitespace"
+  },
+  {
+    "id": 1765204799441.981,
+    "regex_pattern": "(?<=\\n\\n)\\n{1,}",
+    "flags": "gmi",
+    "replacement": "",
+    "description": "Remove Excessive Newlines (+2)"
+  },
+  {
+    "id": 1765204799441.53,
+    "regex_pattern": "(?<!!)\\[([^\\]]+)\\]\\(([^)]+)\\)",
+    "flags": "gmi",
+    "replacement": "$1",
+    "description": "Remove markdown links and replace them with their text"
+  },
+  {
+    "id": 1765205393698,
+    "regex_pattern": "\\(Credit: Getty images\\)",
+    "flags": "g",
+    "replacement": "",
+    "description": ""
+  }
+]
