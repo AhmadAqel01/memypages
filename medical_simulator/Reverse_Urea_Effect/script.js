@@ -39,9 +39,9 @@ class Simulation {
         this.logHistory();
     }
     get actualBBBPerm() { return this.bbbPermeability * 0.001; }
-    get plasmaOsm() { return CONFIG.baseOsm + this.plasmaUrea * CONFIG.ureaToOsm; }
-    get icfOsm() { return CONFIG.baseOsm + this.icfUrea * CONFIG.ureaToOsm; }
-    get brainOsm() { return CONFIG.baseOsm + this.brainUrea * CONFIG.ureaToOsm; }
+    get plasmaOsm() { return (CONFIG.baseOsm * CONFIG.plasmaVol / this.plasmaVol) + this.plasmaUrea * CONFIG.ureaToOsm; }
+    get icfOsm() { return (CONFIG.baseOsm * CONFIG.icfVol / this.icfVol) + this.icfUrea * CONFIG.ureaToOsm; }
+    get brainOsm() { return (CONFIG.baseOsm * CONFIG.brainVol / this.brainVol) + this.brainUrea * CONFIG.ureaToOsm; }
 
     update(dtReal) {
         if (!this.isRunning || this.isFinished) return;
@@ -93,13 +93,28 @@ class Simulation {
         const icfShift = this.icfWaterShiftRate * dt;
         const brainShift = this.brainWaterShiftRate * dt;
 
-        this.icfVol += icfShift; this.brainVol += brainShift;
-        this.plasmaVol -= (icfShift + brainShift); // Water is pulled directly from intravascular space
+        const prePlasmaVol = this.plasmaVol;
+        const preIcfVol = this.icfVol;
+        const preBrainVol = this.brainVol;
+
+        let newIcfVol = this.icfVol + icfShift;
+        let newBrainVol = this.brainVol + brainShift;
+        let newPlasmaVol = this.plasmaVol - (icfShift + brainShift); // Water is pulled directly from intravascular space
 
         // Clamp to prevent physical impossibilities
-        this.icfVol = Math.max(CONFIG.icfVol * 0.8, Math.min(CONFIG.icfVol * 1.2, this.icfVol));
-        this.brainVol = Math.max(CONFIG.brainVol * 0.8, Math.min(CONFIG.brainVol * 1.2, this.brainVol));
-        this.plasmaVol = Math.max(CONFIG.plasmaVol * 0.4, Math.min(CONFIG.plasmaVol * 1.3, this.plasmaVol));
+        newIcfVol = Math.max(CONFIG.icfVol * 0.8, Math.min(CONFIG.icfVol * 1.2, newIcfVol));
+        newBrainVol = Math.max(CONFIG.brainVol * 0.8, Math.min(CONFIG.brainVol * 1.2, newBrainVol));
+        newPlasmaVol = Math.max(CONFIG.plasmaVol * 0.4, Math.min(CONFIG.plasmaVol * 1.3, newPlasmaVol));
+
+        // Adjust urea concentrations due to volume shift (mass is conserved, so C_new = C_old * V_old / V_new)
+        // This ensures urea doesn't magically multiply when water leaves a compartment
+        this.plasmaUrea *= prePlasmaVol / newPlasmaVol;
+        this.icfUrea *= preIcfVol / newIcfVol;
+        this.brainUrea *= preBrainVol / newBrainVol;
+
+        this.plasmaVol = newPlasmaVol;
+        this.icfVol = newIcfVol;
+        this.brainVol = newBrainVol;
 
         this.time += dt;
 
