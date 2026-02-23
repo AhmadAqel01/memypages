@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plasma Refill Rate Mismatch Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Plasma Refill Rate Mismatch</h1>
+            <p>Visualizing the balance between Fluid Removal (UFR) and Refill (PRR)</p>
+        </header>
+
+        <main>
+            <section class="visualizer-section">
+                <canvas id="simulationCanvas" width="800" height="600"></canvas>
+                <div class="overlays">
+                    <div id="status-indicator" class="status-indicator normal">Status: Stable</div>
+                    <div id="mismatch-alert" class="alert hidden">MISMATCH CRITICAL!</div>
+                </div>
+            </section>
+
+            <aside class="controls-section">
+                <div class="control-group">
+                    <label for="scenario-select">Clinical Scenario</label>
+                    <select id="scenario-select">
+                        <option value="custom">Custom Manual Control</option>
+                        <option value="stable">Stable Dialysis</option>
+                        <option value="high_ufr">Aggressive Fluid Removal</option>
+                        <option value="sepsis">Low Refill (e.g., Sepsis)</option>
+                        <option value="overload">Fluid Overload</option>
+                    </select>
+                    <p class="description">Select a preset to see how physiology changes.</p>
+                </div>
+
+                <div class="control-group">
+                    <label for="ufr-slider">Ultrafiltration Rate (UFR)</label>
+                    <input type="range" id="ufr-slider" min="0" max="20" step="0.5" value="5">
+                    <span class="value-display" id="ufr-value">500 mL/hr</span>
+                    <p class="description">Rate of fluid removal (Dialysis)</p>
+                </div>
+
+                <div class="control-group">
+                    <label for="prr-slider">Refill Capability (PRR Factor)</label>
+                    <input type="range" id="prr-slider" min="0" max="20" step="0.5" value="10">
+                    <span class="value-display" id="prr-value">High</span>
+                    <p class="description">Patient's physiological ability to refill plasma</p>
+                </div>
+
+                <div class="control-group">
+                    <label for="bolus-slider">Bolus Volume</label>
+                    <input type="range" id="bolus-slider" min="100" max="10000" step="100" value="500">
+                    <span class="value-display" id="bolus-value">500 mL</span>
+                    <p class="description">Volume of IV fluid bolus (100 mL – 10 L)</p>
+                </div>
+
+                <div class="control-group" style="flex-direction:row; gap:10px;">
+                    <button id="reset-btn" class="btn primary">Reset Simulation</button>
+                    <button id="bolus-btn" class="btn secondary">Give Bolus</button>
+                </div>
+
+                <div class="stats-panel">
+                    <div class="stat">
+                        <span class="label">Blood Volume</span>
+                        <span class="value" id="bv-display">100%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Interstitial Vol</span>
+                        <span class="value" id="iv-display">High</span>
+                    </div>
+                    <div class="stat"> <!-- Added Net Flow Indicator -->
+                        <span class="label">Net Flow (Mismatch)</span>
+                        <span class="value" id="net-flow-display">0 mL/min</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <section class="graph-section">
+            <canvas id="timeGraph"></canvas>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
