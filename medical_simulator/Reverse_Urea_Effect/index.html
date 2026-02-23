@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Urea Effect — Interactive Visualizer</title>
+    <meta name="description"
+        content="Interactive visualization of the reverse urea effect during hemodialysis, explaining dialysis disequilibrium syndrome, intracranial hypertension, and intradialytic hypotension.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.2.1"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="header-badge">NEPHROLOGY · DIALYSIS PHYSIOLOGY</div>
+            <h1>The Reverse Urea Effect</h1>
+            <p class="subtitle">How rapid urea clearance during hemodialysis creates osmotic gradients that shift water
+                into body cells and the brain</p>
+        </header>
+
+        <main>
+            <!-- Canvas Visualization -->
+            <section class="visualizer-section">
+                <canvas id="simulationCanvas" width="1060" height="600"></canvas>
+                <div class="overlays">
+                    <div id="status-indicator" class="status-indicator normal">
+                        <span class="status-dot"></span>
+                        <span id="status-text">Normal</span>
+                    </div>
+                    <div id="time-display" class="time-display">Time: 0 min</div>
+                </div>
+            </section>
+
+            <!-- Controls -->
+            <aside class="controls-section">
+                <div class="controls-header">
+                    <h2>Simulation Controls</h2>
+                </div>
+
+                <div class="control-group">
+                    <label for="scenario-select">Clinical Scenario</label>
+                    <select id="scenario-select">
+                        <option value="custom">Custom (Manual)</option>
+                        <option value="first_hd">First HD — Acute Uremia</option>
+                        <option value="maintenance">Maintenance HD</option>
+                        <option value="sled">Gentle / SLED</option>
+                        <option value="pediatric">Pediatric Patient</option>
+                    </select>
+                    <p class="description" id="scenario-description">Adjust parameters manually.</p>
+                </div>
+
+                <div class="control-group">
+                    <label for="bun-slider" class="tooltip-label"
+                        data-tooltip="Blood Urea Nitrogen (BUN) is the baseline concentration of urea in the blood before dialysis starts.">
+                        Pre-Dialysis BUN <span class="info-icon-small">?</span>
+                    </label>
+                    <input type="range" id="bun-slider" min="40" max="200" step="5" value="100">
+                    <div class="slider-row">
+                        <span class="range-label">40</span>
+                        <span class="value-display" id="bun-value">100 mg/dL</span>
+                        <span class="range-label">200</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="clearance-slider" class="tooltip-label"
+                        data-tooltip="Rate at which the dialyzer clears urea from the plasma (mL/min).">
+                        Dialysis Intensity <span class="info-icon-small">?</span>
+                    </label>
+                    <input type="range" id="clearance-slider" min="50" max="300" step="10" value="180">
+                    <div class="slider-row">
+                        <span class="range-label">Gentle</span>
+                        <span class="value-display" id="clearance-value">180 mL/min</span>
+                        <span class="range-label">Aggressive</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="bbb-slider" class="tooltip-label"
+                        data-tooltip="Blood-Brain Barrier permeability to urea. Lower values mean urea is trapped in the brain, increasing the osmotic gradient and DDS risk.">
+                        BBB Permeability <span class="info-icon-small">?</span>
+                    </label>
+                    <input type="range" id="bbb-slider" min="1" max="20" step="1" value="5">
+                    <div class="slider-row">
+                        <span class="range-label">Low</span>
+                        <span class="value-display" id="bbb-value">5 (Normal)</span>
+                        <span class="range-label">High</span>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button id="play-pause-btn" class="btn primary">
+                        <span id="play-icon">▶</span> Start
+                    </button>
+                    <button id="reset-btn" class="btn secondary">↺ Reset</button>
+                </div>
+                <div class="speed-controls">
+                    <span class="speed-label">Sim Speed:</span>
+                    <button class="speed-btn active" data-speed="1">1x</button>
+                    <button class="speed-btn" data-speed="2">2x</button>
+                    <button class="speed-btn" data-speed="5">5x</button>
+                    <button class="speed-btn" data-speed="10">10x</button>
+                </div>
+                <div class="button-row">
+                    <button id="stop-dialysis-btn" class="btn stop">⏹ Stop Dialysis</button>
+                </div>
+
+                <!-- Stats Panel -->
+                <div class="stats-panel">
+                    <div class="stats-subheader">Urea Concentrations</div>
+                    <div class="stat">
+                        <span class="label">Plasma BUN</span>
+                        <span class="value" id="plasma-bun-display">100 mg/dL</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">ICF Urea</span>
+                        <span class="value" id="icf-urea-display">100 mg/dL</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Brain Urea</span>
+                        <span class="value" id="brain-urea-display">100 mg/dL</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Brain–Plasma Δ</span>
+                        <span class="value" id="gradient-display">0 mOsm/L</span>
+                    </div>
+                    <div class="stats-subheader">Volume Changes</div>
+                    <div class="stat">
+                        <span class="label">Plasma Vol Δ</span>
+                        <span class="value" id="plasma-vol-display">0%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">ICF Vol Δ</span>
+                        <span class="value" id="icf-vol-display">0%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">Brain Vol Δ</span>
+                        <span class="value" id="brain-vol-display">0%</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Info Panel -->
+        <section class="info-section">
+            <div class="info-card" id="info-card">
+                <div class="info-icon">💡</div>
+                <div class="info-content">
+                    <h3 id="info-title">Ready to Simulate</h3>
+                    <p id="info-text">Press <strong>Start</strong> and observe how the dialyzer rapidly clears urea from
+                        the blood while body cells and especially the brain retain urea. The resulting osmotic
+                        gradient shifts water from the intravascular space into cells — reducing circulating volume
+                        (hypotension) and causing cerebral edema (DDS).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <section class="graph-section">
+            <h2 class="section-title">Concentration & Volume Over Time</h2>
+            <div class="chart-wrapper">
+                <canvas id="timeGraph"></canvas>
+            </div>
+        </section>
+
+        <!-- Clinical Consequences -->
+        <section class="consequences-section">
+            <h2 class="section-title">Clinical Consequences of the Reverse Urea Effect</h2>
+            <div class="consequences-grid">
+                <div class="consequence-card" id="card-ich">
+                    <div class="card-icon">🧠</div>
+                    <h3>Intracranial Hypertension</h3>
+                    <p>Since the brain retains urea while plasma urea drops, the osmotic gradient pulls water into the
+                        brain. In a rigid skull, even a small increase in brain volume raises intracranial pressure
+                        significantly.</p>
+                </div>
+                <div class="consequence-card" id="card-hypotension">
+                    <div class="card-icon">💉</div>
+                    <h3>Intradialytic Hypotension</h3>
+                    <p>Water shifts from the intravascular space into cells (including brain cells) along the osmotic
+                        gradient. This <em>reduces effective circulating volume</em> even when no fluid is being
+                        ultrafiltered, causing hemodynamic instability.</p>
+                </div>
+                <div class="consequence-card" id="card-dds">
+                    <div class="card-icon">⚠️</div>
+                    <h3>Dialysis Disequilibrium Syndrome</h3>
+                    <p>The clinical manifestation of severe cerebral edema from rapid urea clearance. Symptoms range
+                        from headache and nausea to seizures and coma. Most common during a patient's first dialysis
+                        session with very high BUN.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
